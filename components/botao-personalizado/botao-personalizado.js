@@ -11,6 +11,14 @@ document.querySelectorAll("button[bp]").forEach(button => {
         button.style.backgroundColor = newColor;
     }
 
+    button.changeText = (newText) => {
+        button.textContent = newText;
+    }
+
+    button.changeHTML = (newHTML) => {
+        button.innerHTML = newHTML;
+    }
+
     const bgColor = button.getAttribute("bp-bgcolor");
     button.changeBgColor(bgColor);
 })

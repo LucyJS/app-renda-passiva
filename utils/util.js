@@ -10,7 +10,11 @@ function formatCurrency(value){
 }
 
 function getRandomStockVariation(){
-    const variation = Object.values(StockVariation);
-    const randomIndex = Math.floor(Math.random() * variation.length);
-    return variation[randomIndex];
+    const variationList = Object.values(StockVariation);
+    return getRandomItem(variationList);
+}
+
+function getRandomItem(list){
+    const randomIndex = Math.floor(Math.random() * list.length);
+    return list[randomIndex];
 }

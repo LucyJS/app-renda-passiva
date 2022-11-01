@@ -25,9 +25,6 @@
  *  clickOrder
  */
 
-
-
-
 document.querySelectorAll("table[acoes]").forEach(table => {
    
     // stock data

@@ -1,8 +1,19 @@
 
-btnB.addEventListener("click", function(){
-    btnA.changeBgColor("deeppink");
+buttonChangeColor.addEventListener("click", function(){
+    const colors = ["deeppink", "green", "red", "blue"];
+
+    btnA.changeBgColor(getRandomItem(colors));
+    btnB.changeBgColor(getRandomItem(colors));
+    btnC.changeBgColor(getRandomItem(colors));
 })
 
+buttonChangeText.addEventListener("click", function(){
+    const texts = ["Ola", "Tudo bem", "Como vai", "Tchau", "Arigato", "Tomou?!"];
+
+    btnA.changeText(getRandomItem(texts));
+    btnB.changeText(getRandomItem(texts));
+    btnC.changeText(getRandomItem(texts));
+})
 
 // =====================================
 // Exemplo de uso do componte de ações
