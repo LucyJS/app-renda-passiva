@@ -1,4 +1,10 @@
 
+
+// =====================================
+// Exemplo de uso do componente botão 
+// personalizado
+// =====================================
+
 buttonChangeColor.addEventListener("click", function(){
     const colors = ["deeppink", "green", "red", "blue"];
 
@@ -14,9 +20,10 @@ buttonChangeText.addEventListener("click", function(){
     btnB.changeText(getRandomItem(texts));
     btnC.changeText(getRandomItem(texts));
 })
+// =====================================
 
 // =====================================
-// Exemplo de uso do componte de ações
+// Exemplo de uso do componente de ações
 // =====================================
 acoes.addEventListener("buyStocks", (event) => {
     const eventDetail = event.detail;
