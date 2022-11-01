@@ -1,35 +1,42 @@
 
+/**
+ * Atributtes
+ *  bp-bg-color Cor de fundo
+ * 
+ * Properties
+ *  componentInitialized
+ * 
+ * Methods
+ *  changeBgColor
+ *  changeText
+ *  changeHTML
+ */
+createComponent("botao-personalizado", (componentInstance, staticContent) =>{
+    const button = componentInstance.querySelector("button")
 
-function initBpComponents() {
-    document.querySelectorAll("button[bp]").forEach(button => {
-        if(button.componentInitialized) return;
 
-        button.componentInitialized = false;
 
-        button.addEventListener("click", (event) => {
-            const element = event.target;
-            const message = element.getAttribute("bp-message");
-            
-            alert(message);
-        });
+    // events
+    button.addEventListener("click", (event) => {
+        const element = event.target;
+        alert(element.innerHTML);
+    });
 
-        button.changeBgColor = (newColor) => {
-            button.style.backgroundColor = newColor;
-        }
+    // methods
+    componentInstance.changeBgColor = (newColor) => {
+        button.style.backgroundColor = newColor;
+    }
 
-        button.changeText = (newText) => {
-            button.textContent = newText;
-        }
+    componentInstance.changeText = (newText) => {
+        button.textContent = newText;
+    }
 
-        button.changeHTML = (newHTML) => {
-            button.innerHTML = newHTML;
-        }
+    componentInstance.changeHTML = (newHTML) => {
+        button.innerHTML = newHTML;
+    }
 
-        const bgColor = button.getAttribute("bp-bgcolor");
-        button.changeBgColor(bgColor);
-        
-        button.componentInitialized = true;
-    })
-}
-
-initBpComponents();
+    // init
+    const bgColor = componentInstance.getAttribute("bp-bgcolor");
+    componentInstance.changeBgColor(bgColor);
+    button.innerHTML = staticContent;
+});

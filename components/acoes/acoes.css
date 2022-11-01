@@ -1,34 +1,34 @@
 
-table[acoes] {
+acoes table {
     border: none;
     border-collapse: collapse;
 }
 
-table[acoes] tr th, table[acoes] tr td {
+acoes table tr th, acoes table tr td {
     padding: 10px;
 }
 
-table[acoes] .td-black {
+acoes table .td-black {
     color: #FFF;
     background-color: black;
     text-align: center;
     font-weight: bold;
 }
 
-table[acoes] .stock-ticket {
+acoes table .stock-ticket {
     color: #FFF;
     background-color: #AAA;
     font-weight: bold;
     white-space: nowrap;
 }
 
-table[acoes] tr.gray-row th {
+acoes table tr.gray-row th {
     background-color:gray;
     color: #FFF;
 }
 
-table[acoes] .stock-variation,
-table[acoes] .stock-order {
+acoes table .stock-variation,
+acoes table .stock-order {
     background-color:midnightblue;
     text-align: center;
     color: #FFF;
