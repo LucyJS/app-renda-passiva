@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="components/botao-personalizado/botao-personalizado.css">
 <link rel="stylesheet" href="components/historico-transacao/historico-transacao.css">
 <link rel="stylesheet" href="components/resumo/resumo.css">
+<link rel="stylesheet" href="components/acoes/acoes.css">
 <body>
     <main>
         <h1>Renda Passiva</h1>
@@ -44,12 +45,60 @@
                 </tr>
             </tbody>
         </table>
+
+        <h2>Ações</h2>
+        
+        <table acoes class="mobile-table">
+            <thead>
+                <tr>
+                    <th class="td-black" colspan="4">ATIVOS</th>
+                </tr>
+
+                <tr class="gray-row">
+                    <th>Ações</th>
+                    <th class="td-button">Variação</th>
+                    <th>Preço + Variação</th>
+                    <th class="td-acao">Compra/Venda</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <td class="td-action-1">APPL3</td>
+                    <td class="td-button">----</td>
+                    <td>R$ 25,00</td>
+                    <td class="td-button">ORDEM</td>
+                </tr>
+                
+                <tr>
+                    <td class="td-action-2">VAL3</td>
+                    <td class="td-button"> ---- </td>
+                    <td> R$ 25,00 </td>
+                    <td class="td-button"> ORDEM </td>
+                </tr>
+                
+                <tr>
+                    <td class="td-action-3">BB4S</td>
+                    <td class="td-button">----</td>
+                    <td>R$ 25,00</td>
+                    <td class="td-button">ORDEM</td>
+                </tr>
+                
+                <tr>
+                    <td class="td-action-4">AMZ4</td>
+                    <td class="td-button">----</td>
+                    <td>R$ 25,00</td>
+                    <td class="td-button">ORDEM</td>
+                </tr>
+            </tbody>
+        </table>
     </main>
     
     <script src="utils/util.js"></script>
     <script src="components/resumo/resumo.js"></script>
     <script src="class/stock.js"></script>
     <script src="constants/financial-movement-type.js"></script>
+    <script src="components/acoes/resumo.js"></script>
     <script src="components/botao-personalizado/botao-personalizado.js"></script>
     <script src="components/historico-transacao/historico-transacao.js"></script>
     <script src="index.js"></script>

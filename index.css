@@ -1,6 +1,7 @@
 
 html {
     font-size: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 main {
@@ -9,7 +10,7 @@ main {
 
 .mobile-table {
     width: 100%;
-    font-size: 1rem;
+    font-size: .8rem;
 }
 
 

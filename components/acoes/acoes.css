@@ -1,0 +1,57 @@
+
+table[acoes] {
+    border: none;
+    border-collapse: collapse;
+}
+
+table[acoes] tr th, table[acoes] tr td {
+    padding: 10px;
+}
+
+table[acoes] .td-black {
+    color: #FFF;
+    background-color: black;
+    text-align: center;
+}
+
+table[acoes] .td-action-1 {
+    color: #000;
+    background-color:blue;
+    color: #FFF;
+}
+
+table[acoes] .td-action-2 {
+    color: #000;
+    background-color:green;
+    color: #FFF;
+}
+
+table[acoes] .td-action-3 {
+    color: #000;
+    background-color:red;
+    color: #FFF;
+}
+
+table[acoes] .td-action-4 {
+    color: #000;
+    background-color:orange;
+    color: #FFF;
+}
+
+table[acoes] tr.gray-row th {
+    background-color:gray;
+    color: #FFF;
+}
+
+table[acoes] .td-button {
+    background-color:midnightblue;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+}
+
+table[acoes] .td-button:hover {
+    
+}
+
+
