@@ -122,7 +122,7 @@ function initAcoesComponents(){
             stockList.forEach(stockItem => {
                 const row = table.getStockRowByTicket(stockItem.ticket);
 
-                const ticketCol = row.querySelector("td.td-stock");
+                const ticketCol = row.querySelector("td.stock-ticket");
                 ticketCol.style.backgroundColor = stockItem.getColor();
 
                 const variationCol = row.querySelector("td.stock-variation");
@@ -142,7 +142,7 @@ function initAcoesComponents(){
             stockList.forEach(stockItem => {
                 const row = table.getStockRowByTicket(stockItem.ticket);
         
-                const ticketCol = row.querySelector("td.td-stock");
+                const ticketCol = row.querySelector("td.stock-ticket");
                 const variationCol = row.querySelector("td.stock-variation");
                 const finalPriceCol = row.querySelector("td.stock-final-price");
                 const orderCol = row.querySelector("td.stock-order");

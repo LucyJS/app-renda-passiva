@@ -15,7 +15,7 @@ table[acoes] .td-black {
     font-weight: bold;
 }
 
-table[acoes] .td-stock {
+table[acoes] .stock-ticket {
     color: #FFF;
     background-color: #AAA;
     font-weight: bold;
@@ -27,11 +27,11 @@ table[acoes] tr.gray-row th {
     color: #FFF;
 }
 
-table[acoes] .td-button {
+table[acoes] .stock-variation,
+table[acoes] .stock-order {
     background-color:midnightblue;
     text-align: center;
     color: #FFF;
     font-weight: bold;
 }
-
 
