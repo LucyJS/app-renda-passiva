@@ -12,30 +12,29 @@ table[acoes] .td-black {
     color: #FFF;
     background-color: black;
     text-align: center;
+    font-weight: bold;
 }
 
-table[acoes] .td-action-1 {
+table[acoes] .td-stock {
     color: #000;
+    color: #FFF;
+    font-weight: bold;
+}
+
+table[acoes] .td-stock-APPL3 {
     background-color:blue;
-    color: #FFF;
 }
 
-table[acoes] .td-action-2 {
-    color: #000;
+table[acoes] .td-stock-VAL3 {
     background-color:green;
-    color: #FFF;
 }
 
-table[acoes] .td-action-3 {
-    color: #000;
+table[acoes] .td-stock-BB4S {
     background-color:red;
-    color: #FFF;
 }
 
-table[acoes] .td-action-4 {
-    color: #000;
+table[acoes] .td-stock-AMZ4 {
     background-color:orange;
-    color: #FFF;
 }
 
 table[acoes] tr.gray-row th {
