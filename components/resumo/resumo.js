@@ -1,6 +1,6 @@
-function Resumo(pgo,rp,sa){
-    pagamento.textContent = formatCurrency(pgo);  
-    rendaPassive.textContent = formatCurrency(rp);
-    saldo.textContent = formatCurrency(sa);
+function Resumo(pagamento,rendaPassive,saldo){
+    pgo.textContent = formatCurrency(pagamento);  
+    rp.textContent = formatCurrency(rendaPassive);
+    sa.textContent = formatCurrency(saldo);
 }
-Resumo(100, 0, 200);
+Resumo(150, 0, 300);

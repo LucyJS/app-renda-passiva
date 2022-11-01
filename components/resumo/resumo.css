@@ -1,7 +1,22 @@
-.resumo { 
-    border: 5px;
-    padding-top: 10px !important;
-    padding-bottom: 20px!important;
-    padding-left: 30px!important;
-    padding-right: 40px!important;
+ 
+ .pagamento .rendaPassiva .saldo{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 40px; 
 }
+
+.pagamento {  
+    background-color: rgb(169, 100, 233); 
+}
+
+.rendaPassiva {  
+    background-color: rgb(181, 238, 83); 
+}
+
+.saldo {  
+    background-color: rgb(83, 238, 106); 
+}
+
+
+
