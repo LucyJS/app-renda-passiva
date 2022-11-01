@@ -1,4 +1,16 @@
 
+html {
+    font-size: 100%;
+}
+
 main {
     padding: 10px;
 }
+
+.mobile-table {
+    width: 100%;
+    font-size: 1rem;
+}
+
+
+
