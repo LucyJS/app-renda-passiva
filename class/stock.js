@@ -1,30 +1,41 @@
 class Stock {
-    constructor(){
-        this.id = 0;
-        this.ticket = "";
+    constructor(ticket="AAA3", color="gray", variation=StockVariation.Zero, quantity=0){
+        this.quantity = quantity;
+        this.ticket = ticket;
         this.basePrice = 25;
-        this.color = "#FFF";
-        this.variation = "/2";
+        this.color = color;
+        this.variation = variation;
     }
 
-    getCurrentPrice(){
-        if(["/2", "x2", "x0"].includes(this.variation)){
+    getVariation(){
+        return this.variation;
+    }
+
+    setVariation(newVvariation){
+        this.variation = newVvariation;
+    }
+
+    setColor(newColor){
+        this.color = newColor;
+    }
+
+    getColor(){
+        return this.color;
+    }
+
+    getFinalPrice(){
+        if([StockVariation.Half, StockVariation.Double, StockVariation.Lost, StockVariation.Zero].includes(this.variation)){
             return 0;
         }
 
-        return this.basePrice + this.variation;
+        return this.basePrice + parseInt(this.variation);
+    }
+
+    getQuantity(){
+        return this.quantity;
+    }
+
+    setQuantity(newQuantity){
+        this.quantity = newQuantity;
     }
 }
-
-const app = new Stock();
-app.id = 1;
-app.ticket = "APPR3";
-app.color = "#00F";
-app.variation = 0;
-
-const stocks = {
-    "APPR3": app,
-    "VAL3": app
-}
-
-stocks["APPR3"].getCurrentPrice();

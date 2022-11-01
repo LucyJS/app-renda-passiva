@@ -16,25 +16,10 @@ table[acoes] .td-black {
 }
 
 table[acoes] .td-stock {
-    color: #000;
     color: #FFF;
+    background-color: #AAA;
     font-weight: bold;
-}
-
-table[acoes] .td-stock-APPL3 {
-    background-color:blue;
-}
-
-table[acoes] .td-stock-VAL3 {
-    background-color:green;
-}
-
-table[acoes] .td-stock-BB4S {
-    background-color:red;
-}
-
-table[acoes] .td-stock-AMZ4 {
-    background-color:orange;
+    white-space: nowrap;
 }
 
 table[acoes] tr.gray-row th {
@@ -47,10 +32,6 @@ table[acoes] .td-button {
     text-align: center;
     color: #FFF;
     font-weight: bold;
-}
-
-table[acoes] .td-button:hover {
-    
 }
 
 

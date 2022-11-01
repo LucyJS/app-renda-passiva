@@ -10,8 +10,16 @@ main {
 
 .mobile-table {
     width: 100%;
-    font-size: .8rem;
+    font-size: .7rem;
 }
 
+.example {
+    margin : 10px 0;
+    padding: 10px;
+    background: #DDD;
+    border: 1px dashed #755
+}
 
-
+.example button {
+    margin: 5px;
+}

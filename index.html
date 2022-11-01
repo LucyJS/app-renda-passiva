@@ -48,7 +48,7 @@
 
         <h2>Ações</h2>
         
-        <table acoes class="mobile-table">
+        <table id="acoes" acoes class="mobile-table">
             <thead>
                 <tr>
                     <th class="td-black" colspan="4">ATIVOS</th>
@@ -63,45 +63,54 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td class="td-stock td-stock-APPL3">APPL3</td>
-                    <td class="td-button">----</td>
-                    <td>R$ 25,00</td>
-                    <td class="td-button">ORDEM</td>
+                <tr class="stock-APPL3">
+                    <td class="td-stock stock-ticket">APPL3 <span class="stock-quantity"></span></td>
+                    <td class="td-button stock-variation">----</td>
+                    <td class="stock-final-price">R$ 25,00</td>
+                    <td class="td-button stock-order">ORDEM</td>
                 </tr>
                 
-                <tr>
-                    <td class="td-stock td-stock-VAL3">VAL3</td>
-                    <td class="td-button"> ---- </td>
-                    <td> R$ 25,00 </td>
-                    <td class="td-button"> ORDEM </td>
+                <tr class="stock-VAL3">
+                    <td class="td-stock stock-ticket">VAL3 <span class="stock-quantity"></span></td>
+                    <td class="td-button stock-variation"> ---- </td>
+                    <td class="stock-final-price"> R$ 25,00 </td>
+                    <td class="td-button stock-order"> ORDEM </td>
                 </tr>
                 
-                <tr>
-                    <td class="td-stock td-stock-BB4S">BB4S</td>
-                    <td class="td-button">----</td>
-                    <td>R$ 25,00</td>
-                    <td class="td-button">ORDEM</td>
+                <tr class="stock-BB4S">
+                    <td class="td-stock stock-ticket">BB4S <span class="stock-quantity"></span></td>
+                    <td class="td-button stock-variation">----</td>
+                    <td class="stock-final-price">R$ 25,00</td>
+                    <td class="td-button stock-order">ORDEM</td>
                 </tr>
                 
-                <tr>
-                    <td class="td-stock td-stock-AMZ4">AMZ4</td>
-                    <td class="td-button">----</td>
-                    <td>R$ 25,00</td>
-                    <td class="td-button">ORDEM</td>
+                <tr class="stock-AMZ4">
+                    <td class="td-stock stock-ticket">AMZ4 <span class="stock-quantity"></span></td>
+                    <td class="td-button stock-variation">----</td>
+                    <td class="stock-final-price">R$ 25,00</td>
+                    <td class="td-button stock-order">ORDEM</td>
                 </tr>
             </tbody>
         </table>
+        
+        <div class="example">
+            <button id="sellStockButton">Vender Ações</button>
+            <button id="buyStockButton">Comprar Ações</button>
+            <button id="updateVariation">Atualizar Variações</button>
+        </div>
+
     </main>
     
     <script src="utils/util.js"></script>
     <script src="components/resumo/resumo.js"></script>
     <script src="class/stock.js"></script>
     <script src="constants/financial-movement-type.js"></script>
+    <script src="constants/stock-variation.js"></script>
+    <script src="constants/stock-ticket.js"></script>
     <script src="components/acoes/resumo.js"></script>
     <script src="components/botao-personalizado/botao-personalizado.js"></script>
     <script src="components/historico-transacao/historico-transacao.js"></script>
+    <script src="components/acoes/acoes.js"></script>
     <script src="index.js"></script>
-    
 </body>
 </html>
