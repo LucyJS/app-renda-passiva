@@ -1,4 +1,26 @@
 
+[ht] table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
 [ht] thead tr {
     font-weight: bold;
+}
+
+[ht] tbody tr {
+    font-weight: normal;
+    border-style: solid;
+    border-color: black;
 }

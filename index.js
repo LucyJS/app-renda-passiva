@@ -85,3 +85,37 @@ acoes.addEventListener("clickOrder", (event) => {
 // =====================================
 
 
+// =====================================
+// Exemplo de uso do componente de lista
+// =====================================
+
+buttonAddItem.addEventListener("click", function(){
+    listaA.addItem("KKKKK");
+})
+
+buttonRemoveLastItem.addEventListener("click", function(){
+    listaA.removeLastItem();
+})
+
+buttonUpdateLastItemText.addEventListener("click", function(){
+    listaA.updateLastItem("O Papa é POP!");
+})
+
+listaA.addEventListener("removeAllItens", function(event){
+    const detail = event.detail;
+    
+    alert(`Removeu todos os itens ${ detail.name }`);
+})
+
+buttonRemoveByContent.addEventListener("click", function(){
+    const conteudo = inputContent.value;
+    listaA.removeByContent(conteudo);
+})
+
+listaA.addEventListener("addFive", function(event){
+    const detail = event.detail;
+    
+    alert(`Adicionou 5 itens, o último é ${ detail.ultimo }`);
+})
+
+// =====================================
