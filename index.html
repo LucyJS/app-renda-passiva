@@ -7,12 +7,17 @@
 <link rel="stylesheet" href="components/historico-transacao/historico-transacao.css">
 <link rel="stylesheet" href="components/resumo/resumo.css">
 <link rel="stylesheet" href="components/acoes/acoes.css">
+
 <body>
     <main>
         <h1>Renda Passiva</h1>
-        <h2>Resumo</h2> 
-        <table  id= "resumo">
+        
+        <h2>resumo</h2>
+        <table class="mobile-table" id="resumo">
             <tr>
+                <th class="td-black" colspan="3">Resumo</th>
+            </tr>
+            <tr> 
                 <td class ="pagamento">Pagamento</td> 
                 <td class ="rendaPassiva">Renda Passiva</td> 
                 <td class ="saldo">Saldo</td> 
@@ -24,18 +29,17 @@
             </tr> 
         </table>
         
-        
         <h2>Exemplo componente botão personalizado</h2> 
-
+        
         <botao-personalizado id="btnA" bp-bgcolor="green">Ola</botao-personalizado>
         <botao-personalizado id="btnB" bp-bgcolor="blue">Tchau</botao-personalizado>
         <botao-personalizado id="btnC" bp-bgcolor="red">Tudo bem</botao-personalizado>
-               
+        
         <div class="example">
             <button id="buttonChangeColor">Trocar cor</button>
             <button id="buttonChangeText">Trocar texto</button>
         </div>
-
+        
         <h2>Exemplo componente histórico de transações</h2>
         
         <table ht class="mobile-table">
@@ -51,17 +55,17 @@
                 </tr>
             </tbody>
         </table>
-
+        
         <h2>Ações</h2>
         
         <acoes id="acoes"></acoes>
-
+        
         <div class="example">
             <button id="sellStockButton">Vender Ações</button>
             <button id="buyStockButton">Comprar Ações</button>
             <button id="updateVariation">Atualizar Variações</button>
         </div>
-
+        
     </main>
     
     <script src="utils/util.js"></script>
