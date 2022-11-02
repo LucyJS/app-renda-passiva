@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="components/resumo/resumo.css">
 <link rel="stylesheet" href="components/acoes/acoes.css">
 <link rel="stylesheet" href="components/lista/lista.css">
-
+<link rel="stylesheet" href="components/receitas/receitas.css">
 <body>
     <main>
         <h1>Renda Passiva</h1>
@@ -94,15 +94,17 @@
             </tbody>
         </table>
         
-        <h2>Ações</h2>
-        
-        <acoes id="acoes"></acoes>
-        
+        <h2>Ações</h2> 
+        <acoes id="acoes"></acoes> 
         <div class="example">
             <button id="sellStockButton">Vender Ações</button>
             <button id="buyStockButton">Comprar Ações</button>
             <button id="updateVariation">Atualizar Variações</button>
         </div>
+        
+        <h2>Receitas</h2> 
+        <receitas id="receitas"></receitas>
+        
     </main>
     
     <script src="utils/util.js"></script>
@@ -110,12 +112,12 @@
     <script src="class/stock.js"></script>
     <script src="constants/financial-movement-type.js"></script>
     <script src="constants/stock-variation.js"></script>
-    <script src="constants/stock-ticket.js"></script>
-    <script src="components/acoes/resumo.js"></script>
+    <script src="constants/stock-ticket.js"></script> 
     <script src="components/botao-personalizado/botao-personalizado.js"></script>
     <script src="components/historico-transacao/historico-transacao.js"></script>
     <script src="components/acoes/acoes.js"></script>
     <script src="components/lista/lista.js"></script>
+    <script src="components/receitas/receitas.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
