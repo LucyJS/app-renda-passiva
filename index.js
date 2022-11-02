@@ -119,3 +119,22 @@ listaA.addEventListener("addFive", function(event){
 })
 
 // =====================================
+
+// =====================================
+// Exemplo de uso do componente de lista
+// =====================================
+
+buttonSelectRandomVariation.addEventListener("click", function(){
+    const newVariation = getRandomStockVariation();
+    selecionarVariacao.setVariation(newVariation);
+})
+
+buttonShowSelectedVariation.addEventListener("click", function(){
+    alert(`Variação selecionada é ${selecionarVariacao.getVariation()}`);
+})
+
+selecionarVariacao.addEventListener("selectVariation", (event) => {
+    alert(`Nova variação selecionada: ${event.detail.variation}`);
+})
+
+// =====================================

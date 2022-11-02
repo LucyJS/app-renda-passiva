@@ -9,10 +9,19 @@
 <link rel="stylesheet" href="components/acoes/acoes.css">
 <link rel="stylesheet" href="components/lista/lista.css">
 <link rel="stylesheet" href="components/receitas/receitas.css">
+<link rel="stylesheet" href="components/selecionar-variacao/selecionar-variacao.css">
 <body>
     <main>
         <h1>Renda Passiva</h1>
-        
+
+        <h2>Seleção de variação</h2> 
+        <selecionar-variacao id="selecionarVariacao" value="+07"></selecionar-variacao>
+
+        <div class="example">
+            <button id="buttonSelectRandomVariation">Selecionar Variação</button>
+            <button id="buttonShowSelectedVariation">Exibir Variação</button>
+        </div>
+
         <h2>Lista</h2>
         <lista id="listaA"></lista>
         
@@ -104,7 +113,6 @@
         
         <h2>Receitas</h2> 
         <receitas id="receitas"></receitas>
-        
     </main>
     
     <script src="utils/util.js"></script>
@@ -118,6 +126,7 @@
     <script src="components/acoes/acoes.js"></script>
     <script src="components/lista/lista.js"></script>
     <script src="components/receitas/receitas.js"></script>
+    <script src="components/selecionar-variacao/selecionar-variacao.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
