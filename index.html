@@ -7,9 +7,26 @@
 <link rel="stylesheet" href="components/historico-transacao/historico-transacao.css">
 <link rel="stylesheet" href="components/resumo/resumo.css">
 <link rel="stylesheet" href="components/acoes/acoes.css">
+<link rel="stylesheet" href="components/lista/lista.css">
+
 <body>
     <main>
         <h1>Renda Passiva</h1>
+
+        <h2>Lista</h2>
+        <lista id="listaA"></lista>
+
+        <div class="example">
+            <button id="buttonAddItem">Adicionar Item</button>
+            <button id="buttonRemoveLastItem">Remover Ultimo Item</button>
+            <button id="buttonUpdateLastItemText">Update Last Item Text</button>
+
+            <div>
+                <button id="buttonRemoveByContent">Remover pelo conteúdo</button>
+                <input id="inputContent" value="teste1">
+            </div>
+        </div>
+
         <h2>Resumo</h2> 
         <table  id= "resumo">
             <tr>
@@ -48,10 +65,33 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>Recebimento de pagamento </td>
+                    <td>R$ 3.500,00 </td>
+                    <td> <span class="delete" onclick="deleteTransacao()"></span> </td>
+                </tr>
+                <tr>
+                    <td>Dividendos </td>
+                    <td>R$ 100,00 </td>
+                    <td> X </td>
+                </tr>
+                <tr>
+                    <td>Surpresa/ perda </td>
+                    <td>- R$ 400,00 </td>
+                    <td> X </td>
+                </tr>
+                <tr>
+                    <td>Empréstimo </td>
+                    <td>R$ 15.000,00 </td>
+                    <td> X </td>
+                </tr>
+                <tr>
+                    <td>Compra imóvel </td>
+                    <td> - R$ 10.000,00 </td>
+                    <td Color="red"> X </td>
                 </tr>
             </tbody>
         </table>
-
+        
         <h2>Ações</h2>
         
         <acoes id="acoes"></acoes>
@@ -61,7 +101,6 @@
             <button id="buyStockButton">Comprar Ações</button>
             <button id="updateVariation">Atualizar Variações</button>
         </div>
-
     </main>
     
     <script src="utils/util.js"></script>
@@ -74,6 +113,7 @@
     <script src="components/botao-personalizado/botao-personalizado.js"></script>
     <script src="components/historico-transacao/historico-transacao.js"></script>
     <script src="components/acoes/acoes.js"></script>
+    <script src="components/lista/lista.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

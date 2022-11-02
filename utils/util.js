@@ -38,3 +38,14 @@ function createComponent(componentName, initComponentFn){
         console.error(error);
     });
 }
+
+function dispatchEvent(componentInstance, eventName, data={}){
+    const customEventName = eventName;
+    const detail = { detail: data };
+    
+    const customEvent = new CustomEvent(customEventName, detail);
+
+    setTimeout(() => {
+        componentInstance.dispatchEvent(customEvent);
+    }, 0)
+}
