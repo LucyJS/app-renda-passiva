@@ -6,37 +6,38 @@
     <main>
         <h1>Renda Passiva</h1>
 
+        <!-- COMPONENTE Notificações -->
         <h2>Notificações</h2> 
         <notificacao id="notificacao" seconds="5"></notificacao>
-
         <div class="example">
             <button id="buttonAddNotification">Adicionar notificação</button>
             <button id="buttonRemoveLastNotification">Remover última notificação</button>
             <button id="buttonClearNotifications">Limpar notificações</button>
         </div>
 
+        <!-- COMPONENTE Seleção de variação -->
         <h2>Seleção de variação</h2> 
         <selecionar-variacao id="selecionarVariacao" value="+07"></selecionar-variacao>
-
         <div class="example">
             <button id="buttonSelectRandomVariation">Selecionar Variação</button>
             <button id="buttonShowSelectedVariation">Exibir Variação</button>
         </div>
 
+        <!-- COMPONENTE Lista -->
         <h2>Lista</h2>
         <lista id="listaA"></lista>
-        
         <div class="example">
             <button id="buttonAddItem">Adicionar Item</button>
             <button id="buttonRemoveLastItem">Remover Ultimo Item</button>
             <button id="buttonUpdateLastItemText">Update Last Item Text</button>
-            
+
             <div>
                 <button id="buttonRemoveByContent">Remover pelo conteúdo</button>
                 <input id="inputContent" value="teste1">
             </div>
         </div>
         
+        <!-- COMPONENTE Resumo -->
         <h2>Resumo</h2> 
         <table class="mobile-table" id="resumo">
             <tr>
@@ -54,18 +55,17 @@
             </tr> 
         </table>
         
+        <!-- COMPONENTE Histórico de transação -->
         <h2>Exemplo componente botão personalizado</h2> 
-        
         <botao-personalizado id="btnA" bp-bgcolor="green">Ola</botao-personalizado>
         <botao-personalizado id="btnB" bp-bgcolor="blue">Tchau</botao-personalizado>
         <botao-personalizado id="btnC" bp-bgcolor="red">Tudo bem</botao-personalizado>
-        
         <div class="example">
             <button id="buttonChangeColor">Trocar cor</button>
             <button id="buttonChangeText">Trocar texto</button>
         </div>
         
-
+        <!-- COMPONENTE Nova transação -->
         <div>
             <h2>Nova transação</h2>
             <form action="/action_page.php" autocomplete="on">
@@ -87,23 +87,24 @@
             </form>    
         </div>
         
+        <!-- COMPONENTE Histórico de transação -->
         <h2>Exemplo componente histórico de transações</h2>
         <historico-transacao id="historicoTransacao"></historico-transacao>
-        
         <div class="example">
             <button id="buttonAddTransaction">Adicionar transação</button>
             <button id="buttonRemoveTransation">Excluir transação</button>
         </div>
 
+        <!-- COMPONENTE ações -->
         <h2>Ações</h2> 
         <acoes id="acoes"></acoes> 
-
         <div class="example">
             <button id="sellStockButton">Vender Ações</button>
             <button id="buyStockButton">Comprar Ações</button>
             <button id="updateVariation">Atualizar Variações</button>
         </div>
         
+        <!-- COMPONENTE Receitas -->
         <h2>Receitas</h2> 
         <receitas id="receitas"></receitas>
     </main>

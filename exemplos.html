@@ -13,6 +13,10 @@
 <body>
     <main>
         <h1>Exemplos</h1>
+
+        <hr />
+        
+        <!-- COMPONENTE Notificação -->
         <section exemplo="notificacao">
             <h2>Notificações</h2> 
             <div class="example">
@@ -22,6 +26,7 @@
             </div>
         </section>
 
+        <!-- COMPONENTE Seleção de variação -->
         <section exemplo="selecionar-variacao">
             <h2>Seleção de variação</h2> 
             <selecionar-variacao id="selecionarVariacao" value="+07"></selecionar-variacao>
@@ -32,6 +37,7 @@
             </div>
         </section>
 
+        <!-- COMPONENTE Lista -->
         <section exemplo="lista">
             <h2>Lista</h2>
             <lista id="listaA"></lista>
@@ -48,6 +54,7 @@
             </div>
         </section>
 
+        <!-- COMPONENTE Resumo -->
         <section exemplo="resumo">
             <h2>Resumo</h2> 
             <table class="mobile-table" id="resumo">
@@ -67,8 +74,9 @@
             </table>
         </section>
 
+        <!-- COMPONENTE Botão personalizado -->
         <section exemplo="botao-personalizado">
-            <h2>Exemplo componente botão personalizado</h2> 
+            <h2>Botão Personalizado</h2> 
             
             <botao-personalizado id="btnA" bp-bgcolor="green">Ola</botao-personalizado>
             <botao-personalizado id="btnB" bp-bgcolor="blue">Tchau</botao-personalizado>
@@ -80,12 +88,17 @@
             </div>
         </section>
 
+        <!-- COMPONENTE Histórico de transação -->
         <section exemplo="historico-transacao">
-            <h2>Exemplo componente histórico de transações</h2>
-            
-            
+            <h2>Histórico de Transações</h2>
+            <historico-transacao id="historicoTransacao"></historico-transacao>
+            <div class="example">
+                <button id="buttonAddTransaction">Adicionar transação</button>
+                <button id="buttonRemoveTransation">Excluir transação</button>
+            </div>
         </section>
 
+        <!-- COMPONENTE Açõe -->
         <section exemplo="acoes">
             <h2>Ações</h2> 
             <acoes id="acoes"></acoes> 
@@ -96,23 +109,24 @@
             </div>
         </section>
 
+        <!-- COMPONENTE Receitas -->
         <section exemplo="receitas">
             <h2>Receitas</h2> 
             <receitas id="receitas"></receitas>
         </section>
 
-        <section exemplo="historico-transacao">
-            <h2>Histórico de Transações</h2> 
-            <historico-transacao id="historicoTransacao"></historico-transacao>
-
+        <!-- COMPONENTE Nova Transação -->
+        <section exemplo="nova-transacao">
+            <h2>Nova Transação</h2> 
             <div class="example">
-                <button id="buttonAddTransaction">Adicionar transação</button>
-                <button id="buttonRemoveTransation">Excluir transação</button>
+
             </div>
         </section>
-
-        <lista id="listaComponents"></lista>
         
+        <hr />
+
+        <h1>Componentes</h1>
+        <lista id="listaComponents"></lista>
         <notificacao id="notificacao" seconds="5"></notificacao>
     </main>
     
