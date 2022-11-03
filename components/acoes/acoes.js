@@ -24,36 +24,34 @@
 *  clickFinalPrice
 *  clickOrder
 */
-createComponent("acoes", (componentInstance, staticContent) => {
-    if(componentInstance.componentInitialized) return;
+createComponent("acoes", (component, staticContent) => {
     
     // stock data
-    componentInstance.stocks = {};
-    componentInstance.stocks[StockTicket.APPL3] = new Stock(StockTicket.APPL3, "blue", StockVariation.NegativeNumber08, 0);
-    componentInstance.stocks[StockTicket.VAL3] = new Stock(StockTicket.VAL3, "green", StockVariation.PositiveNumber10, 5);
-    componentInstance.stocks[StockTicket.BB4S] = new Stock(StockTicket.BB4S, "red", StockVariation.Half, 250);
-    componentInstance.stocks[StockTicket.AMZ4] = new Stock(StockTicket.AMZ4, "orange", StockVariation.Double, 2);
+    component.stocks = {};
+    component.stocks[StockTicket.APPL3] = new Stock(StockTicket.APPL3, "blue", StockVariation.NegativeNumber08, 0);
+    component.stocks[StockTicket.VAL3] = new Stock(StockTicket.VAL3, "green", StockVariation.PositiveNumber10, 5);
+    component.stocks[StockTicket.BB4S] = new Stock(StockTicket.BB4S, "red", StockVariation.Half, 250);
+    component.stocks[StockTicket.AMZ4] = new Stock(StockTicket.AMZ4, "orange", StockVariation.Double, 2);
     
-    componentInstance.validationErrors = {};
+    component.validationErrors = {};
     
     // methods
-    componentInstance.getStockByTicket = (ticket) => {
-        return componentInstance.stocks[ticket];
+    component.getStockByTicket = (ticket) => {
+        return component.stocks[ticket];
     }
     
-    
-    componentInstance.canSellStock = (ticket, quantity) => {
-        const stockItem = componentInstance.stocks[ticket];
+    component.canSellStock = (ticket, quantity) => {
+        const stockItem = component.stocks[ticket];
         let can;
         
         if([StockVariation.Double, StockVariation.Half, StockVariation.Lost, StockVariation.Zero].includes(stockItem.variation)){
-            componentInstance.validationErrors["sellStocks"] = `Não é possível vender ${quantity} ações da ${stockItem.ticket}. Porque a variação ${stockItem.variation} é inválida.`;
+            component.validationErrors["sellStocks"] = `Não é possível vender ${quantity} ações da ${stockItem.ticket}. Porque a variação ${stockItem.variation} é inválida.`;
             
             return false;
         }
         
         if(stockItem.getQuantity() < quantity){
-            componentInstance.validationErrors["sellStocks"] = `Não é possível vender ${quantity} ações da ${stockItem.ticket}. Porque você só tem ${stockItem.getQuantity()} ações.`;
+            component.validationErrors["sellStocks"] = `Não é possível vender ${quantity} ações da ${stockItem.ticket}. Porque você só tem ${stockItem.getQuantity()} ações.`;
             
             return false;
         }
@@ -61,26 +59,26 @@ createComponent("acoes", (componentInstance, staticContent) => {
         return true;
     }
     
-    componentInstance.sellStocks = (ticket, quantity) => {
-        const stockItem = componentInstance.stocks[ticket];
+    component.sellStocks = (ticket, quantity) => {
+        const stockItem = component.stocks[ticket];
         
-        if(!componentInstance.canSellStock(ticket, quantity)){
-            componentInstance.dispatchEvent(new CustomEvent("sellStocksError", { detail: { stock: stockItem, quantity, message: componentInstance.validationErrors["sellStocks"] }}));
+        if(!component.canSellStock(ticket, quantity)){
+            component.dispatchEvent(new CustomEvent("sellStocksError", { detail: { stock: stockItem, quantity, message: component.validationErrors["sellStocks"] }}));
             return;
         }
         
         stockItem.quantity -= quantity;
-        componentInstance.render();
+        component.render();
         
         const totalPrice = quantity * stockItem.getFinalPrice();
-        componentInstance.dispatchEvent(new CustomEvent("sellStocks", { detail: { stock: stockItem, quantity, totalPrice }}));
+        component.dispatchEvent(new CustomEvent("sellStocks", { detail: { stock: stockItem, quantity, totalPrice }}));
     }
     
-    componentInstance.canBuyStocks = (ticket, quantity) => {
-        const stockItem = componentInstance.stocks[ticket];
+    component.canBuyStocks = (ticket, quantity) => {
+        const stockItem = component.stocks[ticket];
         
         if([StockVariation.Double, StockVariation.Half, StockVariation.Lost, StockVariation.Zero].includes(stockItem.variation)){
-            componentInstance.validationErrors["buyStocks"] = `Não é possível comprar ${quantity} ações da ${stockItem.ticket}. Porque a variação ${stockItem.variation} é inválida.`;
+            component.validationErrors["buyStocks"] = `Não é possível comprar ${quantity} ações da ${stockItem.ticket}. Porque a variação ${stockItem.variation} é inválida.`;
             
             return false;
         }
@@ -88,36 +86,36 @@ createComponent("acoes", (componentInstance, staticContent) => {
         return true;
     }
     
-    componentInstance.buyStocks = (ticket, quantity) => {
-        const stockItem = componentInstance.stocks[ticket];
+    component.buyStocks = (ticket, quantity) => {
+        const stockItem = component.stocks[ticket];
         
-        if(!componentInstance.canBuyStocks(ticket, quantity)){
-            componentInstance.dispatchEvent(new CustomEvent("buyStocksError", { detail: { stock: stockItem, quantity, message: componentInstance.validationErrors["buyStocks"] }}));
+        if(!component.canBuyStocks(ticket, quantity)){
+            component.dispatchEvent(new CustomEvent("buyStocksError", { detail: { stock: stockItem, quantity, message: component.validationErrors["buyStocks"] }}));
             return;
         }
         
         stockItem.quantity += quantity;
-        componentInstance.render();
+        component.render();
         
         const totalPrice = quantity * stockItem.getFinalPrice();
-        componentInstance.dispatchEvent(new CustomEvent("buyStocks", { detail: { stock: stockItem, quantity, totalPrice }}));
+        component.dispatchEvent(new CustomEvent("buyStocks", { detail: { stock: stockItem, quantity, totalPrice }}));
     }
     
-    componentInstance.setVariation = (stockTicket, variationValue) => {
-        componentInstance.stocks[stockTicket].variation = variationValue;
-        componentInstance.render();
+    component.setVariation = (stockTicket, variationValue) => {
+        component.stocks[stockTicket].variation = variationValue;
+        component.render();
     }
     
-    componentInstance.getStockRowByTicket = (ticket) => {
-        return componentInstance.querySelector(`tbody tr.stock-${ticket}`);
+    component.getStockRowByTicket = (ticket) => {
+        return component.querySelector(`tbody tr.stock-${ticket}`);
     }
     
-    componentInstance.render = () => {
-        const stockList = Object.values(componentInstance.stocks);
+    component.render = () => {
+        const stockList = Object.values(component.stocks);
         
         // update ticket colors
         stockList.forEach(stockItem => {
-            const row = componentInstance.getStockRowByTicket(stockItem.ticket);
+            const row = component.getStockRowByTicket(stockItem.ticket);
             
             const ticketCol = row.querySelector("td.stock-ticket");
             ticketCol.style.backgroundColor = stockItem.getColor();
@@ -135,9 +133,9 @@ createComponent("acoes", (componentInstance, staticContent) => {
     
     //events
     initEvents = () => {
-        const stockList = Object.values(componentInstance.stocks);
+        const stockList = Object.values(component.stocks);
         stockList.forEach(stockItem => {
-            const row = componentInstance.getStockRowByTicket(stockItem.ticket);
+            const row = component.getStockRowByTicket(stockItem.ticket);
             
             const ticketCol = row.querySelector("td.stock-ticket");
             const variationCol = row.querySelector("td.stock-variation");
@@ -146,25 +144,25 @@ createComponent("acoes", (componentInstance, staticContent) => {
             
             
             ticketCol.addEventListener("click", () => {
-                componentInstance.dispatchEvent(new CustomEvent("clickTicket", { detail: { stock: stockItem }}));
+                component.dispatchEvent(new CustomEvent("clickTicket", { detail: { stock: stockItem }}));
             })
             
             variationCol.addEventListener("click", () => {
-                componentInstance.dispatchEvent(new CustomEvent("clickVariation", { detail: { stock: stockItem }}));
+                component.dispatchEvent(new CustomEvent("clickVariation", { detail: { stock: stockItem }}));
             })
             
             finalPriceCol.addEventListener("click", () => {
-                componentInstance.dispatchEvent(new CustomEvent("clickFinalPrice", { detail: { stock: stockItem }}));
+                component.dispatchEvent(new CustomEvent("clickFinalPrice", { detail: { stock: stockItem }}));
             })
             
             orderCol.addEventListener("click", () => {
-                componentInstance.dispatchEvent(new CustomEvent("clickOrder", { detail: { stock: stockItem }}));
+                component.dispatchEvent(new CustomEvent("clickOrder", { detail: { stock: stockItem }}));
             })
         });
     }
     
     // init
-    componentInstance.render();
+    component.render();
     initEvents();
 })
 

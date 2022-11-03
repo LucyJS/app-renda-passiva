@@ -11,10 +11,8 @@
  *  changeText
  *  changeHTML
  */
-createComponent("botao-personalizado", (componentInstance, staticContent) =>{
-    const button = componentInstance.querySelector("button")
-
-
+createComponent("botao-personalizado", (component, staticContent) =>{
+    const button = component.querySelector("button")
 
     // events
     button.addEventListener("click", (event) => {
@@ -23,20 +21,20 @@ createComponent("botao-personalizado", (componentInstance, staticContent) =>{
     });
 
     // methods
-    componentInstance.changeBgColor = (newColor) => {
+    component.changeBgColor = (newColor) => {
         button.style.backgroundColor = newColor;
     }
 
-    componentInstance.changeText = (newText) => {
+    component.changeText = (newText) => {
         button.textContent = newText;
     }
 
-    componentInstance.changeHTML = (newHTML) => {
+    component.changeHTML = (newHTML) => {
         button.innerHTML = newHTML;
     }
 
     // init
-    const bgColor = componentInstance.getAttribute("bp-bgcolor");
-    componentInstance.changeBgColor(bgColor);
+    const bgColor = component.getAttribute("bp-bgcolor");
+    component.changeBgColor(bgColor);
     button.innerHTML = staticContent;
 });

@@ -13,7 +13,7 @@ selecionar-variacao .container ul.col-container  {
     margin: 0;
     display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-around;
 }
 
 selecionar-variacao .container ul.col-container:nth-child(1) {
@@ -36,7 +36,7 @@ selecionar-variacao .container ul {
 selecionar-variacao .container ul li {
     color: #000;
     background-color: #FFF;
-    padding: 10px;
+    padding: 0px;
 }
 
 selecionar-variacao .container ul li.selected {
