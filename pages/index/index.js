@@ -133,7 +133,8 @@ listaA.addEventListener("addFive", function(event){
 // =====================================
 
 // =====================================
-// Exemplo de uso do componente de lista
+// Exemplo de uso do componente de 
+// selecionar variação
 // =====================================
 
 buttonSelectRandomVariation.addEventListener("click", function(){
@@ -152,7 +153,7 @@ selecionarVariacao.addEventListener("selectVariation", (event) => {
 // =====================================
 
 // =====================================
-// Exemplo de uso do componente de lista
+// Exemplo de uso do componente de notificação
 // =====================================
 
 buttonAddNotification.addEventListener("click", function(){
@@ -174,3 +175,57 @@ buttonRemoveLastNotification.addEventListener("click", function(){
 })
 
 // =====================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+initExemplos();
+
+function initExemplos(){
+    listaComponents.addEventListener('componentReady', () => {
+        listaComponents.addItemList(components);
+        listaComponents.addEventListener("itemClick", (event) => {
+            const componentName = event.detail.item.textContent;
+            saveSelectedComponent(componentName);
+            showComponent(componentName);
+        });
+        let componentName = localStorage.getItem("exemplo-component");
+        listaComponents.select(componentName);
+
+        loadSelectedComponent();
+    });
+}
+
+function saveSelectedComponent(componentName){
+    localStorage.setItem("exemplo-component", componentName);
+}
+
+function loadSelectedComponent(){
+    let componentName = localStorage.getItem("exemplo-component");
+    showComponent(componentName);
+    refreshComponent(componentName);
+}
+
+function showComponent(componentName){
+    document.querySelectorAll("section[exemplo]").forEach(exemplo => {
+        exemplo.classList.remove("show");
+        const exemploName = exemplo.getAttribute("exemplo");
+        if(exemploName === componentName){
+            exemplo.classList.add("show");
+        }
+    })
+}

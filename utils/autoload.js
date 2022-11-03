@@ -27,12 +27,10 @@ const utils = [
 
 document.__autoloadTime = 0;
 
-loadScriptList("./utils", utils);
-loadScriptList("./class", classes);
-loadScriptList("./constants", constants);
+loadScriptList("../../utils", utils);
+loadScriptList("../../class", classes);
+loadScriptList("../../constants", constants);
 loadComponentList(components);
-loadScript("index.js");
-loadCss("index.css");
 
 function loadScriptList(path, list){
     list.forEach(name => {
@@ -81,7 +79,7 @@ function getComponentFile(componentName, extension){
 }
 
 function getComponentFolder(componentName){
-    return `./components/${componentName}`;
+    return `../../components/${componentName}`;
 }
 
 

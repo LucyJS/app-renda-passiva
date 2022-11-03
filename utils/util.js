@@ -22,7 +22,7 @@ function getRandomItem(list){
 var __cacheComponent = {};
 
 function createComponent(componentName, initComponentFn){
-    fetch(`./components/${componentName}/${componentName}.html`)
+    fetch(`../../components/${componentName}/${componentName}.html`)
     .then((response) => response.text())
     .then((html) => {
         __cacheComponent[componentName] = { html, initComponentFn }
