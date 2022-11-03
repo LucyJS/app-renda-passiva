@@ -138,3 +138,27 @@ selecionarVariacao.addEventListener("selectVariation", (event) => {
 })
 
 // =====================================
+
+// =====================================
+// Exemplo de uso do componente de lista
+// =====================================
+
+buttonAddNotification.addEventListener("click", function(){
+    const messages = [
+        "Bom dia, tudo bem?",
+        "Essa semana vai ser complicado!",
+        "Hoje é sexta feira!!"
+    ]
+    const randomMessage = getRandomItem(messages);
+    notificacao.addNotification(randomMessage);
+})
+
+buttonClearNotifications.addEventListener("click", function(){
+    notificacao.clearNotifications();
+})
+
+buttonRemoveLastNotification.addEventListener("click", function(){
+    notificacao.removeLastNotification();
+})
+
+// =====================================

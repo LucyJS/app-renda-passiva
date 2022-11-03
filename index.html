@@ -10,9 +10,19 @@
 <link rel="stylesheet" href="components/lista/lista.css">
 <link rel="stylesheet" href="components/receitas/receitas.css">
 <link rel="stylesheet" href="components/selecionar-variacao/selecionar-variacao.css">
+<link rel="stylesheet" href="components/notificacao/notificacao.css">
 <body>
     <main>
         <h1>Renda Passiva</h1>
+
+        <h2>Notificações</h2> 
+        <notificacao id="notificacao"></notificacao>
+
+        <div class="example">
+            <button id="buttonAddNotification">Adicionar notificação</button>
+            <button id="buttonRemoveLastNotification">Remover última notificação</button>
+            <button id="buttonClearNotifications">Limpar notificações</button>
+        </div>
 
         <h2>Seleção de variação</h2> 
         <selecionar-variacao id="selecionarVariacao" value="+07"></selecionar-variacao>
@@ -127,6 +137,7 @@
     <script src="components/lista/lista.js"></script>
     <script src="components/receitas/receitas.js"></script>
     <script src="components/selecionar-variacao/selecionar-variacao.js"></script>
+    <script src="components/notificacao/notificacao.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
