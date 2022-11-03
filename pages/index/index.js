@@ -175,3 +175,15 @@ buttonRemoveLastNotification.addEventListener("click", function(){
 })
 
 // =====================================
+
+// =====================================
+// Exemplo de uso do componente de 
+// nova transação
+// =====================================
+
+function imprimirDadosFormulario(){
+    const tipoTransacao1=tipoTransacao.value;
+    alert(`Tipo:${tipoTransacao1},/n ${valorUnitario.value}`);
+}
+
+// =====================================
