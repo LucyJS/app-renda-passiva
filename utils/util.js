@@ -44,8 +44,8 @@ function _createComponent(componentName){
         element.innerHTML = html;
         element.componentInitialized = false;
         cache.initComponentFn(element, staticContent);
-
         element.componentInitialized = true;
+        dispatchEvent(element, "componentReady");
     });
 }
 
