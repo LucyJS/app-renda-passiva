@@ -50,8 +50,8 @@ createComponent("acoes", (component, staticContent) => {
             return false;
         }
         
-        if(stockItem.getQuantity() < quantity){
-            component.validationErrors["sellStocks"] = `Não é possível vender ${quantity} ações da ${stockItem.ticket}. Porque você só tem ${stockItem.getQuantity()} ações.`;
+        if(stockItem.quantity < quantity){
+            component.validationErrors["sellStocks"] = `Não é possível vender ${quantity} ações da ${stockItem.ticket}. Porque você só tem ${stockItem.quantity} ações.`;
             
             return false;
         }
@@ -70,7 +70,7 @@ createComponent("acoes", (component, staticContent) => {
         stockItem.quantity -= quantity;
         component.render();
         
-        const totalPrice = quantity * stockItem.getFinalPrice();
+        const totalPrice = quantity * stockItem.finalPrice;
         component.dispatchEvent(new CustomEvent("sellStocks", { detail: { stock: stockItem, quantity, totalPrice }}));
     }
     
@@ -97,7 +97,7 @@ createComponent("acoes", (component, staticContent) => {
         stockItem.quantity += quantity;
         component.render();
         
-        const totalPrice = quantity * stockItem.getFinalPrice();
+        const totalPrice = quantity * stockItem.finalPrice;
         component.dispatchEvent(new CustomEvent("buyStocks", { detail: { stock: stockItem, quantity, totalPrice }}));
     }
     
@@ -118,16 +118,16 @@ createComponent("acoes", (component, staticContent) => {
             const row = component.getStockRowByTicket(stockItem.ticket);
             
             const ticketCol = row.querySelector("td.stock-ticket");
-            ticketCol.style.backgroundColor = stockItem.getColor();
+            ticketCol.style.backgroundColor = stockItem.color;
             
             const variationCol = row.querySelector("td.stock-variation");
             variationCol.textContent = stockItem.variation;
             
             const finalPriceCol = row.querySelector("td.stock-final-price");
-            finalPriceCol.textContent = formatCurrency(stockItem.getFinalPrice());
+            finalPriceCol.textContent = formatCurrency(stockItem.finalPrice);
             
             const stockQuantitySpan = row.querySelector("td span.stock-quantity");
-            stockQuantitySpan.textContent = `(${stockItem.getQuantity()})`;
+            stockQuantitySpan.textContent = `(${stockItem.quantity})`;
         });
     }
     
