@@ -45,7 +45,7 @@ createComponent("lista", function(componentInstance, staticContent){
 
     componentInstance.removeByContent = (conteudo) => {
         const index = componentInstance.dados.indexOf(conteudo);
-        alert(index);
+
         if(index == -1) return;
 
         componentInstance.dados.splice(index, 1);
