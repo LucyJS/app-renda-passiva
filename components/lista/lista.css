@@ -1,11 +1,21 @@
 
 
+lista {
+    padding: 0;
+    margin: 0;
+}
+
+lista ul {
+    padding: 0;
+    margin: 0;
+}
+
 lista ul li {
     padding: 10px;
-    background: #000;
+    background: #111;
     color: #FFF;
     text-align:center;
     font-weight: bold;
+    padding: 10px;
+    margin: 5px 0;
 }
-
-

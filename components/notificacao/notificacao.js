@@ -5,6 +5,13 @@ createComponent("notificacao", (component, staticContent) => {
         const li = document.createElement("li");
         li.textContent = description;
 
+        const seconds = parseInt(component.getAttribute("seconds"));
+        if(seconds > 0){
+            setTimeout(() => {
+                component.removeItem(li);
+            }, (seconds * 1000).toString())
+        }
+
         const closeButton = document.createElement("span");
         closeButton.textContent = "X";
         closeButton.classList.add("close");

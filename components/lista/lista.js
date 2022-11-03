@@ -32,7 +32,7 @@ createComponent("lista", function(componentInstance, staticContent){
 
         if(componentInstance.dados.length === 0){
             const customEventName = "removeAllItens";
-            const dados = { name: "Joney" };
+            const dados = { name: "Programador" };
             dispatchEvent(componentInstance, customEventName, dados);
         }
     }

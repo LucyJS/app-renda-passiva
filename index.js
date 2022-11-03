@@ -20,6 +20,19 @@ buttonChangeText.addEventListener("click", function(){
     btnB.changeText(getRandomItem(texts));
     btnC.changeText(getRandomItem(texts));
 })
+
+btnA.addEventListener("click", (event) => {
+    notificacao.addNotification(event.target.innerHTML);
+})
+
+btnB.addEventListener("click", (event) => {
+    notificacao.addNotification(event.target.innerHTML);
+})
+
+btnC.addEventListener("click", (event) => {
+    notificacao.addNotification(event.target.innerHTML);
+})
+
 // =====================================
 
 // =====================================
@@ -27,22 +40,22 @@ buttonChangeText.addEventListener("click", function(){
 // =====================================
 acoes.addEventListener("buyStocks", (event) => {
     const eventDetail = event.detail;
-    console.warn(`Ordem de compra de ${ eventDetail.quantity } ações da ${ eventDetail.stock.ticket} por ${formatCurrency(eventDetail.totalPrice)}.`)
+    notificacao.addNotification(`Ordem de compra de ${ eventDetail.quantity } ações da ${ eventDetail.stock.ticket} por ${formatCurrency(eventDetail.totalPrice)}.`)
 })
 
 acoes.addEventListener("buyStocksError", (event) => {
     const eventDetail = event.detail;
-    console.warn(eventDetail.message)
+    notificacao.addNotification(eventDetail.message)
 })
 
 acoes.addEventListener("sellStocks", (event) => {
     const eventDetail = event.detail;
-    console.warn(`Ordem de venda de ${ eventDetail.quantity } ações da ${ eventDetail.stock.ticket } por ${formatCurrency(eventDetail.totalPrice)}.`)
+    notificacao.addNotification(`Ordem de venda de ${ eventDetail.quantity } ações da ${ eventDetail.stock.ticket } por ${formatCurrency(eventDetail.totalPrice)}.`)
 })
 
 acoes.addEventListener("sellStocksError", (event) => {
     const eventDetail = event.detail;
-    console.warn(eventDetail.message)
+    notificacao.addNotification(eventDetail.message)
 })
 
 sellStockButton.addEventListener("click", function(){
@@ -67,20 +80,20 @@ updateVariation.addEventListener("click", function(){
 })
 
 acoes.addEventListener("clickTicket", (event) => {
-    console.warn(`Clicou em TICKET para ${ event.detail.stock.ticket }`);
+    notificacao.addNotification(`Clicou em TICKET para ${ event.detail.stock.ticket }`);
 })
 
 acoes.addEventListener("clickVariation", (event) => {
-    console.warn(`Clicou em VARIAÇÃO para ${ event.detail.stock.ticket }`);
+    notificacao.addNotification(`Clicou em VARIAÇÃO para ${ event.detail.stock.ticket }`);
     acoes.setVariation(event.detail.stock.ticket, getRandomStockVariation());
 })
 
 acoes.addEventListener("clickFinalPrice", (event) => {
-    console.warn(`Clicou em PREÇO para ${ event.detail.stock.ticket }`);
+    notificacao.addNotification(`Clicou em PREÇO para ${ event.detail.stock.ticket }`);
 })
 
 acoes.addEventListener("clickOrder", (event) => {
-    console.warn(`Clicou em ORDEM para ${ event.detail.stock.ticket }`);
+    notificacao.addNotification(`Clicou em ORDEM para ${ event.detail.stock.ticket }`);
 })
 // =====================================
 
@@ -104,7 +117,7 @@ buttonUpdateLastItemText.addEventListener("click", function(){
 listaA.addEventListener("removeAllItens", function(event){
     const detail = event.detail;
     
-    alert(`Removeu todos os itens ${ detail.name }`);
+    notificacao.addNotification(`Removeu todos os itens ${ detail.name }`);
 })
 
 buttonRemoveByContent.addEventListener("click", function(){
@@ -115,7 +128,7 @@ buttonRemoveByContent.addEventListener("click", function(){
 listaA.addEventListener("addFive", function(event){
     const detail = event.detail;
     
-    alert(`Adicionou 5 itens, o último é ${ detail.ultimo }`);
+    notificacao.addNotification(`Adicionou 5 itens, o último é ${ detail.ultimo }`);
 })
 
 // =====================================
@@ -130,11 +143,11 @@ buttonSelectRandomVariation.addEventListener("click", function(){
 })
 
 buttonShowSelectedVariation.addEventListener("click", function(){
-    alert(`Variação selecionada é ${selecionarVariacao.getVariation()}`);
+    notificacao.addNotification(`Variação selecionada é ${selecionarVariacao.getVariation()}`);
 })
 
 selecionarVariacao.addEventListener("selectVariation", (event) => {
-    alert(`Nova variação selecionada: ${event.detail.variation}`);
+    notificacao.addNotification(`Nova variação selecionada: ${event.detail.variation}`);
 })
 
 // =====================================
