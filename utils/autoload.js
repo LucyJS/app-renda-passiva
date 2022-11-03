@@ -24,14 +24,14 @@ const utils = [
     "util"
 ]
 
+document.__autoloadTime = 0;
+
 loadScriptList("./utils", utils);
 loadScriptList("./class", classes);
 loadScriptList("./constants", constants);
-setTimeout(() => {
-    loadComponentList(components);
-    loadScript("index.js");
-    loadCss("index.css");
-}, 0);
+loadComponentList(components);
+loadScript("index.js");
+loadCss("index.css");
 
 function loadScriptList(path, list){
     list.forEach(name => {
@@ -59,7 +59,7 @@ function loadCss(url){
 
 function loadScript(url){
     var script = document.createElement('script');
-    script.src = url;
+    script.src = url + "?time=" + (new Date().getTime());
     document.body.append(script);
 }
 

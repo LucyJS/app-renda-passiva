@@ -1,6 +1,6 @@
 createComponent("lista", function(componentInstance, staticContent){
 
-    componentInstance.dados = ["teste1", "teste 2", "teste 3" ];
+    componentInstance.dados = [];
 
     componentInstance.render = () => {
         componentInstance.innerHTML = "";
@@ -13,6 +13,15 @@ createComponent("lista", function(componentInstance, staticContent){
         })
 
         componentInstance.append(lista);
+        setTimeout(() => {
+            initEvents();
+        }, 0)
+    }
+
+    componentInstance.addItemList = (itemList) => {
+        itemList.forEach(item => {
+            componentInstance.addItem(item);
+        })
     }
 
     componentInstance.addItem = (description) => {
@@ -52,5 +61,28 @@ createComponent("lista", function(componentInstance, staticContent){
         componentInstance.render();    
     }
 
-    componentInstance.render();    
+    componentInstance.select = (itemContent) => {
+        const lis = componentInstance.querySelectorAll("li");
+        lis.forEach((item) => {
+            item.classList.remove("selected");
+            if(item.textContent === itemContent){
+                item.classList.add("selected");
+            }
+        });
+    }
+
+    function initEvents(){
+        const lis = componentInstance.querySelectorAll("li");
+        lis.forEach((item) => {
+            if(item.addedEvent) return;
+            
+            item.addedEvent = true;
+            item.addEventListener("click", () => {
+                componentInstance.select(item.textContent);
+                dispatchEvent(componentInstance, "itemClick", { item });
+            })
+        })
+    }
+
+    componentInstance.render();   
 })

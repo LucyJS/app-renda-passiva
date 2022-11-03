@@ -12,10 +12,17 @@ lista ul {
 
 lista ul li {
     padding: 10px;
-    background: #111;
+    background: #777;
     color: #FFF;
     text-align:center;
     font-weight: bold;
     padding: 10px;
     margin: 5px 0;
+    cursor: pointer;
 }
+
+lista ul li.selected {
+    background: #111;
+    color: #FFF;
+}
+
