@@ -83,42 +83,7 @@
         <section exemplo="historico-transacao">
             <h2>Exemplo componente histórico de transações</h2>
             
-            <table ht class="mobile-table">
-                <thead>
-                    <tr>
-                        <td>Descrição</td>
-                        <td>Preço</td>
-                        <td>Excluir</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Recebimento de pagamento </td>
-                        <td>R$ 3.500,00 </td>
-                        <td> <span class="delete" onclick="deleteTransacao()"></span> </td>
-                    </tr>
-                    <tr>
-                        <td>Dividendos </td>
-                        <td>R$ 100,00 </td>
-                        <td> X </td>
-                    </tr>
-                    <tr>
-                        <td>Surpresa/ perda </td>
-                        <td>- R$ 400,00 </td>
-                        <td> X </td>
-                    </tr>
-                    <tr>
-                        <td>Empréstimo </td>
-                        <td>R$ 15.000,00 </td>
-                        <td> X </td>
-                    </tr>
-                    <tr>
-                        <td>Compra imóvel </td>
-                        <td> - R$ 10.000,00 </td>
-                        <td Color="red"> X </td>
-                    </tr>
-                </tbody>
-            </table>
+            
         </section>
 
         <section exemplo="acoes">
@@ -134,6 +99,16 @@
         <section exemplo="receitas">
             <h2>Receitas</h2> 
             <receitas id="receitas"></receitas>
+        </section>
+
+        <section exemplo="historico-transacao">
+            <h2>Histórico de Transações</h2> 
+            <historico-transacao id="historicoTransacao"></historico-transacao>
+
+            <div class="example">
+                <button id="buttonAddTransaction">Adicionar transação</button>
+                <button id="buttonRemoveTransation">Excluir transação</button>
+            </div>
         </section>
 
         <lista id="listaComponents"></lista>

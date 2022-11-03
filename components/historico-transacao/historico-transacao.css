@@ -1,25 +1,25 @@
 
-[ht] table {
+historico-transacao table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 1px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+historico-transacao td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 1px;
+}
 
-[ht] thead tr {
+historico-transacao tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+historico-transacao thead tr {
     font-weight: bold;
 }
 
-[ht] tbody tr {
+historico-transacao tbody tr {
     font-weight: normal;
     border-style: solid;
     border-color: black;
