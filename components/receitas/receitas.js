@@ -3,7 +3,7 @@ createComponent("receitas", function (componentInstance, staticContent) {
     const Total = 0;
     
     function addReceita(key, value) {  
-        enventAdd(key, value);
+        eventAdd(key, value);
         var index = Object.keys(componentInstance.receitas).length;
         var realKey = key + "," + index;
         componentInstance.receitas[realKey] = value  
@@ -77,7 +77,7 @@ createComponent("receitas", function (componentInstance, staticContent) {
         return total.textContent;
     }
     
-    function enventAdd(key, value) { 
+    function eventAdd(key, value) { 
         const customEventName = "addItem";
         const dados = {key, value};
         dispatchEvent(componentInstance, customEventName, dados); 
@@ -92,6 +92,5 @@ createComponent("receitas", function (componentInstance, staticContent) {
     function getFirstText(text){
         const myArray = text.split(",");
         return myArray[0]; 
-    }
-    
+    } 
 });
