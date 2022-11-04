@@ -46,7 +46,7 @@ function showComponent(componentName){
 
 buttonChangeColor.addEventListener("click", function(){
     const colors = ["deeppink", "green", "red", "blue"];
-
+    
     btnA.changeBgColor(getRandomItem(colors));
     btnB.changeBgColor(getRandomItem(colors));
     btnC.changeBgColor(getRandomItem(colors));
@@ -54,7 +54,7 @@ buttonChangeColor.addEventListener("click", function(){
 
 buttonChangeText.addEventListener("click", function(){
     const texts = ["Ola", "Tudo bem", "Como vai", "Tchau", "Arigato", "Tomou?!"];
-
+    
     btnA.changeText(getRandomItem(texts));
     btnB.changeText(getRandomItem(texts));
     btnC.changeText(getRandomItem(texts));
@@ -216,3 +216,19 @@ buttonRemoveLastNotification.addEventListener("click", function(){
 
 // =====================================
 
+// =====================================
+// Exemplo de uso do componente de receitas
+// =====================================
+
+receitas.addEventListener("addItem", (event) => {
+    const details = event.detail;
+    
+    notificacao.addNotification(`${details.key} :${details.value} `);
+})
+
+receitas.addEventListener("removeItem", (event) => {
+    const details = event.detail; 
+    notificacao.addNotification(`${details.key} :${details.value} `);
+})
+
+// =====================================
