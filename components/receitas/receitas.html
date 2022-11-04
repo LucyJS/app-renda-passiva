@@ -1,33 +1,22 @@
  <table class="mobile-table" id="tabela">
     <thead>
         <tr>
-            <th id="row1" class="td-black" colspan="2" >Resceitas</th>
+            <th id="row1" class="td-black" colspan="2" ><h6>Resceitas</h6></th>
         </tr>
     </thead>
     
-    <tbody>
-        <tr class ="salario"> 
-            <td > Salario :</td> 
-            <td >555 </td>    
-        </tr>
-        
-        <tr class ="aumento"> 
-            <td>Aumento : </td> 
-            <td>444 </td>   
-        </tr> 
-        
-        <tr class ="pgNegocio"> 
-            <td>Negocio : </td> 
-            <td>333 </td>   
-        </tr> 
-        <tr class ="imovel"> 
-            <td>Imovel : </td> 
-            <td>222 </td>   
-        </tr> 
-        
-        <tr class="total"> 
-            <td >Total : </td> 
-            <td id="total2">000</td>   
-        </tr> 
-    </tbody>
+    <tbody id="Tbody">  
+    </tbody> 
+    
+    <tfoot class="tfoot"> 
+        <td class="key">Total :</td> 
+        <td class="value" id="total">000</td>   
+    </tfoot> 
+    <label> 
+        <input type="text" placeholder="Receita" class="mobile-table" id="receita"></input> 
+        <input type="number" placeholder="valor" class="mobile-table" id="valor"></input> 
+    </label> 
+    <button  id="addReceita" class="mobile-table" >adicionar Receita </button> 
+    
+    
 </table> 

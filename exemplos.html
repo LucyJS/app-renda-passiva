@@ -3,14 +3,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
 <style>
-    section[exemplo] {
+    section[exemplo] { 
         display:none;
     }
     section[exemplo].show {
         display:block;
     }
 </style>
-<body>
+<body>teste1
     <main>
         <h1>Exemplos</h1>
         <section exemplo="notificacao">
@@ -21,21 +21,21 @@
                 <button id="buttonClearNotifications">Limpar notificações</button>
             </div>
         </section>
-
+        
         <section exemplo="selecionar-variacao">
             <h2>Seleção de variação</h2> 
             <selecionar-variacao id="selecionarVariacao" value="+07"></selecionar-variacao>
-
+            
             <div class="example">
                 <button id="buttonSelectRandomVariation">Selecionar Variação</button>
                 <button id="buttonShowSelectedVariation">Exibir Variação</button>
             </div>
         </section>
-
+        
         <section exemplo="lista">
             <h2>Lista</h2>
             <lista id="listaA"></lista>
-
+            
             <div class="example">
                 <button id="buttonAddItem">Adicionar Item</button>
                 <button id="buttonRemoveLastItem">Remover Ultimo Item</button>
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </section>
-
+        
         <section exemplo="resumo">
             <h2>Resumo</h2> 
             <table class="mobile-table" id="resumo">
@@ -66,7 +66,7 @@
                 </tr> 
             </table>
         </section>
-
+        
         <section exemplo="botao-personalizado">
             <h2>Exemplo componente botão personalizado</h2> 
             
@@ -79,7 +79,7 @@
                 <button id="buttonChangeText">Trocar texto</button>
             </div>
         </section>
-
+        
         <section exemplo="historico-transacao">
             <h2>Exemplo componente histórico de transações</h2>
             
@@ -120,7 +120,7 @@
                 </tbody>
             </table>
         </section>
-
+        
         <section exemplo="acoes">
             <h2>Ações</h2> 
             <acoes id="acoes"></acoes> 
@@ -130,15 +130,15 @@
                 <button id="updateVariation">Atualizar Variações</button>
             </div>
         </section>
-
+        
         <section exemplo="receitas">
             <h2>Receitas</h2> 
-            <receitas id="receitas"></receitas>
+            <receitas id="receitas"></receitas> 
         </section>
-
+        
         <lista id="listaComponents"></lista>
         
-        <notificacao id="notificacao" seconds="5"></notificacao>
+        <notificacao id="notificacao" seconds="2"></notificacao>
     </main>
     
     <script src="utils/autoload.js"></script>
@@ -153,19 +153,19 @@
             let componentName = localStorage.getItem("exemplo-component");
             listaComponents.select(componentName);
         });
-       
+        
         loadComponent();
-
+        
         function saveComponent(componentName){
             localStorage.setItem("exemplo-component", componentName);
         }
-
+        
         function loadComponent(){
             let componentName = localStorage.getItem("exemplo-component");
             showComponent(componentName);
-            refreshComponent(componentName);
+            if(refreshComponent) refreshComponent(componentName);
         }
-
+        
         function showComponent(componentName){
             document.querySelectorAll("section[exemplo]").forEach(exemplo => {
                 exemplo.classList.remove("show");

@@ -6,7 +6,7 @@
 
 buttonChangeColor.addEventListener("click", function(){
     const colors = ["deeppink", "green", "red", "blue"];
-
+    
     btnA.changeBgColor(getRandomItem(colors));
     btnB.changeBgColor(getRandomItem(colors));
     btnC.changeBgColor(getRandomItem(colors));
@@ -14,7 +14,7 @@ buttonChangeColor.addEventListener("click", function(){
 
 buttonChangeText.addEventListener("click", function(){
     const texts = ["Ola", "Tudo bem", "Como vai", "Tchau", "Arigato", "Tomou?!"];
-
+    
     btnA.changeText(getRandomItem(texts));
     btnB.changeText(getRandomItem(texts));
     btnC.changeText(getRandomItem(texts));
@@ -96,6 +96,17 @@ acoes.addEventListener("clickOrder", (event) => {
 })
 // =====================================
 
+///Receita test
+
+receitas.addEventListener("addItem", function (event) {
+    const detail = event.detail; 
+    notificacao.addNotification(`adicioneou reeceita : ${ detail.key +  detail.value}`);
+})
+
+receitas.addEventListener("removeItem", function (event) {
+    const detail = event.detail; 
+    notificacao.addNotification(`Removeu reeceita : ${ detail.key +  detail.value}`);
+})
 
 // =====================================
 // Exemplo de uso do componente de lista
@@ -114,8 +125,7 @@ buttonUpdateLastItemText.addEventListener("click", function(){
 })
 
 listaA.addEventListener("removeAllItens", function(event){
-    const detail = event.detail;
-    
+    const detail = event.detail; 
     notificacao.addNotification(`Removeu todos os itens ${ detail.name }`);
 })
 

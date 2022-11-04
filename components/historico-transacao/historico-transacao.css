@@ -1,26 +1,26 @@
 
-[ht] table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 1px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
-
-[ht] thead tr {
-    font-weight: bold;
+table[ht]  {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-[ht] tbody tr {
-    font-weight: normal;
-    border-style: solid;
-    border-color: black;
+table[ht] td, table[ht] th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 1px;
+}
+
+table[ht] tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+table[ht] thead tr {
+  font-weight: bold;
+}
+
+table[ht] tbody tr {
+  font-weight: normal;
+  border-style: solid;
+  border-color: black;
 }

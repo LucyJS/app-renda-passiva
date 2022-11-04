@@ -1,5 +1,40 @@
 
+receitas table
+{ 
+    border : 2px;
+    border-style: solid;
+    border-color: rgb(16, 138, 16);
+    /* background-color: rgb(136, 136, 136); */
+    
+}
+
 receitas table thead tr th {
-    background-color: black;
+    background-color: rgb(118, 207, 59);
+    color: #FFF; 
+    font-weight: bold;
+}
+
+
+receitas table .key{
+    text-align: center; 
+    text-size-adjust: 10px;
+    font-weight: bold;
+}  
+
+receitas table .value{
+    text-align: center; 
+    text-size-adjust: 10px;
+    font-weight: bold;
+}  
+
+receitas table tfoot td {
+    
+    background-color: rgb(118, 207, 59);
     color: #FFF;
 }
+
+
+receitas table .strik{
+    text-decoration: line-through;
+    
+}  

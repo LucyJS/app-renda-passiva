@@ -30,8 +30,8 @@ loadScriptList("./utils", utils);
 loadScriptList("./class", classes);
 loadScriptList("./constants", constants);
 loadComponentList(components);
-loadScript("index.js");
 loadCss("index.css");
+loadScript("index.js");
 
 function loadScriptList(path, list){
     list.forEach(name => {
