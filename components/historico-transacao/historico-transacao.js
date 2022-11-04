@@ -1,5 +1,5 @@
 
-document.querySelectorAll("table[ht]").forEach(table => {
+createComponent("historico-transacao", (component) => {
 
 })
 

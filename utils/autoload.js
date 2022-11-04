@@ -7,7 +7,8 @@ const components = [
     "notificacao",
     "receitas",
     "resumo",
-    "selecionar-variacao"
+    "selecionar-variacao",
+    "nova-transacao"
 ]
 
 const constants = [
@@ -26,12 +27,10 @@ const utils = [
 
 document.__autoloadTime = 0;
 
-loadScriptList("./utils", utils);
-loadScriptList("./class", classes);
-loadScriptList("./constants", constants);
+loadScriptList("../../utils", utils);
+loadScriptList("../../class", classes);
+loadScriptList("../../constants", constants);
 loadComponentList(components);
-loadCss("index.css");
-loadScript("index.js");
 
 function loadScriptList(path, list){
     list.forEach(name => {
@@ -80,7 +79,7 @@ function getComponentFile(componentName, extension){
 }
 
 function getComponentFolder(componentName){
-    return `./components/${componentName}`;
+    return `../../components/${componentName}`;
 }
 
 

@@ -1,12 +1,52 @@
 
 // =====================================
+// Página Exemplo
+// =====================================
+
+initExemplos();
+
+function initExemplos(){
+    listaComponents.addEventListener('componentReady', () => {
+        listaComponents.addItemList(components);
+        listaComponents.addEventListener("itemClick", (event) => {
+            const componentName = event.detail.item.textContent;
+            saveSelectedComponent(componentName);
+            showComponent(componentName);
+        });
+        let componentName = localStorage.getItem("exemplo-component");
+        listaComponents.select(componentName);
+        loadSelectedComponent();
+    });
+}
+
+function saveSelectedComponent(componentName){
+    localStorage.setItem("exemplo-component", componentName);
+}
+
+function loadSelectedComponent(){
+    let componentName = localStorage.getItem("exemplo-component");
+    showComponent(componentName);
+    refreshComponent(componentName);
+}
+
+function showComponent(componentName){
+    document.querySelectorAll("section[exemplo]").forEach(exemplo => {
+        exemplo.classList.remove("show");
+        const exemploName = exemplo.getAttribute("exemplo");
+        if(exemploName === componentName){
+            exemplo.classList.add("show");
+        }
+    })
+}
+
+// =====================================
 // Exemplo de uso do componente botão 
 // personalizado
 // =====================================
 
 buttonChangeColor.addEventListener("click", function(){
     const colors = ["deeppink", "green", "red", "blue"];
-    
+
     btnA.changeBgColor(getRandomItem(colors));
     btnB.changeBgColor(getRandomItem(colors));
     btnC.changeBgColor(getRandomItem(colors));
@@ -14,7 +54,7 @@ buttonChangeColor.addEventListener("click", function(){
 
 buttonChangeText.addEventListener("click", function(){
     const texts = ["Ola", "Tudo bem", "Como vai", "Tchau", "Arigato", "Tomou?!"];
-    
+
     btnA.changeText(getRandomItem(texts));
     btnB.changeText(getRandomItem(texts));
     btnC.changeText(getRandomItem(texts));
@@ -96,17 +136,6 @@ acoes.addEventListener("clickOrder", (event) => {
 })
 // =====================================
 
-///Receita test
-
-receitas.addEventListener("addItem", function (event) {
-    const detail = event.detail; 
-    notificacao.addNotification(`adicioneou reeceita : ${ detail.key +  detail.value}`);
-})
-
-receitas.addEventListener("removeItem", function (event) {
-    const detail = event.detail; 
-    notificacao.addNotification(`Removeu reeceita : ${ detail.key +  detail.value}`);
-})
 
 // =====================================
 // Exemplo de uso do componente de lista
@@ -125,7 +154,8 @@ buttonUpdateLastItemText.addEventListener("click", function(){
 })
 
 listaA.addEventListener("removeAllItens", function(event){
-    const detail = event.detail; 
+    const detail = event.detail;
+    
     notificacao.addNotification(`Removeu todos os itens ${ detail.name }`);
 })
 
@@ -143,7 +173,8 @@ listaA.addEventListener("addFive", function(event){
 // =====================================
 
 // =====================================
-// Exemplo de uso do componente de lista
+// Exemplo de uso do componente de 
+// selecionar variação
 // =====================================
 
 buttonSelectRandomVariation.addEventListener("click", function(){
@@ -162,7 +193,7 @@ selecionarVariacao.addEventListener("selectVariation", (event) => {
 // =====================================
 
 // =====================================
-// Exemplo de uso do componente de lista
+// Exemplo de uso do componente de notificação
 // =====================================
 
 buttonAddNotification.addEventListener("click", function(){
@@ -184,3 +215,4 @@ buttonRemoveLastNotification.addEventListener("click", function(){
 })
 
 // =====================================
+

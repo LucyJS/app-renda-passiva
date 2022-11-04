@@ -1,0 +1,41 @@
+
+div {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
+  }
+  
+  input {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1px;
+    font-weight: bold;
+    border-style: solid;
+    border-color: black;
+  }
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 7px;
+}
+.botaoSalvarNovaTransacao {
+  background-color: blue;
+  box-shadow: 0 5px 0px  #15447a;
+}
+
+.botaoSalvarNovaTransacao:active{
+position: relative;
+top:5px;
+box-shadow: none;
+}
