@@ -1,132 +1,137 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
-        <link rel="stylesheet" href="../../geral.css">
-        <link rel="stylesheet" href="./exemplo.css">
-    </head>
-    <body>
-        <main>
-            <h1>Exemplos</h1>
-
-            <hr />
-            
-            <!-- COMPONENTE Notificação -->
-            <section exemplo="notificacao">
-                <h2>Notificações</h2> 
-                <div class="example">
-                    <button id="buttonAddNotification">Adicionar notificação</button>
-                    <button id="buttonRemoveLastNotification">Remover última notificação</button>
-                    <button id="buttonClearNotifications">Limpar notificações</button>
-                </div>
-            </section>
-
-            <!-- COMPONENTE Seleção de variação -->
-            <section exemplo="selecionar-variacao">
-                <h2>Seleção de variação</h2> 
-                <selecionar-variacao id="selecionarVariacao" value="+07"></selecionar-variacao>
-
-                <div class="example">
-                    <button id="buttonSelectRandomVariation">Selecionar Variação</button>
-                    <button id="buttonShowSelectedVariation">Exibir Variação</button>
-                </div>
-            </section>
-
-            <!-- COMPONENTE Lista -->
-            <section exemplo="lista">
-                <h2>Lista</h2>
-                <lista id="listaA"></lista>
-
-                <div class="example">
-                    <button id="buttonAddItem">Adicionar Item</button>
-                    <button id="buttonRemoveLastItem">Remover Ultimo Item</button>
-                    <button id="buttonUpdateLastItemText">Update Last Item Text</button>
-                    
-                    <div>
-                        <button id="buttonRemoveByContent">Remover pelo conteúdo</button>
-                        <input id="inputContent" value="teste1">
-                    </div>
-                </div>
-            </section>
-
-            <!-- COMPONENTE Resumo -->
-            <section exemplo="resumo">
-                <h2>Resumo</h2> 
-                <table class="mobile-table" id="resumo">
-                    <tr>
-                        <th class="td-black" colspan="3">Resumo</th>
-                    </tr>
-                    <tr> 
-                        <td class ="pagamento">Pagamento</td> 
-                        <td class ="rendaPassiva">Renda Passiva</td> 
-                        <td class ="saldo">Saldo</td> 
-                    </tr>
-                    <tr> 
-                        <td  id ="pgo" class ="pagamento">000 </td>
-                        <td id ="rp" class ="rendaPassiva">000</td> 
-                        <td id ="sa" td class ="saldo">000</td> 
-                    </tr> 
-                </table>
-            </section>
-
-            <!-- COMPONENTE Botão personalizado -->
-            <section exemplo="botao-personalizado">
-                <h2>Botão Personalizado</h2> 
-                
-                <botao-personalizado id="btnA" bp-bgcolor="green">Ola</botao-personalizado>
-                <botao-personalizado id="btnB" bp-bgcolor="blue">Tchau</botao-personalizado>
-                <botao-personalizado id="btnC" bp-bgcolor="red">Tudo bem</botao-personalizado>
-                
-                <div class="example">
-                    <button id="buttonChangeColor">Trocar cor</button>
-                    <button id="buttonChangeText">Trocar texto</button>
-                </div>
-            </section>
-
-            <!-- COMPONENTE Histórico de transação -->
-            <section exemplo="historico-transacao">
-                <h2>Histórico de Transações</h2>
-                <historico-transacao id="historicoTransacao"></historico-transacao>
-                <div class="example">
-                    <button id="buttonAddTransaction">Adicionar transação</button>
-                    <button id="buttonRemoveTransation">Excluir transação</button>
-                </div>
-            </section>
-
-            <!-- COMPONENTE Açõe -->
-            <section exemplo="acoes">
-                <h2>Ações</h2> 
-                <acoes id="acoes"></acoes> 
-                <div class="example">
-                    <button id="sellStockButton">Vender Ações</button>
-                    <button id="buyStockButton">Comprar Ações</button>
-                    <button id="updateVariation">Atualizar Variações</button>
-                </div>
-            </section>
-
-            <!-- COMPONENTE Receitas -->
-            <section exemplo="receitas">
-                <h2>Receitas</h2> 
-                <receitas id="receitas"></receitas>
-            </section>
-
-            <!-- COMPONENTE Nova Transação -->
-            <section exemplo="nova-transacao">
-                <h2>Nova Transação</h2> 
-                <div class="example">
-
-                </div>
-            </section>
-            
-            <hr />
-
-            <h1>Componentes</h1>
-            <lista id="listaComponents"></lista>
-            <notificacao id="notificacao" seconds="5"></notificacao>
-        </main>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+    <link rel="stylesheet" href="../../geral.css">
+    <link rel="stylesheet" href="./exemplo.css">
+</head>
+<body>
+    <main>
+        <h1>Exemplos</h1>
         
-        <script src="../../utils/autoload.js"></script>
-        <script src="./exemplo.js"></script>
-    </body>
+        <hr />
+        
+        <!-- COMPONENTE Notificação -->
+        <section exemplo="notificacao">
+            <h2>Notificações</h2> 
+            <div class="example">
+                <button id="buttonAddNotification">Adicionar notificação</button>
+                <button id="buttonRemoveLastNotification">Remover última notificação</button>
+                <button id="buttonClearNotifications">Limpar notificações</button>
+            </div>
+        </section>
+        
+        <!-- COMPONENTE Seleção de variação -->
+        <section exemplo="selecionar-variacao">
+            <h2>Seleção de variação</h2> 
+            <selecionar-variacao id="selecionarVariacao" value="+07"></selecionar-variacao>
+            
+            <div class="example">
+                <button id="buttonSelectRandomVariation">Selecionar Variação</button>
+                <button id="buttonShowSelectedVariation">Exibir Variação</button>
+            </div>
+        </section>
+        
+        <!-- COMPONENTE Lista -->
+        <section exemplo="lista">
+            <h2>Lista</h2>
+            <lista id="listaA"></lista>
+            
+            <div class="example">
+                <button id="buttonAddItem">Adicionar Item</button>
+                <button id="buttonRemoveLastItem">Remover Ultimo Item</button>
+                <button id="buttonUpdateLastItemText">Update Last Item Text</button>
+                
+                <div>
+                    <button id="buttonRemoveByContent">Remover pelo conteúdo</button>
+                    <input id="inputContent" value="teste1">
+                </div>
+            </div>
+        </section>
+        
+        <!-- COMPONENTE Resumo -->
+        <section exemplo="resumo">
+            <h2>Resumo</h2> 
+            <table class="mobile-table" id="resumo">
+                <tr>
+                    <th class="td-black" colspan="3">Resumo</th>
+                </tr>
+                <tr> 
+                    <td class ="pagamento">Pagamento</td> 
+                    <td class ="rendaPassiva">Renda Passiva</td> 
+                    <td class ="saldo">Saldo</td> 
+                </tr>
+                <tr> 
+                    <td  id ="pgo" class ="pagamento">000 </td>
+                    <td id ="rp" class ="rendaPassiva">000</td> 
+                    <td id ="sa" td class ="saldo">000</td> 
+                </tr> 
+            </table>
+        </section>
+        
+        <!-- COMPONENTE Botão personalizado -->
+        <section exemplo="botao-personalizado">
+            <h2>Botão Personalizado</h2> 
+            
+            <botao-personalizado id="btnA" bp-bgcolor="green">Ola</botao-personalizado>
+            <botao-personalizado id="btnB" bp-bgcolor="blue">Tchau</botao-personalizado>
+            <botao-personalizado id="btnC" bp-bgcolor="red">Tudo bem</botao-personalizado>
+            
+            <div class="example">
+                <button id="buttonChangeColor">Trocar cor</button>
+                <button id="buttonChangeText">Trocar texto</button>
+            </div>
+        </section>
+        
+        <!-- COMPONENTE Histórico de transação -->
+        <section exemplo="historico-transacao">
+            <h2>Histórico de Transações</h2>
+            <historico-transacao id="historicoTransacao"></historico-transacao>
+            <div class="example">
+                <button id="buttonAddTransaction">Adicionar transação</button>
+                <button id="buttonRemoveTransation">Excluir transação</button>
+            </div>
+        </section>
+        
+        <!-- COMPONENTE Açõe -->
+        <section exemplo="acoes">
+            <h2>Ações</h2> 
+            <acoes id="acoes"></acoes> 
+            <div class="example">
+                <button id="sellStockButton">Vender Ações</button>
+                <button id="buyStockButton">Comprar Ações</button>
+                <button id="updateVariation">Atualizar Variações</button>
+            </div>
+        </section>
+        
+        <!-- COMPONENTE Receitas -->
+        <section exemplo="receitas">
+            <h2>Receitas</h2> 
+            <receitas id="receitas"></receitas>
+        </section>
+        
+        <!-- COMPONENTE Nova Transação -->
+        <section exemplo="nova-transacao">
+            <h2>Nova Transação</h2> 
+            <div class="example">
+                
+            </div>
+        </section> 
+        <hr />
+        
+        <!-- COMPONENTE Receitas -->
+        <section exemplo="gastos">
+            <h2>Gastos</h2> 
+            <gastos id="gastos">Teste Gastos</gastos> 
+        </section>
+        
+        <h1>Componentes</h1>
+        <lista id="listaComponents"></lista>
+        <notificacao id="notificacao" seconds="5"></notificacao>
+    </main>
+    
+    <script src="../../utils/autoload.js"></script>
+    <script src="./exemplo.js"></script>
+</body>
 </html>

@@ -5,6 +5,7 @@ const components = [
     "historico-transacao",
     "lista",
     "notificacao",
+    "gastos",
     "receitas",
     "resumo",
     "selecionar-variacao",

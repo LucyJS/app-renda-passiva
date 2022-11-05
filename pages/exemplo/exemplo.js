@@ -232,3 +232,15 @@ receitas.addEventListener("removeItem", (event) => {
 })
 
 // =====================================
+
+// =====================================
+// Exemplo de uso do componente de gastos
+// =====================================
+
+// gastos.addEventListener("addItem", (event) => {
+//     const details = event.detail;
+
+//     notificacao.addNotification(`${details.key} :${details.value} `);
+// })
+
+// =====================================
