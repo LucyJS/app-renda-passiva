@@ -1,18 +1,17 @@
 
 
-let lastStock;
+let lastStock; // armazena a última ação selecionada para alteração de variação
 
 addEventListener("allComponentsReady", () => {
 
+    // abrir modal de seleção personagem
     selecionarPersonagem.addPerson(new Person(1, "Márcia", "Advogada"));
     selecionarPersonagem.addPerson(new Person(2, "Jorge", "Motorista de Aplicativo"));
     selecionarPersonagem.addPerson(new Person(3, "Eduardo", "Empresário"));
     selecionarPersonagem.addPerson(new Person(4, "Alex", "Servidor Público"));
     selecionarPersonagem.addPerson(new Person(5, "Leila", "Professora"));
     selecionarPersonagem.addPerson(new Person(6, "Bruno", "Microempresário"));
-    
     modaPersonagem.open();
-
     confirmarPersonagem.addEventListener("click", () => {
         modaPersonagem.close();
     }) 
