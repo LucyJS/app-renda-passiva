@@ -1,9 +1,11 @@
 section[exemplo] {
-    display:none;
+    position:absolute;
+    visibility:hidden;
 }
 
 section[exemplo].show {
-    display:block;
+    position:relative;
+    visibility:visible;
 }
 
 
