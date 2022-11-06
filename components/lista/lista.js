@@ -31,7 +31,7 @@ createComponent("lista", function(componentInstance, staticContent){
         if(componentInstance.dados.length === 5){
             const customEventName = "addFive";
             const dados = { dados: componentInstance.dados, ultimo: description };
-            dispatchEvent(componentInstance, customEventName, dados);
+            customDispatchEvent(componentInstance, customEventName, dados);
         }
     }
 
@@ -42,7 +42,7 @@ createComponent("lista", function(componentInstance, staticContent){
         if(componentInstance.dados.length === 0){
             const customEventName = "removeAllItens";
             const dados = { name: "Programador" };
-            dispatchEvent(componentInstance, customEventName, dados);
+            customDispatchEvent(componentInstance, customEventName, dados);
         }
     }
 
@@ -79,7 +79,7 @@ createComponent("lista", function(componentInstance, staticContent){
             item.addedEvent = true;
             item.addEventListener("click", () => {
                 componentInstance.select(item.textContent);
-                dispatchEvent(componentInstance, "itemClick", { item });
+                customDispatchEvent(componentInstance, "itemClick", { item });
             })
         })
     }

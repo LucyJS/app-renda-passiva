@@ -9,7 +9,7 @@ createComponent("selecionar-variacao", function (component, staticContent) {
     component.setVariation = (newVariation) => {
         component.value =  newVariation;
         component.render();
-        dispatchEvent(component, "selectVariation", { variation: newVariation })
+        customDispatchEvent(component, "selectVariation", { variation: newVariation })
     }
 
     component.render = () => {

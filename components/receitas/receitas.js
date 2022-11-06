@@ -80,13 +80,13 @@ createComponent("receitas", function (componentInstance, staticContent) {
     function eventAdd(key, value) { 
         const customEventName = "addItem";
         const dados = {key, value};
-        dispatchEvent(componentInstance, customEventName, dados); 
+        customDispatchEvent(componentInstance, customEventName, dados); 
     }
     
     function enventRemoveItem(key, value) { 
         const customEventName = "removeItem";
         const dados = {key, value};
-        dispatchEvent(componentInstance, customEventName, dados); 
+        customDispatchEvent(componentInstance, customEventName, dados); 
     } 
     
     function getFirstText(text){

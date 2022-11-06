@@ -24,6 +24,7 @@
 *  clickFinalPrice
 *  clickOrder
 */
+
 createComponent("acoes", (component, staticContent) => {
     
     // stock data

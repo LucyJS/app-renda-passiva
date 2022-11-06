@@ -3,10 +3,15 @@
 // Página Exemplo
 // =====================================
 
-initExemplos();
+addEventListener("allComponentsReady", () => {
+    initExemplos();
+    loadSelectedComponent();
+})
 
 function initExemplos(){
-    listaComponents.addEventListener('componentReady', () => {
+    listaComponents.addEventListener('componentReady', (event) => {
+        const componentReady = event.detail.componentName;
+
         listaComponents.addItemList(components);
         listaComponents.addEventListener("itemClick", (event) => {
             const componentName = event.detail.item.textContent;
@@ -15,7 +20,6 @@ function initExemplos(){
         });
         let componentName = localStorage.getItem("exemplo-component");
         listaComponents.select(componentName);
-        loadSelectedComponent();
     });
 }
 
@@ -26,7 +30,6 @@ function saveSelectedComponent(componentName){
 function loadSelectedComponent(){
     let componentName = localStorage.getItem("exemplo-component");
     showComponent(componentName);
-    refreshComponent(componentName);
 }
 
 function showComponent(componentName){

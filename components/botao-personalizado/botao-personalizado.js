@@ -17,7 +17,7 @@ createComponent("botao-personalizado", (component, staticContent) =>{
     // events
     button.addEventListener("click", (event) => {
         const element = event.target;
-        dispatchEvent("click");
+        customDispatchEvent("click");
     });
 
     // methods
