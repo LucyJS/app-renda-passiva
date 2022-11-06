@@ -30,3 +30,16 @@ table.mobile-table tr th, table.mobile-table tr td {
 .bgwhite {
     background-color: #FFF;
 }
+
+.fullscreen {
+    display: block;
+    position:fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.button-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
