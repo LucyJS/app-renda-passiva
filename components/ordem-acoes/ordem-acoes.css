@@ -1,0 +1,28 @@
+ordem-acoes {
+
+}
+ordem-acoes .stock-quantity {
+    text-align: center;
+}
+
+ordem-acoes .stock-quantity input {
+    width:100px;
+    text-align: center;
+}
+
+ordem-acoes table thead tr th {
+    background-color:gray;
+    color: #FFF;
+}
+
+ordem-acoes table tbody tr td.stock-ticket {
+    color: #FFF;
+    background-color: #AAA;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+ordem-acoes table tbody tr td {
+    text-align:center;
+}
+

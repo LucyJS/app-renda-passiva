@@ -1,6 +1,10 @@
-.mobile-table {
+table.mobile-table {
     width: 100%;
     font-size: .7rem;
+}
+
+table.mobile-table tr th, acoes table tr td {
+    padding: 10px;
 }
 
 .example {

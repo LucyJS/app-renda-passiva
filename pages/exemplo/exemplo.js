@@ -247,3 +247,63 @@ receitas.addEventListener("removeItem", (event) => {
 // })
 
 // =====================================
+
+// =====================================
+// Exemplo de uso do componente de 
+// visualizar ação
+// =====================================
+
+buttonChangeStock.addEventListener("click", () => {
+    visualizarAcao.setStock(getRandomStock());
+})
+
+// =====================================
+
+// =====================================
+// Exemplo de uso do componente de ordem
+// de compra e venda de ações
+// =====================================
+
+changeStock.addEventListener("click", () => {
+    ordemAcoes.setStock(getRandomStock());
+})
+
+buttonSetQuantity.addEventListener("click", () => {
+    ordemAcoes.setQuantity(getRandomItem([1, 0, 15, 500, 100, 150, 3000]));
+})
+
+buyStocks.addEventListener("click", () => {
+    const total = formatCurrency(ordemAcoes.getTotal());
+    const stock = ordemAcoes.getStock();
+    const quantity = ordemAcoes.getQuantity();
+ 
+    notificacao.addNotification(`COMPRA de ${quantity} ações da ${stock.ticket} no valor de ${total}`);
+})
+
+sellStocks.addEventListener("click", () => {
+    const total = formatCurrency(ordemAcoes.getTotal());
+    const stock = ordemAcoes.getStock();
+    const quantity = ordemAcoes.getQuantity();
+ 
+    notificacao.addNotification(`VENDA de ${quantity} ações da ${stock.ticket} no valor de ${total}`);
+})
+
+// =====================================
+
+// =====================================
+// Exemplo de uso do componente de ordem
+// de compra e venda de ações
+// =====================================
+
+buttonSetPersonagem.addEventListener("click", () => {
+    const persons = selecionarPersonagem.getPersons();
+    const randomPerson = getRandomItem(persons);
+    selecionarPersonagem.setPerson(randomPerson);
+})
+
+buttonGetPersonagem.addEventListener("click", () => {
+    notificacao.addNotification(`${selecionarPersonagem.getPerson().name} esta selecionado!`)
+})
+
+// =====================================
+

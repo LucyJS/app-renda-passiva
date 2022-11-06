@@ -1,0 +1,17 @@
+
+visualizar-acao table thead tr th {
+    background-color:gray;
+    color: #FFF;
+}
+
+visualizar-acao table tbody tr td.stock-ticket {
+    color: #FFF;
+    background-color: #AAA;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+visualizar-acao table tbody tr td {
+    text-align:center;
+}
+

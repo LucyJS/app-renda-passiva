@@ -1,0 +1,30 @@
+
+selecionar-personagem ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+selecionar-personagem ul li {
+    list-style: none;
+    padding: 10px;
+    margin: 0px;
+    background: gray;
+    color: #FFF;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+selecionar-personagem ul li.selected {
+    background: black;
+    color: #FFF;
+}
+
+selecionar-personagem ul li .person-name {
+    font-weight: bold;
+    color: lightgreen;
+}
+
+selecionar-personagem ul li .person-name:after {
+    content: ": "
+}

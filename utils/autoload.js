@@ -12,7 +12,10 @@ const components = [
     "receitas",
     "resumo",
     "selecionar-variacao",
-    "nova-transacao"
+    "nova-transacao",
+    "visualizar-acao",
+    "ordem-acoes",
+    "selecionar-personagem"
 ]
 
 const constants = [
@@ -22,7 +25,12 @@ const constants = [
 ]
 
 const classes = [
-    "stock"
+    "stock",
+    "person",
+    "debt",
+    "player-data",
+    "stock-position",
+    "transation-type"
 ]
 
 const utils = [

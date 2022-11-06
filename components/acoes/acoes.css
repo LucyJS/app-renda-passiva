@@ -4,10 +4,6 @@ acoes table {
     border-collapse: collapse;
 }
 
-acoes table tr th, acoes table tr td {
-    padding: 10px;
-}
-
 acoes table .td-black {
     color: #FFF;
     background-color: black;
