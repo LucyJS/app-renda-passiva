@@ -1,8 +1,9 @@
 class Person {
-    constructor(){
-        this.id = 0;
-        this.name = "Sem nome";
-        this.description = "Sem descrição";
+    
+    constructor(id=0,name="Sem Nome", description="Sem descrição"){
+        this.id = id;
+        this.name = name;
+        this.description = description;
         this.defaultReceiveds = [];
         this.defaultSpendings = [];
     }

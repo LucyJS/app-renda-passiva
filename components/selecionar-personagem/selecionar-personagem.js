@@ -2,29 +2,26 @@ createComponent("selecionar-personagem", (component) => {
 
     component.persons = [];
     component.value = null;
-    
-    const person1 = new Person();
-    person1.id = 1;
-    person1.name = "Jorge";
-    person1.description = "Jorge é um cara muito bacana";
-    component.persons.push(person1);
-
-    const person2 = new Person();
-    person2.id = 2;
-    person2.name = "Maria";
-    person2.description = "Maria é uma moça muito bacana";
-    component.persons.push(person2);
-    
-    const person3 = new Person();
-    person3.id = 3;
-    person3.name = "José";
-    person3.description = "José é uma cara muito bacana";
-    component.persons.push(person3);
 
     component.setPerson = (person) => {
         component.value = component.persons.find(p => p.id === parseInt(person) || p === person);
         component.render();
         customDispatchEvent(component, "change", { value: component.value });
+    }
+
+    component.setPersons = (personList) => {
+        component.persons = personList;
+        component.render();
+    }
+
+    component.addPerson = (newPerson) => {
+        component.persons.push(newPerson);
+        component.render();
+    }
+
+    component.removeLastPerson = () => {
+        component.person.pop();
+        component.render();
     }
 
     component.getPersons = () => {

@@ -295,6 +295,12 @@ sellStocks.addEventListener("click", () => {
 // de compra e venda de ações
 // =====================================
 
+addEventListener("allComponentsReady", () => {
+    selecionarPersonagem.addPerson(new Person(1, "Jorge", "Empresário"));
+    selecionarPersonagem.addPerson(new Person(2, "Maria", "Professora empresário"));
+    selecionarPersonagem.addPerson(new Person(3, "José", "Microempresário"));
+})
+
 buttonSetPersonagem.addEventListener("click", () => {
     const persons = selecionarPersonagem.getPersons();
     const randomPerson = getRandomItem(persons);

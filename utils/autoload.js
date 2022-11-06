@@ -45,8 +45,34 @@ resolvePromisesSeq([
     loadScriptList("../../constants", constants),
     loadComponentList(components)
 ]).then(() => {
-    dispatchEvent(new CustomEvent("allComponentsReady"));
+    waitFor(() => {
+        const lastComponentName = components[components.length - 1];
+        return new Person() && StockTicket && isComponentLoaded(lastComponentName);
+    }).then(() => {
+        dispatchEvent(new CustomEvent("allComponentsReady"));
+    })
 })
+
+async function waitFor(predicate){
+    return new Promise((resolve, reject) => {
+        let counter = 0;
+        const interval = setInterval(() => {
+            try{
+                if(predicate()){
+                    clearInterval(interval);
+                    resolve();
+                }
+            }catch(e){
+                counter++;
+            }
+
+            if(counter > 500){
+                reject();
+            }
+        }, 10)
+    })
+    
+}
 
 async function resolvePromisesSeq(tasks) {
     const results = [];
@@ -122,6 +148,11 @@ function createComponent(componentName, initComponentFn){
         console.error(componentName);
         console.error(error);
     });
+}
+
+function isComponentLoaded(componentName){
+    const cachedKeys = Object.keys(__cacheComponent);
+    return cachedKeys.some(k => k === componentName);
 }
 
 function _createComponent(componentName){
