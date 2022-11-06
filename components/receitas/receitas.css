@@ -3,9 +3,7 @@ receitas table
 { 
     border : 2px;
     border-style: solid;
-    border-color: rgb(16, 138, 16);
-    /* background-color: rgb(136, 136, 136); */
-    
+    border-color: rgb(16, 138, 16);  
 }
 
 receitas table thead tr th {
