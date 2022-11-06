@@ -1,16 +1,36 @@
 <table  class="mobile-table tabelaGastos" >
     <thead>
         <tr>
-            <th id="row1" class="td-black" colspan="3" >Gastos</th>
+            <th id="thType" class="td-black" colspan="1" >Tipo</th>
+            <th id="thGastos" class="td-black" colspan="1" >Gastos</th>
+            <th id="thDividas" class="td-black" colspan="1" >Dividas</th>
         </tr>
     </thead>
+    
     <tbody> 
-    </tbody> 
+    </tbody>  
+    
+    <label>
+        <select id="selectGastos" class="mobile-table" placeholder="Gastos"  >
+            <option value="fixos">Gastos Fixos</option>
+            <option value="variaveis">Gastos Variaváis</option>
+            <option value="impostos">Inpostos e Seguros</option>
+            <option value="cretitos">Cartão De Creditos</option>
+            <option value="diversos">Diversos</option>
+            <option value="finaciamentos">Finaciamentos</option>
+            <option value="emprestimos">Empretimos</option>
+        </select>  
+        
+        <input type="number" placeholder="divida" class="mobile-table" id="dividaGastos"></input> 
+        <input type="number" placeholder="valor ou % da divida" class="mobile-table" id="valorGastos"></input> 
+        
+        <button  id="addGastos" class="mobile-table" >adicionar Gastos </button> 
+    </label> 
+    
     <tfoot> 
         <td class="gastoskey">Total :</td> 
-        <td class="valueGastos" id="totalGastos">000</td>   
+        <td class="valueGastos" id="totalGastos">000000</td>   
     </tfoot>
-    
     
 </table>
 

@@ -1,28 +1,24 @@
-createComponent("gastos",(componetInst,staticContent)=>{
+createComponent("gastos", (componetInst, staticContent) => {
     componetInst.dataArray = [
         {
             name: "Fixos",
-            value: 1111,
-            debts:222
+            value: 11,
+            debts: 222
         },
         {
             name: "Variavéis",
-            value: 333,
-            debts:444
+            value: 11,
+            debts: 444
         },
         {
             name: "Inpostos",
-            value: 555,
-            debts:4444
+            value: 11,
+            debts: 4444
         }];
         
-        componetInst.render = () => { 
-            //  const valores = Object.values(firstItem);
-            // limpa o corpo da tabela
+        componetInst.render = () => {
             const tbody = componetInst.querySelector("table tbody");
-            tbody.innerHTML = "";
-            
-            
+            tbody.innerHTML = ""; 
             componetInst.dataArray.forEach(item => {
                 // const correntItem = item;
                 const valores = Object.values(item);
@@ -34,24 +30,70 @@ createComponent("gastos",(componetInst,staticContent)=>{
                     const itemLista = document.createElement("td");
                     itemLista.textContent = itemB;
                     tr.append(itemLista);
-                })   
-            })  
+                })
+            })
+            componetInst.updateTotal();
         }
         
-        console.warn(componetInst.dataArray);  
         componetInst.addItem = (itemGastos) => {
             componetInst.dataArray.push(itemGastos);
-            componetInst.render();
-            
+            componetInst.render();  
         }
-        //  componetInst.addItem(firstItem);
         
-        // componetInst.addItemList = (itemList) => {
-        //         itemList.forEach(item => {
-        //             componetInst.addItem(item);
-        //         })
-        //     }
         
+        
+        var add = document.getElementById('addGastos')   
+        add.addEventListener('click', (event) => { 
+            const dividas = {
+                name: "",
+                value: 0,
+                debts: 0
+            }
+            dividas.name = document.getElementById('selectGastos').value;
+            dividas.value = parseInt(document.getElementById('valorGastos').value);
+            dividas.debts = parseInt(document.getElementById('dividaGastos').value); 
+            
+            if(dividas.value > 0)
+            { 
+                if (!isNaN(dividas.debts)) {
+                    dividas.value = per(dividas.debts, dividas.value); 
+                }else{ dividas.debts = 0;}
+                
+                componetInst.addItem(dividas) 
+            }
+        });
+        
+        function per(num, amount){
+            return num*amount/100;
+        }
+        // componetInst.addItem(emprestimos)
+        
+        componetInst.addItemList = (itemList) => {
+            itemList.forEach(item => {
+                componetInst.addItem(item);
+                //  eventAdd(item);
+            })
+        }
+        
+        
+        // componetInst.eventAdd((objectGastos) => {
+        //     const customEventName = "addGastos";
+        //     const dados = objectGastos;
+        //     customDispatchEvent(componetInst, customEventName, dados);
+        // });
+        
+        
+        componetInst.updateTotal = () => { 
+            var total = componetInst.dataArray.reduce(getTotal, 0);
+            function getTotal(total, item) {
+                return total + (item.value);
+            } 
+            totalGastos.textContent = formatCurrency(total)   
+        } 
+        
+        componetInst.getTotalReceita=()=>{  
+            return totalGastos.textContent;
+        }
         componetInst.render();
     })
     
