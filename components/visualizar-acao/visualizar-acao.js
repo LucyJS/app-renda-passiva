@@ -1,6 +1,11 @@
 createComponent("visualizar-acao", (component) => {
 
     component.stock = new Stock("AAA3", "gray", StockVariation.Zero, 0);
+   
+    component.setVariation = (newVariation) => {
+        component.stock.variation = newVariation;
+        component.render();
+    }
 
     component.setStock = (newStock) => {
         component.stock = newStock;

@@ -3,7 +3,7 @@ table.mobile-table {
     font-size: .7rem;
 }
 
-table.mobile-table tr th, acoes table tr td {
+table.mobile-table tr th, table.mobile-table tr td {
     padding: 10px;
 }
 
@@ -16,4 +16,17 @@ table.mobile-table tr th, acoes table tr td {
 
 .example button {
     margin: 5px;
+}
+
+.flex-columns {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap-reverse;
+	justify-content: space-around;
+	align-items: center;
+	align-content: stretch;
+}
+
+.bgwhite {
+    background-color: #FFF;
 }

@@ -9,18 +9,14 @@ addEventListener("allComponentsReady", () => {
 })
 
 function initExemplos(){
-    listaComponents.addEventListener('componentReady', (event) => {
-        const componentReady = event.detail.componentName;
-
-        listaComponents.addItemList(components);
-        listaComponents.addEventListener("itemClick", (event) => {
-            const componentName = event.detail.item.textContent;
-            saveSelectedComponent(componentName);
-            showComponent(componentName);
-        });
-        let componentName = localStorage.getItem("exemplo-component");
-        listaComponents.select(componentName);
+    listaComponents.addItemList(components);
+    listaComponents.addEventListener("itemClick", (event) => {
+        const componentName = event.detail.item.textContent;
+        saveSelectedComponent(componentName);
+        showComponent(componentName);
     });
+    let componentName = localStorage.getItem("exemplo-component");
+    listaComponents.select(componentName);
 }
 
 function saveSelectedComponent(componentName){
@@ -313,3 +309,12 @@ buttonGetPersonagem.addEventListener("click", () => {
 
 // =====================================
 
+// =====================================
+// Exemplo de uso do componente modal
+// =====================================
+
+buttonOpenModal.addEventListener("click", () => {
+    modal.open();
+})
+
+// =====================================

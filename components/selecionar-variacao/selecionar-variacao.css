@@ -1,4 +1,7 @@
 
+selecionar-variacao {
+}
+
 selecionar-variacao .container{
     display: flex;
     flex-direction: row;
@@ -6,6 +9,7 @@ selecionar-variacao .container{
     justify-content: space-around;
     align-items: space-between;
     align-content: center;
+    background: #FFF;
 }
 
 selecionar-variacao .container ul.col-container  {

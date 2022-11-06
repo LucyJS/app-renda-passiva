@@ -15,7 +15,8 @@ const components = [
     "nova-transacao",
     "visualizar-acao",
     "ordem-acoes",
-    "selecionar-personagem"
+    "selecionar-personagem",
+    "modal"
 ]
 
 const constants = [
@@ -160,15 +161,24 @@ function _createComponent(componentName){
     const cache = __cacheComponent[componentName];
     const html = cache.html;
     document.querySelectorAll(componentName).forEach(element => {
-        if(element.componentInitialized) return; // componente já inicializado
+        if(element.componentInitialized) {
+            return; // componente já inicializado
+        }
         
         const staticContent = element.innerHTML;
-        element.innerHTML = html;
+        if(element.getAttribute("norender") === null){
+            element.innerHTML = html;
+        }
+
         element.componentInitialized = false;
         cache.initComponentFn(element, staticContent);
         element.componentInitialized = true;
         customDispatchEvent(element, "componentReady", { componentName });
     });
+}
+
+function refreshAllComponents(){
+    components.forEach(refreshComponent);
 }
 
 function refreshComponent(componentName){

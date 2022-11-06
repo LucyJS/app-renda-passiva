@@ -25,6 +25,7 @@ notificacao .container {
 notificacao .container li {
     position:relative;
     padding: 10px;
+    padding-right: 15px;
     background-color:lightgreen;
     margin: 5px 0;
     color: #000;

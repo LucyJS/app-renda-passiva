@@ -1,0 +1,18 @@
+
+main {
+    padding:70px 0px;
+}
+
+.top-resume {
+    top: 0px;
+    position:fixed;
+    width: 100%;
+    background: #FFF;
+}
+
+.bottom-buttons {
+    bottom: 0px;
+    position:fixed;
+    width: 100%;
+    background: #FFF;
+}

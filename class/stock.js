@@ -8,7 +8,7 @@ class Stock {
     }
 
     get finalPrice(){
-        if([StockVariation.Half, StockVariation.Double, StockVariation.Lost, StockVariation.Zero].includes(this.variation)){
+        if([StockVariation.Half, StockVariation.Double, StockVariation.Lost].includes(this.variation)){
             return 0;
         }
 

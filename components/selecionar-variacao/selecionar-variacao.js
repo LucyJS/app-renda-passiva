@@ -31,8 +31,6 @@ createComponent("selecionar-variacao", function (component, staticContent) {
                 component.setVariation(newVariation);
             })
         })
-
-
     }
 
     initEvents();

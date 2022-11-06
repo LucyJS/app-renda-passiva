@@ -29,16 +29,25 @@ createComponent("acoes", (component, staticContent) => {
     
     // stock data
     component.stocks = {};
-    component.stocks[StockTicket.APPL3] = new Stock(StockTicket.APPL3, "blue", StockVariation.NegativeNumber08, 0);
-    component.stocks[StockTicket.VAL3] = new Stock(StockTicket.VAL3, "green", StockVariation.PositiveNumber10, 5);
-    component.stocks[StockTicket.BB4S] = new Stock(StockTicket.BB4S, "red", StockVariation.Half, 250);
-    component.stocks[StockTicket.AMZ4] = new Stock(StockTicket.AMZ4, "orange", StockVariation.Double, 2);
+    component.stocks[StockTicket.APPL3] = new Stock(StockTicket.APPL3, "blue", StockVariation.Zero, 0);
+    component.stocks[StockTicket.VAL3] = new Stock(StockTicket.VAL3, "green", StockVariation.Zero, 0);
+    component.stocks[StockTicket.BB4S] = new Stock(StockTicket.BB4S, "red", StockVariation.Zero, 0);
+    component.stocks[StockTicket.AMZ4] = new Stock(StockTicket.AMZ4, "orange", StockVariation.Zero, 0);
     
     component.validationErrors = {};
     
     // methods
     component.getStockByTicket = (ticket) => {
         return component.stocks[ticket];
+    }
+
+    component.setQuantity = (ticket, quantity) => {
+        component.stocks[ticket].quantity = quantity;
+        component.render();
+    }
+
+    component.getQuantity = (ticket) => {
+        return component.stocks[ticket].quantity;
     }
     
     component.canSellStock = (ticket, quantity) => {

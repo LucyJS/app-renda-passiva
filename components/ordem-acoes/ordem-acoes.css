@@ -1,6 +1,7 @@
-ordem-acoes {
-
+ordem-acoes table {
+    background: #FFF;
 }
+
 ordem-acoes .stock-quantity {
     text-align: center;
 }
