@@ -236,11 +236,15 @@ receitas.addEventListener("removeItem", (event) => {
 // Exemplo de uso do componente de gastos
 // =====================================
 
-// gastos.addEventListener("addItem", (event) => {
-//     const details = event.detail;
+gastos.addEventListener("addGastos", (event) => {
+    const details = event.detail; 
+    notificacao.addNotification(`Adicionou :${details.name} :${details.value} `);
+})
 
-//     notificacao.addNotification(`${details.key} :${details.value} `);
-// })
+gastos.addEventListener("removeGastos", (event) => {
+    const details = event.detail; 
+    notificacao.addNotification(`Removeu :${details.name} :${details.value} `);
+})
 
 // =====================================
 
@@ -272,7 +276,7 @@ buyStocks.addEventListener("click", () => {
     const total = formatCurrency(ordemAcoes.getTotal());
     const stock = ordemAcoes.getStock();
     const quantity = ordemAcoes.getQuantity();
- 
+    
     notificacao.addNotification(`COMPRA de ${quantity} ações da ${stock.ticket} no valor de ${total}`);
 })
 
@@ -280,7 +284,7 @@ sellStocks.addEventListener("click", () => {
     const total = formatCurrency(ordemAcoes.getTotal());
     const stock = ordemAcoes.getStock();
     const quantity = ordemAcoes.getQuantity();
- 
+    
     notificacao.addNotification(`VENDA de ${quantity} ações da ${stock.ticket} no valor de ${total}`);
 })
 

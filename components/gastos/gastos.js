@@ -24,6 +24,7 @@ createComponent("gastos", (componetInst, staticContent) => {
         componetInst.dataArray.push(itemGastos);
         componetInst.render(); 
         componetInst.updateTotal();
+        componetInst.eventAddGastos(itemGastos);
     }
     
     var add = document.getElementById('addGastos')   
@@ -42,7 +43,7 @@ createComponent("gastos", (componetInst, staticContent) => {
             if (!isNaN(dividas.debts) && dividas.debts !==0) {
                 dividas.value = per(dividas.debts, dividas.value); 
             }else{ dividas.debts = 0;}
-            componetInst.addItem(dividas) 
+            componetInst.addItem(dividas)  
             componetInst.updateTotal(); 
         }
     });
@@ -50,16 +51,13 @@ createComponent("gastos", (componetInst, staticContent) => {
     function per(num, amount){
         return num*amount/100;
     }
-    // componetInst.addItem(emprestimos)
     
     componetInst.addItemList = (itemList) => {
         itemList.forEach(item => {
             componetInst.addItem(item);
             
-            //  eventAdd(item);
         }) 
     }
-    
     
     function getDomIndex (target) {
         return [].slice.call(target.parentNode.children).indexOf(target)
@@ -84,30 +82,47 @@ createComponent("gastos", (componetInst, staticContent) => {
     }
     
     function RemoveGastos(index) {   
-        componetInst.dataDeleted.push(componetInst.dataArray[index]);   
+        const etemRemoved = componetInst.dataArray[index];
+        
+        componetInst.dataDeleted.push(etemRemoved);   
         componetInst.updateTotal(); 
         componetInst.dataArray.splice(index, 1);
-        
+        componetInst.eventRemoveGastos(etemRemoved);
     } 
     
-    // componetInst.eventAddGastos((objectGastos) => {
-    //     const customEventName = "addGastos";
-    //     const dados = objectGastos;
-    //     customDispatchEvent(componetInst, customEventName, dados);
-    // });
+    componetInst.eventAddGastos = ((objectGastos) => {
+        const customEventName = "addGastos";
+        const dados = objectGastos;
+        customDispatchEvent(componetInst, customEventName, dados);
+    });
+    
+    componetInst.eventRemoveGastos = ((objectGastos) => {
+        const customEventName = "removeGastos";
+        const dados = objectGastos;
+        customDispatchEvent(componetInst, customEventName, dados);
+    });
     
     componetInst.updateTotal = () => {   
-        var deleteds = componetInst.dataDeleted.reduce(getDeleted, 0);
-        function getDeleted(deleteds, item) {
-            if (item === "name")return 
-            return deleteds + (item.value);
-        }  
+        
         
         var total = componetInst.dataArray.reduce(getTotal, 0);
         function getTotal(total, item) {
-            if (item === "name")return 
+            if (item === "name" || item === undefined) {
+                total = 0;
+                return
+            }  
             return total + (item.value);
         }  
+        
+        var deleteds = componetInst.dataDeleted.reduce(getDeleted, 0);
+        function getDeleted(deleteds, item) {
+            if (item === "name" || item === undefined) {
+                deleteds = 0;
+                return
+            } 
+            return deleteds + (item.value);
+        }  
+        
         componetInst.dataDeleted = [];
         totalGastos.textContent = formatCurrency(total - deleteds)   
     } 
