@@ -26,3 +26,8 @@ gastos table tfoot td {
     /* color: rgb(127, 10, 236);
     background-color: blue; */
 }
+
+gastos table tbody .gastosRemoved{
+    text-decoration: line-through;
+    font-size:10px;
+}  

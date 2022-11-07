@@ -1,99 +1,119 @@
 createComponent("gastos", (componetInst, staticContent) => {
-    componetInst.dataArray = [
-        {
-            name: "Fixos",
-            value: 11,
-            debts: 222
-        },
-        {
-            name: "Variavéis",
-            value: 11,
-            debts: 444
-        },
-        {
-            name: "Inpostos",
-            value: 11,
-            debts: 4444
-        }];
-        
-        componetInst.render = () => {
-            const tbody = componetInst.querySelector("table tbody");
-            tbody.innerHTML = ""; 
-            componetInst.dataArray.forEach(item => {
-                // const correntItem = item;
-                const valores = Object.values(item);
-                const tr = document.createElement("tr");
-                tbody.append(tr);
-                valores.forEach(itemB => {
-                    
-                    
-                    const itemLista = document.createElement("td");
-                    itemLista.textContent = itemB;
-                    tr.append(itemLista);
-                })
-            })
-            componetInst.updateTotal();
-        }
-        
-        componetInst.addItem = (itemGastos) => {
-            componetInst.dataArray.push(itemGastos);
-            componetInst.render();  
-        }
-        
-        
-        
-        var add = document.getElementById('addGastos')   
-        add.addEventListener('click', (event) => { 
-            const dividas = {
-                name: "",
-                value: 0,
-                debts: 0
-            }
-            dividas.name = document.getElementById('selectGastos').value;
-            dividas.value = parseInt(document.getElementById('valorGastos').value);
-            dividas.debts = parseInt(document.getElementById('dividaGastos').value); 
-            
-            if(dividas.value > 0)
-            { 
-                if (!isNaN(dividas.debts)) {
-                    dividas.value = per(dividas.debts, dividas.value); 
-                }else{ dividas.debts = 0;}
-                
-                componetInst.addItem(dividas) 
-            }
-        });
-        
-        function per(num, amount){
-            return num*amount/100;
-        }
-        // componetInst.addItem(emprestimos)
-        
-        componetInst.addItemList = (itemList) => {
-            itemList.forEach(item => {
-                componetInst.addItem(item);
-                //  eventAdd(item);
-            })
-        }
-        
-        
-        // componetInst.eventAdd((objectGastos) => {
-        //     const customEventName = "addGastos";
-        //     const dados = objectGastos;
-        //     customDispatchEvent(componetInst, customEventName, dados);
-        // });
-        
-        
-        componetInst.updateTotal = () => { 
-            var total = componetInst.dataArray.reduce(getTotal, 0);
-            function getTotal(total, item) {
-                return total + (item.value);
-            } 
-            totalGastos.textContent = formatCurrency(total)   
-        } 
-        
-        componetInst.getTotalReceita=()=>{  
-            return totalGastos.textContent;
-        }
-        componetInst.render();
-    })
+    componetInst.dataArray = [];
     
+    componetInst.dataDeleted = [];
+    const tbody = componetInst.querySelector("table tbody");
+    componetInst.render = () => { 
+        tbody.innerHTML = "";  
+        componetInst.dataArray.forEach(item => { 
+            const valores = Object.values(item);
+            const key = Object.keys(item);
+            const tr = document.createElement("tr"); 
+            tbody.append(tr);
+            
+            valores.forEach(valor => {
+                const itemLista = document.createElement("td"); 
+                itemLista.textContent = valor;
+                tr.append(itemLista); 
+            })
+        })
+        clickCell(); 
+    }
+    
+    componetInst.addItem = (itemGastos) => {
+        componetInst.dataArray.push(itemGastos);
+        componetInst.render(); 
+        componetInst.updateTotal();
+    }
+    
+    var add = document.getElementById('addGastos')   
+    add.addEventListener('click', (event) => { 
+        const dividas = {
+            name: "",
+            value: 0,
+            debts: 0
+        }
+        dividas.name = document.getElementById('selectGastos').value;
+        dividas.value = parseInt(document.getElementById('valorGastos').value);
+        dividas.debts = parseInt(document.getElementById('dividaGastos').value); 
+        
+        if(dividas.value > 0)
+        { 
+            if (!isNaN(dividas.debts) && dividas.debts !==0) {
+                dividas.value = per(dividas.debts, dividas.value); 
+            }else{ dividas.debts = 0;}
+            componetInst.addItem(dividas) 
+            componetInst.updateTotal(); 
+        }
+    });
+    
+    function per(num, amount){
+        return num*amount/100;
+    }
+    // componetInst.addItem(emprestimos)
+    
+    componetInst.addItemList = (itemList) => {
+        itemList.forEach(item => {
+            componetInst.addItem(item);
+            
+            //  eventAdd(item);
+        }) 
+    }
+    
+    
+    function getDomIndex (target) {
+        return [].slice.call(target.parentNode.children).indexOf(target)
+    }
+    
+    function clickCell() {
+        var row = document.getElementById('gastosTabela').rows; 
+        for (var i = 0; i < row.length; i++) { 
+            for (var j = 0; j < row[i].cells.length; j++) {  
+                var index = row[i].Index;
+                row[i].cells[j].addEventListener('click', function () {  
+                    if (this.parentElement.parentElement === TbodyGastos & this.classList != "gastosRemoved") 
+                    {   
+                        this.parentElement.childNodes[0].classList.add("gastosRemoved");
+                        this.parentElement.childNodes[1].classList.add("gastosRemoved");
+                        this.parentElement.childNodes[2].classList.add("gastosRemoved"); 
+                        RemoveGastos(getDomIndex (this.parentElement));    
+                    }
+                })
+            }
+        }
+    }
+    
+    function RemoveGastos(index) {   
+        componetInst.dataDeleted.push(componetInst.dataArray[index]);   
+        componetInst.updateTotal(); 
+        componetInst.dataArray.splice(index, 1);
+        
+    } 
+    
+    // componetInst.eventAddGastos((objectGastos) => {
+    //     const customEventName = "addGastos";
+    //     const dados = objectGastos;
+    //     customDispatchEvent(componetInst, customEventName, dados);
+    // });
+    
+    componetInst.updateTotal = () => {   
+        var deleteds = componetInst.dataDeleted.reduce(getDeleted, 0);
+        function getDeleted(deleteds, item) {
+            if (item === "name")return 
+            return deleteds + (item.value);
+        }  
+        
+        var total = componetInst.dataArray.reduce(getTotal, 0);
+        function getTotal(total, item) {
+            if (item === "name")return 
+            return total + (item.value);
+        }  
+        componetInst.dataDeleted = [];
+        totalGastos.textContent = formatCurrency(total - deleteds)   
+    } 
+    
+    componetInst.getTotalReceita=()=>{  
+        return totalGastos.textContent;
+    }
+    componetInst.render();
+})
