@@ -31,7 +31,8 @@ const classes = [
     "debt",
     "player-data",
     "stock-position",
-    "transation-type"
+    "transation-type",
+    "financial-movement",
 ]
 
 const utils = [

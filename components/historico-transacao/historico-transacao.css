@@ -24,3 +24,13 @@ historico-transacao tbody tr {
   border-style: solid;
   border-color: black;
 }
+
+historico-transacao tbody tr td.transaction-delete {
+  text-align: center;
+  color: red;
+  background-color:#EEE; 
+  width: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+}

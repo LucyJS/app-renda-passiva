@@ -29,3 +29,9 @@ function getRandomStock(){
     const newStock = getRandomItem(stocks);
     return newStock;
 }
+
+async function confirmAction(message){
+    const confirmed = confirm(message);
+    if(!confirmed) return Promise.reject();
+    return await confirmed;
+}

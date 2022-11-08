@@ -322,3 +322,27 @@ buttonOpenModal.addEventListener("click", () => {
 })
 
 // =====================================
+
+// =====================================
+// Exemplo de uso do componente histórico
+// de transação
+// =====================================
+
+buttonAddTransaction.addEventListener("click", () => {
+    const newTransaction = new FinancialMovement();
+    newTransaction.description =  getRandomItem(["Imóvel", "Venda de ações", "Compra de ações", "Pequeno Negócio", "Pagamento"]);
+    newTransaction.price =  getRandomItem([100,-1500,4500,-200,700, -50]);
+    historicoTransacao.addTransaction(newTransaction);
+})
+
+buttonRemoveLastTransation.addEventListener("click", () => {
+    historicoTransacao.removeLastTransaction();
+})
+
+buttonExibirTotal.addEventListener("click", () => {
+    const total = formatCurrency(historicoTransacao.getTotal());
+    notificacao.addNotification(`Total de transações: ${total}`);
+})
+
+// =====================================
+
