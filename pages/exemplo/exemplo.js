@@ -246,6 +246,15 @@ gastos.addEventListener("removeGastos", (event) => {
     notificacao.addNotification(`Removeu :${details.name} :${details.value} `);
 })
 
+
+// addEventListener("allComponentsReady", () => {
+//     gastos.addItem({ name: "joao", value: 200, debts: 2000 });
+// })
+
+// addEventListener("allComponentsReady", () => {
+//     gastos.removeItem(0);
+// })
+
 // =====================================
 
 // =====================================

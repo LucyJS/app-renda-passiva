@@ -82,13 +82,18 @@ createComponent("gastos", (componetInst, staticContent) => {
     }
     
     function RemoveGastos(index) {   
-        const etemRemoved = componetInst.dataArray[index];
-        
-        componetInst.dataDeleted.push(etemRemoved);   
-        componetInst.updateTotal(); 
+        const itemRemoved = componetInst.dataArray[index]; 
+        componetInst.dataDeleted.push(itemRemoved);
+        componetInst.updateTotal();
         componetInst.dataArray.splice(index, 1);
-        componetInst.eventRemoveGastos(etemRemoved);
+        componetInst.eventRemoveGastos(itemRemoved);
+        
     } 
+    
+    // componetInst.removeItem((index) => {
+    //     RemoveGastos(index);
+    // });
+    
     
     componetInst.eventAddGastos = ((objectGastos) => {
         const customEventName = "addGastos";
