@@ -16,13 +16,16 @@ createComponent("historico-transacao", (component) => {
     }
 
     component.removeLastTransaction = () => {
+        const transaction = component.transactions[0];
         component.transactions.shift();
         component.render();
+        customDispatchEvent(component, "removeLastTransaction", { index: 0, transaction });
     }
 
     component.addTransaction = (transaction) => {
         component.transactions.unshift(transaction);
         component.render();
+        customDispatchEvent(component, "addTransaction", { transaction });
     }
 
     component.render = () => {
@@ -61,9 +64,11 @@ createComponent("historico-transacao", (component) => {
         confirmAction(`Deseja excluir a transação: ${transaction.description} - ${formatCurrency(transaction.price)}`)
         .then(() => {
             const index = component.transactions.findIndex(item => item.id === transaction.id);
+            const removedTransaction = component.transactions[index];
             if(index === -1) return;
             component.transactions.splice(index, 1);
             component.render();
+            customDispatchEvent(component, "removeTransaction", { index, removedTransaction });
         })
     }
 

@@ -344,5 +344,24 @@ buttonExibirTotal.addEventListener("click", () => {
     notificacao.addNotification(`Total de transações: ${total}`);
 })
 
+historicoTransacao.addEventListener("removeTransaction", (event) => {
+    const dados = event.detail;
+    const transacaoRemovida = dados.removedTransaction;
+    notificacao.addNotification(`Transação removida: ${transacaoRemovida.description} - ${formatCurrency(transacaoRemovida.price)}`);
+})
+
+historicoTransacao.addEventListener("addTransaction", (event) => {
+    const dados = event.detail;
+    const transacao = dados.transaction;
+    notificacao.addNotification(`Transação adicionada: ${transacao.description} - ${formatCurrency(transacao.price)}`);
+})
+
+historicoTransacao.addEventListener("removeLastTransaction", (event) => {
+    const dados = event.detail;
+    const transacao = dados.transaction;
+    notificacao.addNotification(`Transação removida: ${transacao.description} - ${formatCurrency(transacao.price)}`);
+})
+
+
 // =====================================
 
