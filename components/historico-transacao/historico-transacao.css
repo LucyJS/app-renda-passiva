@@ -19,6 +19,10 @@ historico-transacao thead tr {
   font-weight: bold;
 }
 
+historico-transacao thead tr th {
+  font-weight: bold;
+}
+
 historico-transacao tbody tr {
   font-weight: normal;
   border-style: solid;
@@ -33,4 +37,9 @@ historico-transacao tbody tr td.transaction-delete {
   font-weight: bold;
   cursor: pointer;
   font-size: 15px;
+}
+
+historico-transacao tbody tr td.no-transactions {
+  background: #EEE;
+  color: #777;
 }

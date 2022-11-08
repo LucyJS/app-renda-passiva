@@ -33,6 +33,11 @@ createComponent("historico-transacao", (component) => {
 
         tBody.innerHTML = "";
 
+        if(component.transactions.length === 0){
+            tBody.innerHTML = "<tr><td colspan='3' class='no-transactions'>Nenhum registro de transação encontrado.</td></tr>";
+            return;
+        }
+
         component.transactions.forEach(transaction => {
             const tr = document.createElement("tr");
 
