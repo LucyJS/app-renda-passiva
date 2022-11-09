@@ -2,7 +2,7 @@ createComponent("gastos", (componetInst, staticContent) => {
     componetInst.dataArray = [];
     
     componetInst.dataDeleted = [];
-    const tbody = componetInst.querySelector("table tbody");
+    const tbody = componetInst.querySelector("table tbody");  
     componetInst.render = () => { 
         tbody.innerHTML = "";  
         componetInst.dataArray.forEach(item => { 
@@ -13,7 +13,12 @@ createComponent("gastos", (componetInst, staticContent) => {
             
             valores.forEach(valor => {
                 const itemLista = document.createElement("td"); 
-                itemLista.textContent = valor;
+                if (!isNaN(valor) ) {
+                    itemLista.textContent = formatCurrency(valor); 
+                } else {
+                    itemLista.textContent = valor;
+                }
+                
                 tr.append(itemLista); 
             })
         })
@@ -70,30 +75,36 @@ createComponent("gastos", (componetInst, staticContent) => {
                 var index = row[i].Index;
                 row[i].cells[j].addEventListener('click', function () {  
                     if (this.parentElement.parentElement === TbodyGastos & this.classList != "gastosRemoved") 
-                    {   
-                        this.parentElement.childNodes[0].classList.add("gastosRemoved");
-                        this.parentElement.childNodes[1].classList.add("gastosRemoved");
-                        this.parentElement.childNodes[2].classList.add("gastosRemoved"); 
-                        RemoveGastos(getDomIndex (this.parentElement));    
+                    {    
+                        RemoverByCLick(this.parentElement);    
                     }
                 })
             }
         }
     }
     
+    function RemoverByCLick(thisPrentElemet) {
+        const name = thisPrentElemet.childNodes[0];
+        const gasto = thisPrentElemet.childNodes[1];
+        const divida = thisPrentElemet.childNodes[2];
+        
+        confirmAction(`Deseja excluir : ${name.textContent} - ${ gasto.textContent} -Divida: ${ divida.textContent}`)
+        .then(() => {
+            RemoveGastos(getDomIndex (thisPrentElemet));
+            name.classList.add("gastosRemoved");
+            gasto.classList.add("gastosRemoved");
+            divida.classList.add("gastosRemoved");  
+        });
+    }
+    
+    
     function RemoveGastos(index) {   
         const itemRemoved = componetInst.dataArray[index]; 
         componetInst.dataDeleted.push(itemRemoved);
         componetInst.updateTotal();
         componetInst.dataArray.splice(index, 1);
-        componetInst.eventRemoveGastos(itemRemoved);
-        
+        componetInst.eventRemoveGastos(itemRemoved);  
     } 
-    
-    // componetInst.removeItem((index) => {
-    //     RemoveGastos(index);
-    // });
-    
     
     componetInst.eventAddGastos = ((objectGastos) => {
         const customEventName = "addGastos";
@@ -107,9 +118,7 @@ createComponent("gastos", (componetInst, staticContent) => {
         customDispatchEvent(componetInst, customEventName, dados);
     });
     
-    componetInst.updateTotal = () => {   
-        
-        
+    componetInst.updateTotal = () => {    
         var total = componetInst.dataArray.reduce(getTotal, 0);
         function getTotal(total, item) {
             if (item === "name" || item === undefined) {
@@ -132,8 +141,14 @@ createComponent("gastos", (componetInst, staticContent) => {
         totalGastos.textContent = formatCurrency(total - deleteds)   
     } 
     
-    componetInst.getTotalReceita=()=>{  
+    componetInst.getTotalReceita = ()=>{  
         return totalGastos.textContent;
     }
+    
     componetInst.render();
+    componetInst.removeItem = ((index) => { 
+        RemoveGastos(index);
+        componetInst.render();
+    });
+    
 })

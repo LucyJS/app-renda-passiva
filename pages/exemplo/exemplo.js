@@ -248,13 +248,13 @@ gastos.addEventListener("removeGastos", (event) => {
 })
 
 
-// addEventListener("allComponentsReady", () => {
-//     gastos.addItem({ name: "joao", value: 200, debts: 2000 });
-// })
+addEventListener("allComponentsReady", () => {
+    gastos.addItem({ name: "joao", value: 200, debts: 2000 });
+})
 
-// addEventListener("allComponentsReady", () => {
-//     gastos.removeItem(0);
-// })
+addEventListener("allComponentsReady", () => {
+    gastos.removeItem(0);
+})
 
 // =====================================
 
