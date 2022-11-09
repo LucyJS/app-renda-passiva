@@ -2,6 +2,7 @@
 createComponent("historico-transacao", (component) => {
 
     component.transactions = [];
+    component.counter = 0;
 
     component.filterTransactionByDescription = (description) => {
         return component.transactions.filter(transaction => transaction.description === description);
@@ -20,12 +21,19 @@ createComponent("historico-transacao", (component) => {
         component.transactions.shift();
         component.render();
         customDispatchEvent(component, "removeLastTransaction", { index: 0, transaction });
+        dispatchChagenEvent();
+    }
+
+    function dispatchChagenEvent(){
+        customDispatchEvent(component, "change", { transactions: component.transactions, saldo: component.getTotal() });
     }
 
     component.addTransaction = (transaction) => {
+        transaction.id = component.counter++;
         component.transactions.unshift(transaction);
         component.render();
         customDispatchEvent(component, "addTransaction", { transaction });
+        dispatchChagenEvent();
     }
 
     component.render = () => {
@@ -74,6 +82,7 @@ createComponent("historico-transacao", (component) => {
             component.transactions.splice(index, 1);
             component.render();
             customDispatchEvent(component, "removeTransaction", { index, removedTransaction });
+            dispatchChagenEvent();
         })
     }
 

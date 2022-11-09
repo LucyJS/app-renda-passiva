@@ -1,9 +1,10 @@
 createComponent("notificacao", (component, staticContent) => {
 
-    component.addNotification = (description) => {
+    component.addNotification = (description, type=NotificationType.Info) => {
         const lista = component.querySelector("ul");
         const li = document.createElement("li");
         li.textContent = description;
+        li.classList.add(`type-${type}`);
 
         const seconds = parseInt(component.getAttribute("seconds"));
         if(seconds > 0){

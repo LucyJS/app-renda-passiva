@@ -74,41 +74,54 @@ createComponent("acoes", (component, staticContent) => {
         
         if(!component.canSellStock(ticket, quantity)){
             component.dispatchEvent(new CustomEvent("sellStocksError", { detail: { stock: stockItem, quantity, message: component.validationErrors["sellStocks"] }}));
-            return;
+            return false;
         }
         
         stockItem.quantity -= quantity;
         component.render();
         
         const totalPrice = quantity * stockItem.finalPrice;
-        component.dispatchEvent(new CustomEvent("sellStocks", { detail: { stock: stockItem, quantity, totalPrice }}));
+        const description = `Venda de ${quantity} ações da ${stockItem.ticket}`;
+        component.dispatchEvent(new CustomEvent("sellStocks", { detail: { stock: stockItem, quantity, totalPrice, description }}));
+        return true;
     }
     
-    component.canBuyStocks = (ticket, quantity) => {
+    component.canBuyStocks = (ticket, quantity, saldo=0) => {
         const stockItem = component.stocks[ticket];
         
         if([StockVariation.Double, StockVariation.Half, StockVariation.Lost, StockVariation.Zero].includes(stockItem.variation)){
-            component.validationErrors["buyStocks"] = `Não é possível comprar ${quantity} ações da ${stockItem.ticket}. Porque a variação ${stockItem.variation} é inválida.`;
+            component.validationErrors["buyStocks"] = `Não é possível comprar ${quantity} ações da ${stockItem.ticket}. 
+            Porque a variação ${stockItem.variation} é inválida.`;
             
             return false;
         }
         
+        const totalPrice = quantity * stockItem.finalPrice;
+        if(totalPrice > saldo){
+            component.validationErrors["buyStocks"] = `Não é possível comprar ${quantity} ações da ${stockItem.ticket}. 
+            Porque o saldo de ${formatCurrency(saldo)} não é suficiente para comprar ${formatCurrency(totalPrice)} em ações.`;
+            
+            return false;
+        }
+
         return true;
     }
     
-    component.buyStocks = (ticket, quantity) => {
+    component.buyStocks = (ticket, quantity, saldo=0) => {
         const stockItem = component.stocks[ticket];
         
-        if(!component.canBuyStocks(ticket, quantity)){
+        if(!component.canBuyStocks(ticket, quantity, saldo)){
             component.dispatchEvent(new CustomEvent("buyStocksError", { detail: { stock: stockItem, quantity, message: component.validationErrors["buyStocks"] }}));
-            return;
+            return false;
         }
         
         stockItem.quantity += quantity;
         component.render();
         
-        const totalPrice = quantity * stockItem.finalPrice;
-        component.dispatchEvent(new CustomEvent("buyStocks", { detail: { stock: stockItem, quantity, totalPrice }}));
+        const totalPrice = -(quantity * stockItem.finalPrice);
+        const description = `Compra de ${quantity} ações da ${stockItem.ticket}`;
+        component.dispatchEvent(new CustomEvent("buyStocks", { detail: { stock: stockItem, quantity, totalPrice, description }}));
+        return true;
     }
     
     component.setVariation = (stockTicket, variationValue) => {

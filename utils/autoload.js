@@ -15,14 +15,15 @@ const components = [
     "nova-transacao",
     "visualizar-acao",
     "ordem-acoes",
+    "modal",
     "selecionar-personagem",
-    "modal"
 ]
 
 const constants = [
     "financial-movement-type",
     "stock-ticket",
     "stock-variation",
+    "notification-type"
 ]
 
 const classes = [
@@ -49,11 +50,35 @@ resolvePromisesSeq([
 ]).then(() => {
     waitFor(() => {
         const lastComponentName = components[components.length - 1];
-        return new Person() && StockTicket && isComponentLoaded(lastComponentName);
+        const lastConstant = constants[constants.length - 1];
+        const lastClass = classes[classes.length - 1];
+        return isComponentLoaded(lastComponentName) && isConstantLoaded(lastConstant) && isClassLoaded(lastClass);
     }).then(() => {
         dispatchEvent(new CustomEvent("allComponentsReady"));
     })
 })
+
+function isClassLoaded(className){
+    const pascalCaseName = hifenToPascalCase(className);
+    return eval(pascalCaseName);
+}
+
+function isConstantLoaded(constantName){
+    const pascalCaseName = hifenToPascalCase(constantName);
+    return eval(pascalCaseName);
+}
+
+function hifenToPascalCase(hifenedText){
+    let parts = hifenedText.split("-");
+    parts = parts.map(p => {
+        const firstLetter = p[0].toUpperCase() 
+        const otherLetters = p.slice(1, p.length);
+        const pascalCaseWord = `${firstLetter}${otherLetters}`;
+        return pascalCaseWord;
+    });
+    return parts.join("");
+}
+
 
 async function waitFor(predicate){
     return new Promise((resolve, reject) => {
@@ -193,3 +218,13 @@ function customDispatchEvent(componentInstance, eventName, data={}){
     const customEvent = new CustomEvent(customEventName, detail);
     componentInstance.dispatchEvent(customEvent);
 }
+
+const loading = document.createElement("div");
+loading.textContent = "Só um momento...";
+loading.classList.add("loading");
+document.body.append(loading);
+addEventListener("allComponentsReady", () => {
+    setTimeout(() => {
+        loading.remove();
+    }, 500)
+})

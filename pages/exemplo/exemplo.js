@@ -97,17 +97,17 @@ acoes.addEventListener("sellStocksError", (event) => {
 })
 
 sellStockButton.addEventListener("click", function(){
-    acoes.sellStocks(StockTicket.APPL3, 5);
-    acoes.sellStocks(StockTicket.VAL3, 50);
-    acoes.sellStocks(StockTicket.BB4S, 10);
-    acoes.sellStocks(StockTicket.AMZ4, 500);
+    acoes.sellStocks(StockTicket.APPL3, 5, 999999);
+    acoes.sellStocks(StockTicket.VAL3, 50, 999999);
+    acoes.sellStocks(StockTicket.BB4S, 10, 999999);
+    acoes.sellStocks(StockTicket.AMZ4, 500, 999999);
 })
 
 buyStockButton.addEventListener("click", function(){
-    acoes.buyStocks(StockTicket.APPL3, 5);
-    acoes.buyStocks(StockTicket.VAL3, 50);
-    acoes.buyStocks(StockTicket.BB4S, 10);
-    acoes.buyStocks(StockTicket.AMZ4, 500);
+    acoes.buyStocks(StockTicket.APPL3, 5, 999999);
+    acoes.buyStocks(StockTicket.VAL3, 50, 999999);
+    acoes.buyStocks(StockTicket.BB4S, 10, 999999);
+    acoes.buyStocks(StockTicket.AMZ4, 500, 999999);
 })
 
 updateVariation.addEventListener("click", function(){
@@ -202,7 +202,8 @@ buttonAddNotification.addEventListener("click", function(){
         "Hoje é sexta feira!!"
     ]
     const randomMessage = getRandomItem(messages);
-    notificacao.addNotification(randomMessage);
+    const randomType = getRandomItem(Object.values(NotificationType))
+    notificacao.addNotification(randomMessage, randomType);
 })
 
 buttonClearNotifications.addEventListener("click", function(){

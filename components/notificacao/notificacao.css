@@ -26,10 +26,29 @@ notificacao .container li {
     position:relative;
     padding: 10px;
     padding-right: 15px;
-    background-color:lightgreen;
     margin: 5px 0;
     color: #000;
     -webkit-animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) both;
+}
+
+notificacao .container li.type-info {
+    background-color:lightgray;
+    color: #000;
+}
+
+notificacao .container li.type-sucesso {
+    background-color:lightgreen;
+    color: #000;
+}
+
+notificacao .container li.type-aviso {
+    background-color:orange;
+    color: #FFF;
+}
+
+notificacao .container li.type-erro {
+    background-color:red;
+    color: #FFF;
 }
 
 notificacao .container li.slide-out { 

@@ -3,4 +3,9 @@ function Resumo(pagamento,rendaPassive,saldo){
     rp.textContent = formatCurrency(rendaPassive);
     sa.textContent = formatCurrency(saldo);
 }
-Resumo(150, 0, 300);
+Resumo(0, 0, 0);
+
+function getSaldo(){
+    const numbers = sa.textContent.replace(/\D/g, "")
+    return parseInt(numbers / 100);
+}

@@ -26,9 +26,11 @@ addEventListener("allComponentsReady", () => {
     buttonBuyStocks.addEventListener("click", () => {
         const total = formatCurrency(ordemAcoes.getTotal());
         const stock = ordemAcoes.getStock();
-        acoes.buyStocks(stock.ticket, ordemAcoes.quantity);
-        // TODO - registrar nova transação no histórico de transação
-        // TODO - calcular o saldo com base no histórico de transação
+        const buyed = acoes.buyStocks(stock.ticket, ordemAcoes.quantity, getSaldo());
+        if(!buyed) {
+            notificacao.addNotification(acoes.validationErrors["buyStocks"], NotificationType.Error);
+            return;
+        }
         notificacao.addNotification(`Comprou ${ordemAcoes.quantity} unidades da ação ${stock.ticket} no valor de  ${total}.`);
         modalOrdem.close();
     })
@@ -36,9 +38,12 @@ addEventListener("allComponentsReady", () => {
     buttonSellStocks.addEventListener("click", () => {
         const total = formatCurrency(ordemAcoes.getTotal());
         const stock = ordemAcoes.getStock();
-        acoes.sellStocks(stock.ticket, ordemAcoes.quantity);
-        // TODO - registrar nova transação no histórico de transação
-        // TODO - calcular o saldo com base no histórico de transação
+        const selled = acoes.sellStocks(stock.ticket, ordemAcoes.quantity);
+        if(!selled) {
+            notificacao.addNotification(acoes.validationErrors["sellStocks"], NotificationType.Error);
+            return;
+        }
+
         notificacao.addNotification(`Vendeu ${ordemAcoes.quantity} unidades da ação ${stock.ticket} no valor de  ${total}.`);
         modalOrdem.close();
     })
@@ -49,6 +54,30 @@ addEventListener("allComponentsReady", () => {
         visualizarAcao.setStock(stock);
         selecionarVariacao.setVariation(StockVariation.Zero);
         modalVariacao.open();
+    })
+
+    acoes.addEventListener("sellStocks", (event) => {
+        const detail = event.detail;
+
+        historicoTransacao.addTransaction({
+            price: detail.totalPrice,
+            description: detail.description
+        })
+    })
+
+    acoes.addEventListener("buyStocks", (event) => {
+        const detail = event.detail;
+
+        historicoTransacao.addTransaction({
+            price: detail.totalPrice,
+            description: detail.description
+        })
+    })
+
+    historicoTransacao.addEventListener("change", (event) => {
+        const detail = event.detail;
+        const saldo = detail.saldo;
+        Resumo(0, 0, saldo);
     })
 
     confirmarVariacao.addEventListener("click", (event) => {
