@@ -231,6 +231,14 @@ receitas.addEventListener("removeItem", (event) => {
     notificacao.addNotification(`${details.key} :${details.value} `);
 })
 
+// addEventListener("allComponentsReady", () => {
+//     receitas.addReceita("salario",445);
+// })
+
+// addEventListener("allComponentsReady", () => {
+//     receitas.removeItem(0);
+// })
+
 // =====================================
 
 // =====================================

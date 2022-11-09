@@ -1,7 +1,7 @@
 createComponent("gastos", (componetInst, staticContent) => {
-    componetInst.dataArray = [];
-    
+    componetInst.dataArray = []; 
     componetInst.dataDeleted = [];
+    
     const tbody = componetInst.querySelector("table tbody");  
     componetInst.render = () => { 
         tbody.innerHTML = "";  
@@ -59,8 +59,7 @@ createComponent("gastos", (componetInst, staticContent) => {
     
     componetInst.addItemList = (itemList) => {
         itemList.forEach(item => {
-            componetInst.addItem(item);
-            
+            componetInst.addItem(item); 
         }) 
     }
     
@@ -83,14 +82,14 @@ createComponent("gastos", (componetInst, staticContent) => {
         }
     }
     
-    function RemoverByCLick(thisPrentElemet) {
-        const name = thisPrentElemet.childNodes[0];
-        const gasto = thisPrentElemet.childNodes[1];
-        const divida = thisPrentElemet.childNodes[2];
+    function RemoverByCLick(thisParentElemet) {
+        const name = thisParentElemet.childNodes[0];
+        const gasto = thisParentElemet.childNodes[1];
+        const divida = thisParentElemet.childNodes[2];
         
         confirmAction(`Deseja excluir : ${name.textContent} - ${ gasto.textContent} -Divida: ${ divida.textContent}`)
         .then(() => {
-            RemoveGastos(getDomIndex (thisPrentElemet));
+            RemoveGastos(getDomIndex (thisParentElemet));
             name.classList.add("gastosRemoved");
             gasto.classList.add("gastosRemoved");
             divida.classList.add("gastosRemoved");  

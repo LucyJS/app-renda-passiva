@@ -50,8 +50,11 @@ receitas button{
 
 
 receitas table .strik{
+    /* text-decoration: line-through;
+    font-size:10px; */
     text-decoration: line-through;
     font-size:10px;
+    background-color: rgb(191, 209, 167);
 }  
 
 receitas .selector{ 
