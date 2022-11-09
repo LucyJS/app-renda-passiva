@@ -1,21 +1,31 @@
  
- .pagamento .rendaPassiva .saldo{
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 30px;
-    padding-right: 40px; 
+ resumo table tr th   {
+    background-color: rgb(57, 10, 212);
+    font-weight: bold;
+    font-size: 20px;
+}
+resumo table thead tr th{
+    font-size: 13px;
+}
+resumo table tbody tr td{
+    
+    color: #090
 }
 
 .pagamento {  
-    background-color: rgb(169, 100, 233); 
-}
+    background-color: rgb(208, 176, 238);
+    font-weight: bold; 
+} 
+
 
 .rendaPassiva {  
-    background-color: rgb(181, 238, 83); 
+    background-color: rgb(208, 234, 164); 
+    font-weight: bold; 
 }
 
 .saldo {  
-    background-color: rgb(83, 238, 106); 
+    background-color: rgb(167, 232, 176);
+    font-weight: bold; 
 }
 
 

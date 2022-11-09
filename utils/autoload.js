@@ -92,7 +92,7 @@ async function waitFor(predicate){
             }catch(e){
                 counter++;
             }
-
+            
             if(counter > 500){
                 reject();
             }
@@ -170,7 +170,7 @@ function createComponent(componentName, initComponentFn){
     .then((html) => {
         __cacheComponent[componentName] = { html, initComponentFn }
         _createComponent(componentName);
-        })
+    })
     .catch((error) => {
         console.error(componentName);
         console.error(error);
@@ -195,7 +195,7 @@ function _createComponent(componentName){
         if(element.getAttribute("norender") === null){
             element.innerHTML = html;
         }
-
+        
         element.componentInitialized = false;
         cache.initComponentFn(element, staticContent);
         element.componentInitialized = true;
