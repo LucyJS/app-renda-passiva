@@ -26,9 +26,9 @@ addEventListener("allComponentsReady", () => {
     buttonBuyStocks.addEventListener("click", () => {
         const total = formatCurrency(ordemAcoes.getTotal());
         const stock = ordemAcoes.getStock();
-        const buyed = acoes.buyStocks(stock.ticket, ordemAcoes.quantity, getSaldo());
+        const buyed = acoes.buyStocks(stock.ticket, ordemAcoes.quantity, resumoGeral.getSaldo());
         if(!buyed) {
-            notificacao.addNotification(acoes.validationErrors["buyStocks"], NotificationType.Error);
+            notificacao.addNotification(acoes.validationErrors["buyStocks"], NotificationType.Warning);
             return;
         }
         notificacao.addNotification(`Comprou ${ordemAcoes.quantity} unidades da ação ${stock.ticket} no valor de  ${total}.`);
@@ -40,7 +40,7 @@ addEventListener("allComponentsReady", () => {
         const stock = ordemAcoes.getStock();
         const selled = acoes.sellStocks(stock.ticket, ordemAcoes.quantity);
         if(!selled) {
-            notificacao.addNotification(acoes.validationErrors["sellStocks"], NotificationType.Error);
+            notificacao.addNotification(acoes.validationErrors["sellStocks"], NotificationType.Warning);
             return;
         }
 
@@ -77,7 +77,7 @@ addEventListener("allComponentsReady", () => {
     historicoTransacao.addEventListener("change", (event) => {
         const detail = event.detail;
         const saldo = detail.saldo;
-        Resumo(0, 0, saldo);
+        resumoGeral.setSaldo(saldo);
     })
 
     confirmarVariacao.addEventListener("click", (event) => {

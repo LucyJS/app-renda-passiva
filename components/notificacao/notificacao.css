@@ -27,28 +27,37 @@ notificacao .container li {
     padding: 10px;
     padding-right: 15px;
     margin: 5px 0;
+    background-color: #EEE;
     color: #000;
     -webkit-animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) both;
 }
 
 notificacao .container li.type-info {
-    background-color:lightgray;
+    border-bottom: 5px solid lightgray;
+    border-top: 5px solid lightgray;
+    border-left: 10px solid lightgray;
     color: #000;
 }
 
 notificacao .container li.type-sucesso {
-    background-color:lightgreen;
+    border-bottom: 5px solid lightgreen;
+    border-top: 5px solid lightgreen;
+    border-left: 10px solid lightgreen;
     color: #000;
 }
 
 notificacao .container li.type-aviso {
-    background-color:orange;
-    color: #FFF;
+    border-bottom: 5px solid orange;
+    border-top: 5px solid orange;
+    border-left: 10px solid orange;
+    color: #000;
 }
 
 notificacao .container li.type-erro {
-    background-color:red;
-    color: #FFF;
+    border-bottom: 5px solid red;
+    border-top: 5px solid red;
+    border-left: 10px solid red;
+    color: #000;
 }
 
 notificacao .container li.slide-out { 
@@ -58,12 +67,12 @@ notificacao .container li.slide-out {
 
 notificacao .container li .close {
     padding: 10px;
-    background-color:red;
+    background-color:#DDD;
     position: absolute;
     top: 0px;
     right: 0;
     height: 100%;
-    color: #FFF;
+    color: #000;
     font-weight: bold;
     cursor: pointer;
 }
