@@ -19,7 +19,7 @@ addEventListener("allComponentsReady", () => {
     acoes.addEventListener("clickOrder", (event) => {
         const stock = event.detail.stock;
         ordemAcoes.setStock(stock);
-        ordemAcoes.setQuantity(stock.quantity);
+        ordemAcoes.setQuantity(stock.quantity || "");
         modalOrdem.open();
     })
 

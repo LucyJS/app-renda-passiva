@@ -1,7 +1,7 @@
 createComponent("ordem-acoes", (component) => {
 
     component.stock = new Stock("AAPL3", "blue", StockVariation.PositiveNumber01, 1);
-    component.quantity = 0;
+    component.quantity = "";
 
     component.setStock = (newStock) => {
         component.stock = newStock;
