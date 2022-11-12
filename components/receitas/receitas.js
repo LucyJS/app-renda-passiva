@@ -27,8 +27,8 @@ createComponent("receitas", (componetInst, staticContent) => {
     componetInst.addItem = (itemReceitas) => {
         componetInst.dataArray.push(itemReceitas);
         componetInst.render(); 
-        componetInst.updateTotal();
-        componetInst.eventAddGastos(itemReceitas);
+        updateTotal();
+        eventAddReceita(itemReceitas);
     }
     
     var add = document.getElementById('addReceita')   
@@ -40,10 +40,11 @@ createComponent("receitas", (componetInst, staticContent) => {
         receitas.name = document.getElementById('selectReceita').value;
         receitas.value = parseInt(document.getElementById('valorReceitas').value);
         
-        if(receitas.value > 0)
+        if(!isNaN(receitas.value))
         {  
-            componetInst.addItem(receitas)  
-            componetInst.updateTotal(); 
+            componetInst.addItem(receitas)   
+        } else {
+            alert("Digite o valor")
         }
     });
     
@@ -87,53 +88,55 @@ createComponent("receitas", (componetInst, staticContent) => {
     
     function removeReceitas(index) {   
         const itemRemoved = componetInst.dataArray[index]; 
+        if (!isNaN(itemRemoved))
+        {
+            alert(" O item Não Exite");
+            return
+        }
         componetInst.dataDeleted.push(itemRemoved);
-        componetInst.updateTotal();
+        updateTotal();
         componetInst.dataArray.splice(index, 1);
-        componetInst.eventRemoveGastos(itemRemoved);  
+        eventRemoveReceitas(itemRemoved);  
     } 
     
-    componetInst.eventAddGastos = ((objectReceita) => {
+    function eventAddReceita(objectReceita) { 
         const customEventName = "addReceita";
         const dados = objectReceita;
-        customDispatchEvent(componetInst, customEventName, dados);
-    });
+        customDispatchEvent(componetInst, customEventName, dados); 
+    }
     
-    componetInst.eventRemoveGastos = ((objectReceita) => {
+    function eventRemoveReceitas(objectReceita) {
         const customEventName = "removeReceitas";
         const dados = objectReceita;
         customDispatchEvent(componetInst, customEventName, dados);
-    });
+    };
     
-    componetInst.updateTotal = () => {    
+    function updateTotal() {    
         var total = componetInst.dataArray.reduce(getTotal, 0);
         function getTotal(total, item) {
-            if (item === "name" || !isNaN(item) || item === undefined) {
-                total = 0;
-                return
+            if ( !isNaN(item)) { 
+                return 0;
             }   
             return total + (item.value); 
         }  
         
         var deleteds = componetInst.dataDeleted.reduce(getDeleted, 0);
         function getDeleted(deleteds, item) {
-            if (item === "name" || !isNaN(item) || item === undefined) {
-                deleteds = 0;
-                return
+            if ( !isNaN(item)) { 
+                return 0;
             } 
             console.warn(item.value);
             return deleteds + (item.value);
-        }  
-        
+        }   
         componetInst.dataDeleted = [];
         totalReceita.textContent = formatCurrency(total - deleteds)   
     } 
     
     componetInst.getTotalReceita = ()=>{  
         return totalReceita.textContent;
-    }
-    
+    } 
     componetInst.render();
+    
     componetInst.removeItem = ((index) => { 
         removeReceitas(index);
         componetInst.render();

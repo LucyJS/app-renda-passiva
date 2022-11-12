@@ -43,7 +43,7 @@ createComponent("gastos", (componetInst, staticContent) => {
         dividas.value = parseInt(document.getElementById('valorGastos').value);
         dividas.debts = parseInt(document.getElementById('dividaGastos').value); 
         
-        if(dividas.value > 0)
+        if( dividas.value >0)   //!isNaN( dividas.value))
         { 
             if (!isNaN(dividas.debts) && dividas.debts !==0) {
                 dividas.value = per(dividas.debts, dividas.value); 
@@ -120,18 +120,16 @@ createComponent("gastos", (componetInst, staticContent) => {
     componetInst.updateTotal = () => {    
         var total = componetInst.dataArray.reduce(getTotal, 0);
         function getTotal(total, item) {
-            if (item === "name" || !isNaN(item) || item === undefined) {
-                total = 0;
-                return
+            if ( !isNaN(item)) { 
+                return 0;
             }  
             return total + (item.value);
         }  
         
         var deleteds = componetInst.dataDeleted.reduce(getDeleted, 0);
         function getDeleted(deleteds, item) {
-            if (item === "name" || !isNaN(item) || item === undefined) {
-                deleteds = 0;
-                return
+            if ( !isNaN(item)) { 
+                return 0;
             } 
             return deleteds + (item.value);
         }  

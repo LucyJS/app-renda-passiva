@@ -220,19 +220,22 @@ buttonRemoveLastNotification.addEventListener("click", function(){
 // Exemplo de uso do componente de receitas
 // =====================================
 
-receitas.addEventListener("addItem", (event) => {
-    const details = event.detail;
-    
-    notificacao.addNotification(`${details.key} :${details.value} `);
-})
+// receitas.addEventListener("addReceita", (event) => {
+//     const details = event.detail;
 
-receitas.addEventListener("removeItem", (event) => {
-    const details = event.detail; 
-    notificacao.addNotification(`${details.key} :${details.value} `);
-})
+//     notificacao.addNotification(`Add: ${details.name} :${details.value} `);
+// })
+
+// receitas.addEventListener("removeReceitas", (event) => {
+//     const details = event.detail; 
+//     notificacao.addNotification(`excloiu: ${details.name} :${details.value} `);
+// })
 
 // addEventListener("allComponentsReady", () => {
-//     receitas.addReceita("salario",445);
+//     receitas.addItem({
+//         "name": "Salario",
+//         "value": 445
+//     });
 // })
 
 // addEventListener("allComponentsReady", () => {
