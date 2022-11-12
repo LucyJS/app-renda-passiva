@@ -1,118 +1,142 @@
-createComponent("receitas", function (componentInstance, staticContent) {
-    componentInstance.receitas = {} 
-    let totalReceita = 0;
-    var row = document.getElementById('tabela').rows;
+createComponent("receitas", (componetInst, staticContent) => {
+    componetInst.dataArray = []; 
+    componetInst.dataDeleted = [];
     
-    function deleteRow(row){
-        var d = row.parentNode.parentNode.rowIndex;
-        document.getElementById('tabela').deleteRow(d);
+    const tbody = componetInst.querySelector("table tbody");  
+    componetInst.render = () => { 
+        tbody.innerHTML = "";  
+        componetInst.dataArray.forEach(item => { 
+            const valores = Object.values(item);
+            const key = Object.keys(item);
+            const tr = document.createElement("tr"); 
+            tbody.append(tr);
+            
+            valores.forEach(valor => {
+                const itemLista = document.createElement("td"); 
+                if (!isNaN(valor) ) {
+                    itemLista.textContent = formatCurrency(valor); 
+                } else {
+                    itemLista.textContent = valor;
+                } 
+                tr.append(itemLista); 
+            })
+        })
+        clickCell(); 
     }
-    componentInstance.addReceita = ((key, value) => {  
-        eventAdd(key, value);
-        var index = Object.keys(componentInstance.receitas).length;
-        var realKey = key + "," + index;
-        componentInstance.receitas[realKey] = value
-        upDateReceita(realKey, value);
-        updateTotal(); 
-        clickCell();
-    });
     
-    componentInstance.RemoveReceita = (keys => {
-        var valor = componentInstance.receitas[keys];
-        let key = getFirstText(keys[0]);
-        enventRemoveItem(key, valor);
-        componentInstance.receitas[keys] = 0;
-        updateTotal();
-    });
+    componetInst.addItem = (itemReceitas) => {
+        componetInst.dataArray.push(itemReceitas);
+        componetInst.render(); 
+        componetInst.updateTotal();
+        componetInst.eventAddGastos(itemReceitas);
+    }
     
-    function upDateReceita(key, value) {
-        let tr = document.createElement("tr");
-        let td = document.createElement("td")
-        let td2 = document.createElement("td")
-        
-        tr.appendChild(td);
-        tr.appendChild(td2);
-        tbodyReceitas.appendChild(tr);
-        
-        let wordKey = getFirstText(key);
-        tr.classList.add(key);
-        td.textContent = wordKey;
-        td2.textContent = formatCurrency(value);
-        
-    } 
-    
-    
-    
-    function clickCell() {
-        
-        for (var i = 0; i < row.length; i++) {
-            for (var j = 0; j < row[i].cells.length; j++ ) { 
-                row[i].cells[j].addEventListener('click', function(){ 
-                    if(this.parentElement.parentElement ===tbodyReceitas& this.classList!= "strik") 
-                    {   
-                        RemoverByCLick(this.parentElement);   
-                    }
-                })
-            }
+    var add = document.getElementById('addReceita')   
+    add.addEventListener('click', (event) => { 
+        const receitas = {
+            name: "",
+            value: 0, 
         }
+        receitas.name = document.getElementById('selectReceita').value;
+        receitas.value = parseInt(document.getElementById('valorReceitas').value);
+        
+        if(receitas.value > 0)
+        {  
+            componetInst.addItem(receitas)  
+            componetInst.updateTotal(); 
+        }
+    });
+    
+    componetInst.addItemList = (itemList) => {
+        itemList.forEach(item => {
+            componetInst.addItem(item); 
+        }) 
     }
     
     function getDomIndex (target) {
         return [].slice.call(target.parentNode.children).indexOf(target)
     }
     
+    function clickCell() {
+        var row = document.getElementById('receitasTabela').rows; 
+        for (var i = 0; i < row.length; i++) { 
+            for (var j = 0; j < row[i].cells.length; j++) {  
+                var index = row[i].Index;
+                row[i].cells[j].addEventListener('click', function () {  
+                    if (this.parentElement.parentElement === tbodyReceitas & this.classList != "receitasRemoved") 
+                    {    
+                        RemoverByCLick(this.parentElement);    
+                    }
+                })
+            }
+        }
+    }
+    
     function RemoverByCLick(thisParentElemet) {
+        const name = thisParentElemet.childNodes[0];
+        const receita = thisParentElemet.childNodes[1];
         
-        const key = thisParentElemet.childNodes[0];
-        const value = thisParentElemet.childNodes[1];
         
-        confirmAction(`Deseja excluir : ${key.textContent} - ${value.textContent}`)
+        confirmAction(`Deseja excluir : ${name.textContent} - ${receita.textContent} `)
         .then(() => {
-            key.classList.add("strik");
-            value.classList.add("strik"); 
-            componentInstance.RemoveReceita(thisParentElemet.classList); 
+            removeReceitas(getDomIndex (thisParentElemet));
+            name.classList.add("receitasRemoved");
+            receita.classList.add("receitasRemoved"); 
         });
     }
     
-    var add = document.getElementById('addReceita')   
-    add.addEventListener('click', (event) => {  
-        var receita = document.getElementById('receita').value
-        var valor = parseInt(document.getElementById('valor').value)
-        if (receita.length != "" & valor > 0)
-        {
-            componentInstance.addReceita(receita,valor); 
-            
-        }   
+    function removeReceitas(index) {   
+        const itemRemoved = componetInst.dataArray[index]; 
+        componetInst.dataDeleted.push(itemRemoved);
+        componetInst.updateTotal();
+        componetInst.dataArray.splice(index, 1);
+        componetInst.eventRemoveGastos(itemRemoved);  
+    } 
+    
+    componetInst.eventAddGastos = ((objectReceita) => {
+        const customEventName = "addReceita";
+        const dados = objectReceita;
+        customDispatchEvent(componetInst, customEventName, dados);
     });
     
-    function updateTotal() {
-        const values = Object.values(componentInstance.receitas);
-        const receitaTotal = values.reduce((accumulator, value) => {
-            return accumulator + value;
-        }, 0);
-        totalReceita = receitaTotal;
-        total.textContent = formatCurrency(receitaTotal)   
+    componetInst.eventRemoveGastos = ((objectReceita) => {
+        const customEventName = "removeReceitas";
+        const dados = objectReceita;
+        customDispatchEvent(componetInst, customEventName, dados);
+    });
+    
+    componetInst.updateTotal = () => {    
+        var total = componetInst.dataArray.reduce(getTotal, 0);
+        function getTotal(total, item) {
+            if (item === "name" || !isNaN(item) || item === undefined) {
+                total = 0;
+                return
+            }   
+            return total + (item.value); 
+        }  
+        
+        var deleteds = componetInst.dataDeleted.reduce(getDeleted, 0);
+        function getDeleted(deleteds, item) {
+            if (item === "name" || !isNaN(item) || item === undefined) {
+                deleteds = 0;
+                return
+            } 
+            console.warn(item.value);
+            return deleteds + (item.value);
+        }  
+        
+        componetInst.dataDeleted = [];
+        totalReceita.textContent = formatCurrency(total - deleteds)   
     } 
     
-    componentInstance.getTotalReceita=(()=>{  
-        return totalReceita;
-    }) 
-    //componentInstance.addReceita("salario", 345); 
-    
-    function eventAdd(key, value) { 
-        const customEventName = "addItem";
-        const dados = {key, value};
-        customDispatchEvent(componentInstance, customEventName, dados); 
+    componetInst.getTotalReceita = ()=>{  
+        return totalReceita.textContent;
     }
     
-    function enventRemoveItem(key, value) { 
-        const customEventName = "removeItem";
-        const dados = {key, value};
-        customDispatchEvent(componentInstance, customEventName, dados); 
-    } 
+    componetInst.render();
+    componetInst.removeItem = ((index) => { 
+        removeReceitas(index);
+        componetInst.render();
+    });
     
-    function getFirstText(text){
-        const myArray = text.split(",");
-        return myArray[0]; 
-    } 
-});
+})

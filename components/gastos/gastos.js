@@ -120,7 +120,7 @@ createComponent("gastos", (componetInst, staticContent) => {
     componetInst.updateTotal = () => {    
         var total = componetInst.dataArray.reduce(getTotal, 0);
         function getTotal(total, item) {
-            if (item === "name" || item === undefined) {
+            if (item === "name" || !isNaN(item) || item === undefined) {
                 total = 0;
                 return
             }  
@@ -129,7 +129,7 @@ createComponent("gastos", (componetInst, staticContent) => {
         
         var deleteds = componetInst.dataDeleted.reduce(getDeleted, 0);
         function getDeleted(deleteds, item) {
-            if (item === "name" || item === undefined) {
+            if (item === "name" || !isNaN(item) || item === undefined) {
                 deleteds = 0;
                 return
             } 
