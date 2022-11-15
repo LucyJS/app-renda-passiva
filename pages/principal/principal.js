@@ -1,8 +1,42 @@
 
 
 let lastStock; // armazena a última ação selecionada para alteração de variação
+var playerData;
+var storage;
+
+function loadStoragedData(){
+    
+    if(storage.hasSave()){
+        playerData = storage.load();
+    } else {
+        playerData = new PlayerData();
+        playerData.saldo = 50000;
+        playerData.stockPositions = [
+            new Stock(StockTicket.APPL3, "blue", StockVariation.Zero, 0),
+            new Stock(StockTicket.VAL3, "green", StockVariation.Zero, 0),
+            new Stock(StockTicket.BB4S, "red", StockVariation.Zero, 0),
+            new Stock(StockTicket.AMZ4, "orange", StockVariation.Zero, 0)
+        ]
+
+        storage.save(playerData);
+    }
+
+    
+    playerData.stockPositions.forEach(stockPosition => {
+        acoes.setQuantity(stockPosition.ticket, stockPosition.quantity);
+        acoes.setVariation(stockPosition.ticket, stockPosition.variation);
+    })
+
+    resumoGeral.setSaldo(playerData.saldo);
+
+    if(playerData.person) {
+        selecionarPersonagem.setPerson(playerData.person?.id);
+        modaPersonagem.close();
+    }
+}
 
 addEventListener("allComponentsReady", () => {
+    storage = new Storage("player");
 
     // abrir modal de seleção personagem
     selecionarPersonagem.addPerson(new Person(1, "Márcia", "Advogada"));
@@ -11,8 +45,16 @@ addEventListener("allComponentsReady", () => {
     selecionarPersonagem.addPerson(new Person(4, "Alex", "Servidor Público"));
     selecionarPersonagem.addPerson(new Person(5, "Leila", "Professora"));
     selecionarPersonagem.addPerson(new Person(6, "Bruno", "Microempresário"));
+    
     modaPersonagem.open();
+
+    loadStoragedData();
+
     confirmarPersonagem.addEventListener("click", () => {
+        const selectedPerson = selecionarPersonagem.getPerson();
+        storage.update({
+            person: selectedPerson
+        })
         modaPersonagem.close();
     }) 
     
@@ -72,12 +114,21 @@ addEventListener("allComponentsReady", () => {
             price: detail.totalPrice,
             description: detail.description
         })
+
+        // update saved stock positions
+        let stockPositions = storage.load().stockPositions;
+        stockPositions = stockPositions.map(sp => {
+            sp.quantity = acoes.getQuantity(sp.ticket);
+            return sp;
+        })
+        storage.update({ stockPositions });
     })
 
     historicoTransacao.addEventListener("change", (event) => {
         const detail = event.detail;
         const saldo = detail.saldo;
         resumoGeral.setSaldo(saldo);
+        storage.update({ saldo });
     })
 
     confirmarVariacao.addEventListener("click", (event) => {
@@ -103,6 +154,14 @@ addEventListener("allComponentsReady", () => {
 
             deParaAction[variation]();
         }
+
+        // update saved stock positions
+        let stockPositions = storage.load().stockPositions;
+        stockPositions = stockPositions.map(sp => {
+            sp.variation = acoes.getVariation(sp.ticket);
+            return sp;
+        })
+        storage.update({ stockPositions });
     })
 
     selecionarVariacao.addEventListener("selectVariation", (event) => {
@@ -128,5 +187,10 @@ addEventListener("allComponentsReady", () => {
 
         confirmarVariacao.changeText("Confirmar");
         confirmarVariacao.changeBgColor("green");
+    })
+
+    buttonDeleteData.addEventListener("click", () => {
+        storage.clear();
+        document.location.reload();
     })
 })

@@ -24,6 +24,7 @@
 
         <section class="bottom-buttons">
             <botao-personalizado bp-bgcolor="green">Nova Transação</botao-personalizado>
+            <botao-personalizado id="buttonDeleteData" bp-bgcolor="red">Apagar Dados</botao-personalizado>
         </section>
 
         <modal id="modalOrdem" norender title="Compra / Venda de Ações">
@@ -47,6 +48,13 @@
                 <selecionar-personagem id="selecionarPersonagem"></selecionar-personagem>
 
                 <botao-personalizado class="button-bottom" id="confirmarPersonagem" bp-bgcolor="green">Confirmar</botao-personalizado>
+            </div>
+        </modal>
+
+        <modal id="modalNovaTransacao" norender title="Nova Transação">
+            <div class="bgwhite fullscreen">
+                
+                <botao-personalizado class="button-bottom" id="confirmarNovaTransacao" bp-bgcolor="green">Confirmar</botao-personalizado>
             </div>
         </modal>
 

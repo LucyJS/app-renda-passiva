@@ -23,7 +23,8 @@ const constants = [
     "financial-movement-type",
     "stock-ticket",
     "stock-variation",
-    "notification-type"
+    "notification-type",
+    "card-type",
 ]
 
 const classes = [
@@ -34,38 +35,51 @@ const classes = [
     "stock-position",
     "transation-type",
     "financial-movement",
+    "card",
+    "storage"
 ]
 
 const utils = [
     "util"
 ]
 
+const data = [
+    "cards",
+]
+
 document.__autoloadTime = 0;
 
 resolvePromisesSeq([
     loadScriptList("../../utils", utils),
-    loadScriptList("../../class", classes),
     loadScriptList("../../constants", constants),
-    loadComponentList(components)
+    loadScriptList("../../class", classes),
+    loadComponentList(components),
+    loadScriptList("../../data", data),
 ]).then(() => {
     waitFor(() => {
         const lastComponentName = components[components.length - 1];
         const lastConstant = constants[constants.length - 1];
         const lastClass = classes[classes.length - 1];
-        return isComponentLoaded(lastComponentName) && isConstantLoaded(lastConstant) && isClassLoaded(lastClass);
+        const lastData= data[data.length - 1];
+        return isComponentLoaded(lastComponentName) && isConstantLoaded(lastConstant) && isClassLoaded(lastClass) && isDataLoaded(lastData);
     }).then(() => {
         dispatchEvent(new CustomEvent("allComponentsReady"));
     })
 })
 
+function isDataLoaded(dataName){
+    const pascalCaseName = `${dataName}DataLoaded`;
+    return !!eval(pascalCaseName);
+}
+
 function isClassLoaded(className){
     const pascalCaseName = hifenToPascalCase(className);
-    return eval(pascalCaseName);
+    return !!eval(pascalCaseName);
 }
 
 function isConstantLoaded(constantName){
     const pascalCaseName = hifenToPascalCase(constantName);
-    return eval(pascalCaseName);
+    return !!eval(pascalCaseName);
 }
 
 function hifenToPascalCase(hifenedText){

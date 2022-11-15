@@ -123,7 +123,11 @@ createComponent("acoes", (component, staticContent) => {
         component.dispatchEvent(new CustomEvent("buyStocks", { detail: { stock: stockItem, quantity, totalPrice, description }}));
         return true;
     }
-    
+
+    component.getVariation = (stockTicket) => {
+        return component.stocks[stockTicket].variation;
+    }
+
     component.setVariation = (stockTicket, variationValue) => {
         component.stocks[stockTicket].variation = variationValue;
         component.render();

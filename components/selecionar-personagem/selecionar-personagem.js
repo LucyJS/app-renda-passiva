@@ -3,8 +3,8 @@ createComponent("selecionar-personagem", (component) => {
     component.persons = [];
     component.value = null;
 
-    component.setPerson = (person) => {
-        component.value = component.persons.find(p => p.id === parseInt(person) || p === person);
+    component.setPerson = (filter) => {
+        component.value = component.persons.find(p => p.id === parseInt(filter?.id) || p.id === parseInt(filter));
         component.render();
         customDispatchEvent(component, "change", { value: component.value });
     }
