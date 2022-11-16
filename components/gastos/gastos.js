@@ -141,7 +141,7 @@ createComponent("gastos", (componetInst, staticContent) => {
         totalGastos.textContent = formatCurrency(total);   
     } 
     
-    componetInst.getTotalReceita = ()=>{  
+    componetInst.getTotalGastos = ()=>{  
         return totalGastos.textContent;
     }
     
