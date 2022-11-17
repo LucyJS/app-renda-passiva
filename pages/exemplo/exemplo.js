@@ -220,16 +220,16 @@ buttonRemoveLastNotification.addEventListener("click", function(){
 // Exemplo de uso do componente de receitas
 // =====================================
 
-// receitas.addEventListener("addReceita", (event) => {
-//     const details = event.detail;
+receitas.addEventListener("addReceita", (event) => {
+    const details = event.detail;
+    
+    notificacao.addNotification(`Adicinou: ${details.name} :${formatCurrency(details.value)} `);
+})
 
-//     notificacao.addNotification(`Add: ${details.name} :${details.value} `);
-// })
-
-// receitas.addEventListener("removeReceitas", (event) => {
-//     const details = event.detail; 
-//     notificacao.addNotification(`excloiu: ${details.name} :${details.value} `);
-// })
+receitas.addEventListener("removeReceitas", (event) => {
+    const details = event.detail; 
+    notificacao.addNotification(`excluiu: ${details.name} :${formatCurrency(details.value)} `);
+})
 
 // addEventListener("allComponentsReady", () => {
 //     receitas.addItem({
@@ -250,18 +250,18 @@ buttonRemoveLastNotification.addEventListener("click", function(){
 
 gastos.addEventListener("addGastos", (event) => {
     const details = event.detail; 
-    notificacao.addNotification(`Adicionou :${details.name} :${details.value} `);
+    notificacao.addNotification(`Adicionou :${details.name} :${formatCurrency(details.value)} `);
 })
 
 gastos.addEventListener("removeGastos", (event) => {
     const details = event.detail; 
-    notificacao.addNotification(`Removeu :${details.name} :${details.value} `);
+    notificacao.addNotification(`Removeu :${details.name} :${formatCurrency(details.value)} `);
 })
 
 
-// addEventListener("allComponentsReady", () => {
-//     gastos.addItem({ name: "joao", value: 200, debts: 2000 });
-// })
+addEventListener("allComponentsReady", () => {
+    gastos.addItem({ name: "joao", value: 200, debts: 2000 });
+})
 
 // addEventListener("allComponentsReady", () => {
 //     gastos.removeItem(0);

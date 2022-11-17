@@ -1,30 +1,41 @@
 createComponent("receitas", (componetInst, staticContent) => {
-    componetInst.dataArray = []; 
-    componetInst.dataDeleted = [];
+    componetInst.dataArray = [];  
     
     const tbody = componetInst.querySelector("table tbody");  
     componetInst.render = () => { 
         tbody.innerHTML = "";  
-        componetInst.dataArray.forEach(item => { 
-            const valores = Object.values(item);
-            const key = Object.keys(item);
+        componetInst.dataArray.forEach(receita => { 
+            
+            if (receita.value === 0) {
+                delete receita;
+                return;
+            }
+            
+            // const valores = Object.values(item);
+            const keys = Object.keys(receita);
             const tr = document.createElement("tr"); 
+            tr.setAttribute('index',receita.index)
             tbody.append(tr);
             
-            valores.forEach(valor => {
-                const itemLista = document.createElement("td"); 
-                if (!isNaN(valor) ) {
-                    itemLista.textContent = formatCurrency(valor); 
-                } else {
-                    itemLista.textContent = valor;
-                } 
-                tr.append(itemLista); 
+            keys.forEach(key => {  
+                if (key === "index") return;
+                const celula = document.createElement("td");  
+                if ( key === "name") { 
+                    celula.textContent = receita[key];
+                    tr.append(celula); 
+                    return;
+                }  
+                celula.textContent = formatCurrency(receita[key]); 
+                
+                tr.append(celula); 
             })
         })
         clickCell(); 
     }
     
     componetInst.addItem = (itemReceitas) => {
+        index = Object.keys(componetInst.dataArray).length; 
+        itemReceitas['index'] = index; 
         componetInst.dataArray.push(itemReceitas);
         componetInst.render(); 
         updateTotal();
@@ -33,16 +44,17 @@ createComponent("receitas", (componetInst, staticContent) => {
     
     var add = document.getElementById('addReceita')   
     add.addEventListener('click', (event) => { 
-        const receitas = {
+        const receita = {
             name: "",
-            value: 0, 
+            value: 0,  
         }
-        receitas.name = document.getElementById('selectReceita').value;
-        receitas.value = parseInt(document.getElementById('valorReceitas').value);
+        receita.name = document.getElementById('selectReceita').value;
+        receita.value = parseInt(document.getElementById('valorReceitas').value); 
         
-        if(!isNaN(receitas.value))
+        if (receita.value > 0)   //!isNaN( dividas.value))
         {  
-            componetInst.addItem(receitas)   
+            componetInst.addItem(receita) 
+            updateTotal();
         } else {
             alert("Digite o valor")
         }
@@ -66,37 +78,32 @@ createComponent("receitas", (componetInst, staticContent) => {
                 row[i].cells[j].addEventListener('click', function () {  
                     if (this.parentElement.parentElement === tbodyReceitas & this.classList != "receitasRemoved") 
                     {    
-                        RemoverByCLick(this.parentElement);    
+                        let index = this.parentElement.getAttribute("index");
+                        RemoverByCLick(this.parentElement,index);   
                     }
                 })
             }
         }
     }
     
-    function RemoverByCLick(thisParentElemet) {
+    function RemoverByCLick(thisParentElemet,index) {
         const name = thisParentElemet.childNodes[0];
         const receita = thisParentElemet.childNodes[1];
         
-        
         confirmAction(`Deseja excluir : ${name.textContent} - ${receita.textContent} `)
         .then(() => {
-            removeReceitas(getDomIndex (thisParentElemet));
+            removeReceitas(index);
             name.classList.add("receitasRemoved");
             receita.classList.add("receitasRemoved"); 
         });
     }
     
     function removeReceitas(index) {   
-        const itemRemoved = componetInst.dataArray[index]; 
-        if (!isNaN(itemRemoved))
-        {
-            alert(" O item Não Exite");
-            return
-        }
-        componetInst.dataDeleted.push(itemRemoved);
+        const receitaRemovida = componetInst.dataArray[index];  
+        eventRemoveReceita(receitaRemovida); 
+        componetInst.dataArray[index].value = 0;
         updateTotal();
-        componetInst.dataArray.splice(index, 1);
-        eventRemoveReceitas(itemRemoved);  
+        
     } 
     
     function eventAddReceita(objectReceita) { 
@@ -105,7 +112,7 @@ createComponent("receitas", (componetInst, staticContent) => {
         customDispatchEvent(componetInst, customEventName, dados); 
     }
     
-    function eventRemoveReceitas(objectReceita) {
+    function eventRemoveReceita(objectReceita) {
         const customEventName = "removeReceitas";
         const dados = objectReceita;
         customDispatchEvent(componetInst, customEventName, dados);
@@ -116,20 +123,10 @@ createComponent("receitas", (componetInst, staticContent) => {
         function getTotal(total, item) {
             if ( !isNaN(item)) { 
                 return 0;
-            }   
-            return total + (item.value); 
-        }  
-        
-        var deleteds = componetInst.dataDeleted.reduce(getDeleted, 0);
-        function getDeleted(deleteds, item) {
-            if ( !isNaN(item)) { 
-                return 0;
-            } 
-            console.warn(item.value);
-            return deleteds + (item.value);
+            }  
+            return total + (item.value);
         }   
-        componetInst.dataDeleted = [];
-        totalReceita.textContent = formatCurrency(total - deleteds)   
+        totalReceita.textContent = formatCurrency(total)   
     } 
     
     componetInst.getTotalReceita = ()=>{  

@@ -12,14 +12,13 @@ createComponent("gastos", (componetInst, staticContent) => {
                 return;
             }
             
-            //const  valoresGastos = Object.values(gasto);
             const keys = Object.keys(gasto);
             const tr = document.createElement("tr"); 
-            tr.setAttribute('id',gasto.id)
+            tr.setAttribute('index',gasto.index)
             tbody.append(tr); 
             
             keys.forEach(key => {  
-                if (key === "id") return;
+                if (key === "index") return;
                 const celula = document.createElement("td"); 
                 
                 if ( key === "name") { 
@@ -35,7 +34,9 @@ createComponent("gastos", (componetInst, staticContent) => {
         clickCell(); 
     }
     
-    componetInst.addItem = (itemGastos) => {
+    componetInst.addItem = (itemGastos) => { 
+        index = Object.keys(componetInst.dataArray).length; 
+        itemGastos['index'] = index; 
         componetInst.dataArray.push(itemGastos);
         componetInst.render(); 
         componetInst.updateTotal();
@@ -48,23 +49,21 @@ createComponent("gastos", (componetInst, staticContent) => {
     
     var add = document.getElementById('addGastos')   
     add.addEventListener('click', (event) => { 
-        const dividas = {
+        const gasto = {
             name: "",
             value: 0,
-            debts: 0,
-            id: 0
+            debts: 0, 
         }
-        dividas.name = document.getElementById('selectGastos').value;
-        dividas.value = parseInt(document.getElementById('valorGastos').value);
-        dividas.debts = parseInt(document.getElementById('dividaGastos').value);  
-        dividas.id = Object.keys(componetInst.dataArray).length;
+        gasto.name = document.getElementById('selectGastos').value;
+        gasto.value = parseInt(document.getElementById('valorGastos').value);
+        gasto.debts = parseInt(document.getElementById('dividaGastos').value);  
         
-        if (dividas.value > 0)   //!isNaN( dividas.value))
+        if (gasto.value > 0)   //!isNaN( dividas.value))
         { 
-            if (!isNaN(dividas.debts) && dividas.debts !==0) {
-                dividas.value = per(dividas.debts, dividas.value); 
-            }else{ dividas.debts = 0;}
-            componetInst.addItem(dividas)  
+            if (!isNaN(gasto.debts) && gasto.debts !==0) {
+                gasto.value = per(gasto.debts, gasto.value); 
+            }else{ gasto.debts = 0;}
+            componetInst.addItem(gasto)  
             componetInst.updateTotal(); 
         }
     });
@@ -87,8 +86,8 @@ createComponent("gastos", (componetInst, staticContent) => {
                 row[i].cells[j].addEventListener('click', function () {  
                     if (this.parentElement.parentElement === TbodyGastos & this.classList != "gastosRemoved") 
                     {      
-                        let id = this.parentElement.getAttribute("id");
-                        RemoverByCLick(this.parentElement,id);  
+                        let index = this.parentElement.getAttribute("index");
+                        RemoverByCLick(this.parentElement,index);  
                         
                     }
                 })
@@ -96,14 +95,14 @@ createComponent("gastos", (componetInst, staticContent) => {
         }
     }
     
-    function RemoverByCLick(thisParentElemet,id) { 
+    function RemoverByCLick(thisParentElemet,index) { 
         const name = thisParentElemet.childNodes[0];
         const gasto = thisParentElemet.childNodes[1];
         const divida = thisParentElemet.childNodes[2];
         
         confirmAction(`Deseja excluir : ${name.textContent} - ${ gasto.textContent} -Divida: ${ divida.textContent}`)
         .then(() => {
-            RemoveGastos(id);
+            RemoveGastos(index);
             name.classList.add("gastosRemoved");
             gasto.classList.add("gastosRemoved");
             divida.classList.add("gastosRemoved");  
@@ -112,10 +111,10 @@ createComponent("gastos", (componetInst, staticContent) => {
     
     
     function RemoveGastos(index) {   
-        const itemRemoved = componetInst.dataArray[index];  
+        const gastoRemovido = componetInst.dataArray[index];  
+        componetInst.eventRemoveGastos(gastoRemovido);  
         componetInst.dataArray[index].value = 0;
-        componetInst.updateTotal(); 
-        componetInst.eventRemoveGastos(itemRemoved);  
+        componetInst.updateTotal();  
     } 
     
     componetInst.eventAddGastos = ((objectGastos) => {
