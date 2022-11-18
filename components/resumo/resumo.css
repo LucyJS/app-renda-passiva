@@ -1,5 +1,9 @@
  
- resumo table tr th   {
+ resumo table{ 
+    background-color: grey;
+}
+
+resumo table tr th   {
     background-color: rgb(57, 10, 212);
     font-weight: bold;
     font-size: 20px;

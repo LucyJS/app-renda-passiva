@@ -1,10 +1,17 @@
 
 gastos table
 { 
+    background-color: gray;  
     border : 2px;
     border-style: solid;
     border-color: rgb(138, 16, 16);  
 }
+
+gastos table tbody tr
+{  
+    background-color:#FFF;  
+}
+
 
 gastos table thead tr th {
     background-color: rgb(220, 56, 38);
@@ -13,23 +20,28 @@ gastos table thead tr th {
     font-size: 20px;
 }
 
+gastos table tbody tr td { 
+    border: 1px solid blue;  
+    text-align: center; 
+    font-size:15px;
+    font-weight: bold;
+}
+
 gastos table tfoot td { 
     background-color: rgb(239, 239, 240);
     color:  rgb(143, 7, 0); 
-    font-weight: bold;
-    font: size 15px;
+    text-align: center; 
+    font-weight: bold; 
+    font-size:17px;
 }
 
-.tabelaGastos tbody tr td {
-    
-    border: 1px solid blue; 
-    /* color: rgb(127, 10, 236);
-    background-color: blue; */
-}
+/* #totalGastos{
+    text-align: left; 
+} */
 
 gastos table tbody .gastosRemoved{
     text-decoration: line-through;
-    font-size:10px;
+    font-size:12px;
     background-color: rgb(146, 119, 119);
 }  
 

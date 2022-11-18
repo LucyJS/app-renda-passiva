@@ -20,11 +20,11 @@ table.mobile-table tr th, table.mobile-table tr td {
 
 .flex-columns {
     display: flex;
-	flex-direction: row;
-	flex-wrap: wrap-reverse;
-	justify-content: space-around;
-	align-items: center;
-	align-content: stretch;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
+    align-items: center;
+    align-content: stretch;
 }
 
 .bgwhite {
@@ -58,4 +58,10 @@ table.mobile-table tr th, table.mobile-table tr td {
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+#resumo {
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
