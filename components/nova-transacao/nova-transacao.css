@@ -5,7 +5,7 @@ div {
     width: 100%;
     padding: 5px;
     border-style: solid;
-    border-color: black;
+    border-color: rgb(33, 19, 240);
   }
   
   input {
@@ -35,7 +35,24 @@ div {
 }
 
 .botaoSalvarNovaTransacao:active{
-position: relative;
-top:5px;
-box-shadow: none;
+ position: relative;
+ top:5px;
+ box-shadow: none;
+}
+
+table, tr, td, th{ 
+  border:#000 solid 1px; 
+  width:450px; 
+  padding:0px; 
+  font-size:17px; 
+} 
+
+td{ 
+  width:200px; 
+  height:30px; 
+} 
+  
+th{ 
+  background-color:rgb(188, 243, 188);
+  color:rgb(5, 0, 0);
 }
