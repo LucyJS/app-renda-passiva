@@ -2,40 +2,40 @@
 var botaoSalvar = document.querySelector("#addNovaTransacao");
 
 botaoSalvar.addEventListener("click", function(event){
-debugger;
-event.preventDefault();
 
-var formNovatransacao = document.querySelector("#formularioNovatransacao")
-console.log(formNovatransacao.tipoTransacao.value);
-console.log(formNovatransacao.valorUnitario.value);
-console.log(formNovatransacao.valorRecorrente.value);
-console.log(formNovatransacao.rendaPassiva.value);
+    event.preventDefault();
 
-var linhaNovaTransacao = document.createElement("tr");
+    var formNovatransacao = document.querySelector("#formularioNovatransacao")
+    console.log(formNovatransacao.tipoTransacao.value);
+    console.log(formNovatransacao.valorUnitario.value);
+    console.log(formNovatransacao.valorRecorrente.value);
+    console.log(formNovatransacao.rendaPassiva.value);
 
-//cria elemento td
-var celulaTipotransacao = document.createElement("td");
-var celulaValorUnitario = document.createElement("td");
-var celulaValorRecorrente = document.createElement("td");
-var celulaRendaPassiva = document.createElement("td");
-var celulaExcluir = document.createElement("td");
+    var linhaNovaTransacao = document.createElement("tr");
 
-//adiciona conteudo de cada celula 'td'
-celulaTipotransacao.textContent = formNovatransacao.tipoTransacao.value;
-celulaValorUnitario.textContent = formNovatransacao.valorUnitario.value;
-celulaValorRecorrente.textContent = formNovatransacao.valorRecorrente.value;
-celulaRendaPassiva.textContent = formNovatransacao.rendaPassiva.value;
-celulaExcluir.textContent = "X"
+    //cria elemento td
+    var celulaTipotransacao = document.createElement("td");
+    var celulaValorUnitario = document.createElement("td");
+    var celulaValorRecorrente = document.createElement("td");
+    var celulaRendaPassiva = document.createElement("td");
+    var celulaExcluir = document.createElement("td");
 
-var tabelaHistoricoTransacao = document.querySelector("#HistoricoTransacao").querySelector("tbody");
+    //adiciona conteudo de cada celula 'td'
+    celulaTipotransacao.textContent = formNovatransacao.tipoTransacao.value;
+    celulaValorUnitario.textContent = formNovatransacao.valorUnitario.value;
+    celulaValorRecorrente.textContent = formNovatransacao.valorRecorrente.value;
+    celulaRendaPassiva.textContent = formNovatransacao.rendaPassiva.value;
+    celulaExcluir.textContent = "X"
 
-linhaNovaTransacao.appendChild(celulaTipotransacao);
-linhaNovaTransacao.appendChild(celulaValorUnitario);
-linhaNovaTransacao.appendChild(celulaValorRecorrente);
-linhaNovaTransacao.appendChild(celulaRendaPassiva);
-linhaNovaTransacao.appendChild(celulaExcluir);
+    var tabelaHistoricoTransacao = document.querySelector("#HistoricoTransacao").querySelector("tbody");
 
-tabelaHistoricoTransacao.appendChild(linhaNovaTransacao);
+    linhaNovaTransacao.appendChild(celulaTipotransacao);
+    linhaNovaTransacao.appendChild(celulaValorUnitario);
+    linhaNovaTransacao.appendChild(celulaValorRecorrente);
+    linhaNovaTransacao.appendChild(celulaRendaPassiva);
+    linhaNovaTransacao.appendChild(celulaExcluir);
+
+    tabelaHistoricoTransacao.appendChild(linhaNovaTransacao);
 
 })
 
