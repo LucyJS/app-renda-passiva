@@ -25,12 +25,6 @@ receitas table tbody tr td {
     font-weight: bold;  
 }  
 
-/* receitas table .value{ 
-    text-align: center; 
-    text-size-adjust: 10px;
-    font-weight: bold;
-}   */
-
 receitas table tbody td {  
     font-weight: bold;
     font-size:12px;
@@ -39,6 +33,7 @@ receitas table tbody td {
 receitas table tfoot td { 
     background-color: rgb(239, 239, 240);
     color:  rgb(42, 156, 0); 
+    text-align: center; 
     font-weight: bold; 
     font-size:17px;
 }
@@ -74,8 +69,7 @@ receitas input{
     font-size:18px;
 }
 
-receitas button{ 
-    /*  background-color: rgb(224, 252, 197); */
+receitas button{  
     width: 13em;
     height: 2em;
     font-size:18px;

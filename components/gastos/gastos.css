@@ -12,7 +12,6 @@ gastos table tbody tr
     background-color:#FFF;  
 }
 
-
 gastos table thead tr th {
     background-color: rgb(220, 56, 38);
     color: #FFF; 
@@ -35,10 +34,6 @@ gastos table tfoot td {
     font-size:17px;
 }
 
-/* #totalGastos{
-    text-align: left; 
-} */
-
 gastos table tbody .gastosRemoved{
     text-decoration: line-through;
     font-size:12px;
@@ -59,8 +54,7 @@ gastos input{
     font-size:18px;
 }
 
-gastos button{ 
-    /*  background-color: rgb(224, 252, 197); */
+gastos button{  
     width: 13em;
     height: 2em;
     font-size:18px;

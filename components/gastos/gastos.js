@@ -65,6 +65,8 @@ createComponent("gastos", (componetInst, staticContent) => {
             }else{ gasto.debts = 0;}
             componetInst.addItem(gasto)  
             componetInst.updateTotal(); 
+        }else {
+            alert("Digite % da divida")
         }
     });
     
