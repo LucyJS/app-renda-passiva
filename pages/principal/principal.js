@@ -3,7 +3,6 @@
 let lastStock; // armazena a última ação selecionada para alteração de variação
 var playerData;
 var storage;
-const addTransaction = document.getElementById("addNovaTransacao");
 
 function loadStoragedData(){
     
@@ -195,6 +194,7 @@ addEventListener("allComponentsReady", () => {
         document.location.reload();
     })
     
+    const addTransaction = document.getElementById("addNovaTransacao");
     addTransaction.addEventListener("click", () => {  
         modalNovaTransacao.open(); 
         
