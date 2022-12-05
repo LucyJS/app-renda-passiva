@@ -1,21 +1,21 @@
 
 div {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    padding: 5px;
-    border-style: solid;
-    border-color: rgb(33, 19, 240);
-  }
-  
-  input {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 1px;
-    font-weight: bold;
-    border-style: solid;
-    border-color: black;
-  }
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  padding: 5px;
+  border-style: solid;
+  border-color: rgb(33, 19, 240);
+}
+
+input {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 1px;
+  font-weight: bold;
+  border-style: solid;
+  border-color: black;
+}
 
 .button {
   border: none;
@@ -35,9 +35,9 @@ div {
 }
 
 .botaoSalvarNovaTransacao:active{
- position: relative;
- top:5px;
- box-shadow: none;
+  position: relative;
+  top:5px;
+  box-shadow: none;
 }
 
 table, tr, td, th{ 
@@ -51,7 +51,7 @@ td{
   width:200px; 
   height:30px; 
 } 
-  
+
 th{ 
   background-color:rgb(188, 243, 188);
   color:rgb(5, 0, 0);

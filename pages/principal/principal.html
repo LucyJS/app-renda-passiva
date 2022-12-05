@@ -1,63 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
-        <link rel="stylesheet" href="../../geral.css">
-        <link rel="stylesheet" href="./principal.css">
-    </head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+    <link rel="stylesheet" href="../../geral.css">
+    <link rel="stylesheet" href="./principal.css">
+</head>
 <body>
     <main>
         <resumo id="resumoGeral"></resumo> 
         
         <h2>Receitas</h2>
         <receitas></receitas>
-
+        
         <h2>Gastos</h2>
         <gastos></gastos>
         
         <h2>Ativos</h2>
         <acoes id="acoes"></acoes>
-
+        
         <h2>Histórico transações</h2>
         <historico-transacao id="historicoTransacao"></historico-transacao>
-
+        
         <section class="bottom-buttons">
             <botao-personalizado id="addNovaTransacao" bp-bgcolor="green">Nova Transação</botao-personalizado>
             <botao-personalizado id="buttonDeleteData" bp-bgcolor="red">Apagar Dados</botao-personalizado>
         </section>
-
+        
         <modal id="modalOrdem" norender title="Compra / Venda de Ações">
             <ordem-acoes id="ordemAcoes"></ordem-acoes>
-
+            
             <div class="flex-columns">
                 <botao-personalizado id="buttonBuyStocks" bp-bgcolor="red">Comprar</botao-personalizado>
                 <botao-personalizado id="buttonSellStocks" bp-bgcolor="green">Vender</botao-personalizado>
             </div>
         </modal>
-
+        
         <modal id="modalVariacao" norender title="Selecionar Variação">
             <visualizar-acao id="visualizarAcao"></visualizar-acao> 
             <selecionar-variacao id="selecionarVariacao"></selecionar-variacao>
-
+            
             <botao-personalizado id="confirmarVariacao" bp-bgcolor="green">Confirmar</botao-personalizado>
         </modal>
-
+        
         <modal id="modaPersonagem" norender title="Selecionar Personagem">
             <div class="bgwhite fullscreen">
                 <selecionar-personagem id="selecionarPersonagem"></selecionar-personagem>
-
+                
                 <botao-personalizado class="button-bottom" id="confirmarPersonagem" bp-bgcolor="green">Confirmar</botao-personalizado>
             </div>
         </modal>
-
+        
         <modal id="modalNovaTransacao" norender title="Nova Transação">
-            <div class="bgwhite fullscreen">
+            <div class="bgwhite fullscreen"> 
+                <nova-transacao id="novatransacao"></nova-transacao>  
                 
                 <botao-personalizado class="button-bottom" id="confirmarNovaTransacao" bp-bgcolor="green">Confirmar</botao-personalizado>
             </div>
         </modal>
-
+        
+        <!-- <modal id="modalNovaTransacao" norender title="Nova Transação">
+            <div class="bgwhite fullscreen">
+                
+                <botao-personalizado class="button-bottom" id="confirmarNovaTransacao" bp-bgcolor="green">Confirmar</botao-personalizado>
+            </div>
+        </modal> -->
+        
         <notificacao id="notificacao" seconds="5"></notificacao>
     </main>
     
