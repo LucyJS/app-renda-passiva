@@ -18,17 +18,25 @@ createComponent("gastos", (componetInst, staticContent) => {
             tbody.append(tr); 
             
             keys.forEach(key => {  
-                if (key === "index") return;
                 const celula = document.createElement("td"); 
+                
+                if (key === "index") {
+                    return;
+                }
                 
                 if ( key === "name") { 
                     celula.textContent = gasto[key];
-                    tr.append(celula); 
-                    return;
-                }  
-                celula.textContent = formatCurrency(gasto[key]); 
+                }
                 
-                tr.append(celula); 
+                if (key === "value") {
+                    celula.textContent = formatCurrency(Math.abs(gasto[key]));
+                }
+                
+                if (key === "debts") {
+                    celula.textContent = formatCurrency(Math.abs(gasto[key]));
+                }
+                
+                tr.append(celula);
             })
         })
         clickCell(); 
@@ -47,28 +55,28 @@ createComponent("gastos", (componetInst, staticContent) => {
         return Object.keys(obj).find(key => obj[key] === value);
     }
     
-    var add = document.getElementById('addGastos')   
-    add.addEventListener('click', (event) => { 
-        const gasto = {
-            name: "",
-            value: 0,
-            debts: 0, 
-        }
-        gasto.name = document.getElementById('selectGastos').value;
-        gasto.value = parseInt(document.getElementById('valorGastos').value);
-        gasto.debts = parseInt(document.getElementById('dividaGastos').value);  
-        
-        if (gasto.value > 0)   //!isNaN( dividas.value))
-        { 
-            if (!isNaN(gasto.debts) && gasto.debts !==0) {
-                gasto.value = per(gasto.debts, gasto.value); 
-            }else{ gasto.debts = 0;}
-            componetInst.addItem(gasto)  
-            componetInst.updateTotal(); 
-        }else {
-            alert("Digite % da divida")
-        }
-    });
+    // var add = document.getElementById('addGastos')   
+    // add.addEventListener('click', (event) => { 
+    //     const gasto = {
+    //         name: "",
+    //         value: 0,
+    //         debts: 0, 
+    //     }
+    //     gasto.name = document.getElementById('selectGastos').value;
+    //     gasto.value = parseInt(document.getElementById('valorGastos').value);
+    //     gasto.debts = parseInt(document.getElementById('dividaGastos').value);  
+    
+    //     if (gasto.value > 0)   //!isNaN( dividas.value))
+    //     { 
+    //         if (!isNaN(gasto.debts) && gasto.debts !==0) {
+    //             gasto.value = per(gasto.debts, gasto.value); 
+    //         }else{ gasto.debts = 0;}
+    //         componetInst.addItem(gasto)  
+    //         componetInst.updateTotal(); 
+    //     }else {
+    //         alert("Digite % da divida")
+    //     }
+    // });
     
     function per(num, amount){
         return num*amount/100;
@@ -132,18 +140,19 @@ createComponent("gastos", (componetInst, staticContent) => {
     });
     
     componetInst.updateTotal = () => {    
+        const total = componetInst.getTotalGastos();
+        totalGastos.textContent = formatCurrency(Math.abs(total));   
+    } 
+    
+    componetInst.getTotalGastos = () => {  
         var total = componetInst.dataArray.reduce(getTotal, 0);
         function getTotal(total, item) {
             if ( !isNaN(item)) { 
                 return 0;
             }  
             return total + (item.value);
-        }   
-        totalGastos.textContent = formatCurrency(total);   
-    } 
-    
-    componetInst.getTotalGastos = ()=>{  
-        return totalGastos.textContent;
+        }  
+        return total;
     }
     
     componetInst.render();

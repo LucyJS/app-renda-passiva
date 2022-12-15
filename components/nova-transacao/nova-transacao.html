@@ -1,58 +1,30 @@
-<!-- <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./nova-transacao.css">
-        <title>Nova Transação</title>
-    </head> -->
-    <body>
-        
-        <!-- COMPONENTE Nova transação -->
-        <div>
-            <h2>Nova transação</h2>
-            <span id="mensagemAlerta"></span>
-            <form  id="formularioNovatransacao">
-                <label for="tipoTransacao">Tipo de transação:  </label>
-                <select id="tipoTransacao" name="tipoTransacao">
-                    <option value="pagamento">Pagamento</option>
-                    <option value="receita">Receita</option>
-                    <option value="despesa">Despesa</option>
-                    <option value="compraImovel">Compra Imovel</option>
-                    <option value="vendaImovel">Venda Imovel</option>
-                </select><br><br>
-                
-                <label for="valorUnitario">Valor Unitário    :</label>
-                <input type="number" id="valorUnitario" name="valorUnitario" placeholder="Valor da transação"><br><br>
-                
-                <label for="valorRecorrente">Valor Recorrente: </label>
-                <input type="number" id="valorRecorrente" name="valorRecorrente" placeholder="Valor Recorrente"><br><br>
-                
-                <input type="checkbox" id="rendaPassiva" name="rendaPassiva value="Renda Passiva">
-                <label for="rendaPassiva">Renda Passiva</label><br>
-                
-                <button type="submit" class="btn button botaoSalvarNovaTransacao" id="addNovaTransacao" name="addNovaTransacao" value="addNovaTransacao">Salvar Transação</button>               
-            </form>    
-        </div>
-        
-        <br><br>
-        
-        <table  id="HistoricoTransacao">
-            <thead>
-                <tr>
-                    <th>TipoTransacao</th>
-                    <th>Valor unitario</th>
-                    <th>Valor Recorrente</th>
-                    <th>Renda passiva</th>
-                    <th>Excluir</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        
-        
-        <script src="./nova-transacao.js" defer></script>
-    </body>
-    </html>
+<div>
+    <h2>Nova transação</h2>
+    <span id="mensagemAlerta"></span>
+    <form id="formularioNovatransacao">
+        <label for="tipoTransacao">Tipo de transação:  </label>
+        <select id="tipoTransacao" name="tipoTransacao">
+            <!-- <option value="pagamento">Pagamento</option>
+                <option value="receita">Receita</option>
+                <option value="despesa">Despesa</option>
+                <option value="compraImovel">Compra Imovel</option>
+                <option value="vendaImovel">Venda Imovel</option> -->
+                <option value="outros">Outros</option>
+            </select><br><br>
+            
+            <div id="outroContainer">
+                <label for="outroDescricao">Descreve outro:</label>
+                <input type="text" id="outroDescricao" name="outroDescricao" placeholder="Descrição da transação"><br><br>
+            </div>
+            
+            <label for="valorUnitario">Valor Unitário    :</label>
+            <input type="number" id="valorUnitario" name="valorUnitario" placeholder="Valor da transação"><br><br>
+            
+            <label for="valorRecorrente">Valor Recorrente: </label>
+            <input type="number" id="valorRecorrente" name="valorRecorrente" placeholder="Valor Recorrente"><br><br>
+            
+            <input type="checkbox" id="rendaPassiva" name="rendaPassiva value="Renda Passiva">
+            <label for="rendaPassiva">Renda Passiva</label><br>
+        </form>    
+    </div>
     

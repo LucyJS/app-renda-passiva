@@ -10,7 +10,7 @@ function loadStoragedData(){
         playerData = storage.load();
     } else {
         playerData = new PlayerData();
-        playerData.saldo = 50000;
+        playerData.saldo = 0;
         playerData.stockPositions = [
             new Stock(StockTicket.APPL3, "blue", StockVariation.Zero, 0),
             new Stock(StockTicket.VAL3, "green", StockVariation.Zero, 0),
@@ -28,6 +28,11 @@ function loadStoragedData(){
     })
     
     resumoGeral.setSaldo(playerData.saldo);
+    resumoGeral.setPagamento(playerData.pagamento);
+    
+    playerData.transactions.forEach(transaction => { 
+        historicoTransacao.addTransaction(transaction);
+    })
     
     if(playerData.person) {
         selecionarPersonagem.setPerson(playerData.person?.id);
@@ -36,6 +41,7 @@ function loadStoragedData(){
 }
 
 addEventListener("allComponentsReady", () => {
+    
     storage = new Storage("player");
     
     // abrir modal de seleção personagem
@@ -105,6 +111,14 @@ addEventListener("allComponentsReady", () => {
             price: detail.totalPrice,
             description: detail.description
         })
+        
+        // update saved stock positions
+        let stockPositions = storage.load().stockPositions;
+        stockPositions = stockPositions.map(sp => {
+            sp.quantity = acoes.getQuantity(sp.ticket);
+            return sp;
+        })
+        storage.update({ stockPositions });
     })
     
     acoes.addEventListener("buyStocks", (event) => {
@@ -124,11 +138,14 @@ addEventListener("allComponentsReady", () => {
         storage.update({ stockPositions });
     })
     
-    historicoTransacao.addEventListener("change", (event) => {
+    historicoTransacao.addEventListener("removeTransaction", (event) => {
         const detail = event.detail;
-        const saldo = detail.saldo;
-        resumoGeral.setSaldo(saldo);
-        storage.update({ saldo });
+        const transaction = detail.removedTransaction;
+        
+        const index = receitas.getIndex(transaction.description, transaction.recorrency);
+        receitas.removeItem(index);
+        
+        transaction
     })
     
     confirmarVariacao.addEventListener("click", (event) => {
@@ -195,15 +212,62 @@ addEventListener("allComponentsReady", () => {
     })
     
     const addTransaction = document.getElementById("addNovaTransacao");
-    addTransaction.addEventListener("click", () => {  
+    addTransaction.addEventListener("click", () => {
         modalNovaTransacao.open(); 
         
     } 
     );
     
-    confirmarNovaTransacao.addEventListener("click", () => {
-        modalNovaTransacao.close(); 
-    } 
-    );
+    historicoTransacao.addEventListener("change", () => { 
+        updateResumoGeral();
+    })
     
+    confirmarNovaTransacao.addEventListener("click", () => {
+        const formData = novatransacao.getFormData();
+        
+        if (formData.recorrency > 0) { 
+            const receita = {
+                name: formData.description,
+                value: formData.recorrency,  
+            }
+            receitas.addItem(receita);
+        }
+        
+        if (formData.recorrency < 0) { 
+            const gasto = {
+                name: formData.description,
+                value: formData.recorrency,  
+                debts: formData.price
+            }
+            gastos.addItem(gasto);
+        }
+        
+        const newTransaction = new FinancialMovement();
+        newTransaction.description = formData.description;
+        newTransaction.price = formData.price;
+        newTransaction.recorrency = formData.recorrency;
+        historicoTransacao.addTransaction(newTransaction);
+        
+        modalNovaTransacao.close(); 
+    });
+    
+    // DEBUG / MOCK
+    if (historicoTransacao.getTransactions().length <= 0) {
+        const newTransaction = new FinancialMovement();
+        newTransaction.description = "Herança";
+        newTransaction.price = 50000;
+        historicoTransacao.addTransaction(newTransaction);
+    }
 })
+
+function updateResumoGeral() { 
+    const saldo = historicoTransacao.getTotal();
+    const pagamento = receitas.getTotalReceita() + gastos.getTotalGastos();
+    
+    resumoGeral.setSaldo(saldo);
+    resumoGeral.setPagamento(pagamento)
+    
+    transactions = historicoTransacao.getTransactions();
+    
+    storage.update({ saldo, pagamento, transactions });
+}

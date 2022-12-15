@@ -24,7 +24,7 @@ createComponent("receitas", (componetInst, staticContent) => {
                     celula.textContent = receita[key];
                     tr.append(celula); 
                     return;
-                }  
+                }
                 celula.textContent = formatCurrency(receita[key]); 
                 
                 tr.append(celula); 
@@ -42,23 +42,23 @@ createComponent("receitas", (componetInst, staticContent) => {
         eventAddReceita(itemReceitas);
     }
     
-    var add = document.getElementById('addReceita')   
-    add.addEventListener('click', (event) => { 
-        const receita = {
-            name: "",
-            value: 0,  
-        }
-        receita.name = document.getElementById('selectReceita').value;
-        receita.value = parseInt(document.getElementById('valorReceitas').value); 
-        
-        if (receita.value > 0)   //!isNaN( dividas.value))
-        {  
-            componetInst.addItem(receita) 
-            updateTotal();
-        } else {
-            alert("Digite o valor")
-        }
-    });
+    // var add = document.getElementById('addReceita')   
+    // add.addEventListener('click', (event) => { 
+    //     const receita = {
+    //         name: "",
+    //         value: 0,  
+    //     }
+    //     receita.name = document.getElementById('selectReceita').value;
+    //     receita.value = parseInt(document.getElementById('valorReceitas').value); 
+    
+    //     if (receita.value > 0)   //!isNaN( dividas.value))
+    //     {  
+    //         componetInst.addItem(receita) 
+    //         updateTotal();
+    //     } else {
+    //         alert("Digite o valor")
+    //     }
+    // });
     
     componetInst.addItemList = (itemList) => {
         itemList.forEach(item => {
@@ -119,20 +119,29 @@ createComponent("receitas", (componetInst, staticContent) => {
     };
     
     function updateTotal() {    
+        const total = componetInst.getTotalReceita();
+        totalReceita.textContent = formatCurrency(total)   
+    } 
+    
+    componetInst.getTotalReceita = () => { 
         var total = componetInst.dataArray.reduce(getTotal, 0);
         function getTotal(total, item) {
             if ( !isNaN(item)) { 
                 return 0;
             }  
             return total + (item.value);
-        }   
-        totalReceita.textContent = formatCurrency(total)   
-    } 
-    
-    componetInst.getTotalReceita = ()=>{  
-        return totalReceita.textContent;
+        } 
+        return total;
     } 
     componetInst.render();
+    
+    componetInst.getIndex = ((description, value) => { 
+        const index = componetInst.dataArray.findIndex(item => { 
+            return item.value === value && item.name === description;
+        })
+        
+        return index;
+    });
     
     componetInst.removeItem = ((index) => { 
         removeReceitas(index);
