@@ -2,7 +2,7 @@
 createComponent("historico-transacao", (component) => {
     
     component.transactions = [];
-    component.counter = 0;
+    component.counter = 1;
     
     component.filterTransactionByDescription = (description) => {
         return component.transactions.filter(transaction => transaction.description === description);
@@ -33,7 +33,9 @@ createComponent("historico-transacao", (component) => {
     }
     
     component.addTransaction = (transaction) => {
-        transaction.id = component.counter++;
+        if(transaction.id <= 0){
+            transaction.id = component.counter++;
+        }
         component.transactions.unshift(transaction);
         component.render();
         customDispatchEvent(component, "addTransaction", { transaction });
@@ -50,7 +52,9 @@ createComponent("historico-transacao", (component) => {
             return;
         }
         
-        component.transactions.forEach(transaction => {
+        const transactionsOrdered = component.transactions.sort((a, b) => parseInt(a.id) > parseInt(b.id) ? -1 : 1)
+        
+        transactionsOrdered.forEach(transaction => {
             const tr = document.createElement("tr");
             
             const td1 = document.createElement("td");
@@ -63,7 +67,7 @@ createComponent("historico-transacao", (component) => {
             td3.classList.add("transaction-recorrency");
             td4.classList.add("transaction-delete");
             
-            td1.textContent = transaction.description;
+            td1.textContent = transaction.description + transaction.id ;
             td2.textContent = formatCurrency(transaction.price || 0);
             td3.textContent = formatCurrency(transaction.recorrency || 0);
             td4.innerHTML = "X";

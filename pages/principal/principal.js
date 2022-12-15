@@ -18,7 +18,8 @@ function loadStoragedData(){
             new Stock(StockTicket.AMZ4, "orange", StockVariation.Zero, 0)
         ]
         
-        storage.save(playerData);
+        storage.save(playerData); 
+        
     }
     
     
@@ -32,12 +33,32 @@ function loadStoragedData(){
     
     playerData.transactions.forEach(transaction => { 
         historicoTransacao.addTransaction(transaction);
+        
+        if (transaction.recorrency > 0) { 
+            const receita = {
+                name: transaction.description,
+                value: transaction.recorrency,  
+            }
+            receitas.addItem(receita);
+        }
+        
+        if (transaction.recorrency < 0) { 
+            const gasto = {
+                name: transaction.description,
+                value: transaction.recorrency,  
+                debts: transaction.price
+            }
+            gastos.addItem(gasto);
+        }
+        
+        
     })
     
     if(playerData.person) {
         selecionarPersonagem.setPerson(playerData.person?.id);
         modaPersonagem.close();
     }
+    updateResumoGeral();
 }
 
 addEventListener("allComponentsReady", () => {
@@ -45,7 +66,7 @@ addEventListener("allComponentsReady", () => {
     storage = new Storage("player");
     
     // abrir modal de seleção personagem
-    selecionarPersonagem.addPerson(new Person(1, "Márcia", "Advogada"));
+    selecionarPersonagem.addPerson(new Person(1, "Márcia", "Advogada",[{description: "salario" , price: 0,recorrency : 500}]));
     selecionarPersonagem.addPerson(new Person(2, "Jorge", "Motorista de Aplicativo"));
     selecionarPersonagem.addPerson(new Person(3, "Eduardo", "Empresário"));
     selecionarPersonagem.addPerson(new Person(4, "Alex", "Servidor Público"));
@@ -56,11 +77,38 @@ addEventListener("allComponentsReady", () => {
     
     loadStoragedData();
     
-    confirmarPersonagem.addEventListener("click", () => {
+    confirmarPersonagem.addEventListener("click", () => { 
         const selectedPerson = selecionarPersonagem.getPerson();
         storage.update({
             person: selectedPerson
         })
+        
+        selectedPerson.defaultReceiveds.forEach(transaction => { 
+            historicoTransacao.addTransaction(transaction);
+            
+            if (transaction.recorrency > 0) { 
+                const receita = {
+                    name: transaction.description,
+                    value: transaction.recorrency,  
+                }
+                receitas.addItem(receita);
+            }  
+        })
+        
+        // selectedPerson.defaultSpendings.forEach(transaction => { 
+        //     historicoTransacao.addTransaction(transaction);
+        
+        //     if (transaction.recorrency < 0) { 
+        //         const gasto = {
+        //             name: transaction.description,
+        //             value: transaction.recorrency,  
+        //             debts: transaction.price
+        //         }
+        //         gastos.addItem(gasto);
+        //     }  
+        // })
+        
+        
         modaPersonagem.close();
     }) 
     
