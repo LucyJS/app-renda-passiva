@@ -64,9 +64,9 @@ function loadStoragedData(){
 addEventListener("allComponentsReady", () => {
     
     storage = new Storage("player");
-    
+    const MarciaDefaultValues = [[{description: "salario", price: 0, recorrency: 500 }], [{description: "diversos", price: 0, recorrency: -300 }]];
     // abrir modal de seleção personagem
-    selecionarPersonagem.addPerson(new Person(1, "Márcia", "Advogada",[{description: "salario" , price: 0,recorrency : 500}]));
+    selecionarPersonagem.addPerson(new Person(1, "Márcia", "Advogada",MarciaDefaultValues[0],MarciaDefaultValues[1]));
     selecionarPersonagem.addPerson(new Person(2, "Jorge", "Motorista de Aplicativo"));
     selecionarPersonagem.addPerson(new Person(3, "Eduardo", "Empresário"));
     selecionarPersonagem.addPerson(new Person(4, "Alex", "Servidor Público"));
@@ -95,18 +95,18 @@ addEventListener("allComponentsReady", () => {
             }  
         })
         
-        // selectedPerson.defaultSpendings.forEach(transaction => { 
-        //     historicoTransacao.addTransaction(transaction);
-        
-        //     if (transaction.recorrency < 0) { 
-        //         const gasto = {
-        //             name: transaction.description,
-        //             value: transaction.recorrency,  
-        //             debts: transaction.price
-        //         }
-        //         gastos.addItem(gasto);
-        //     }  
-        // })
+        selectedPerson.defaultSpendings.forEach(transaction => { 
+            historicoTransacao.addTransaction(transaction);
+            
+            if (transaction.recorrency < 0) { 
+                const gasto = {
+                    name: transaction.description,
+                    value: transaction.recorrency,  
+                    debts: transaction.price
+                }
+                gastos.addItem(gasto);
+            }  
+        })
         
         
         modaPersonagem.close();
