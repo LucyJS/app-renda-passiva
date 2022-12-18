@@ -64,7 +64,7 @@ function loadStoragedData(){
 addEventListener("allComponentsReady", () => {
     
     storage = new Storage("player");
-    const MarciaDefaultValues = [[{description: "salario", price: 0, recorrency: 500 }], [{description: "diversos", price: 0, recorrency: -300 }]];
+    const MarciaDefaultValues = [[{description: "salario", price: 0, recorrency: 500, id:2 }], [{description: "diversos", price: 0, recorrency: -300, id:1 }]];
     // abrir modal de seleção personagem
     selecionarPersonagem.addPerson(new Person(1, "Márcia", "Advogada",MarciaDefaultValues[0],MarciaDefaultValues[1]));
     selecionarPersonagem.addPerson(new Person(2, "Jorge", "Motorista de Aplicativo"));
@@ -108,6 +108,13 @@ addEventListener("allComponentsReady", () => {
             }  
         })
         
+        updateResumoGeral();
+
+        const newTransaction = new FinancialMovement();
+        newTransaction.description = "pagamento";
+        newTransaction.price = resumoGeral.getPagamento();
+        historicoTransacao.addTransaction(newTransaction);
+
         updateResumoGeral();
         modaPersonagem.close();
     }) 
@@ -262,12 +269,13 @@ addEventListener("allComponentsReady", () => {
     const addTransaction = document.getElementById("addNovaTransacao");
     addTransaction.addEventListener("click", () => {
         modalNovaTransacao.open(); 
-        
+       
     } 
     );
     
     historicoTransacao.addEventListener("change", () => { 
-        updateResumoGeral();
+       setTimeout(() =>{updateResumoGeral();}, 100);
+    //updateResumoGeral();
     })
     
     confirmarNovaTransacao.addEventListener("click", () => {
