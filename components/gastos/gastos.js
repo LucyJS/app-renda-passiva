@@ -39,7 +39,7 @@ createComponent("gastos", (componetInst, staticContent) => {
                 tr.append(celula);
             })
         })
-        clickCell(); 
+        // clickCell(); 
     }
     
     componetInst.addItem = (itemGastos) => { 
@@ -88,22 +88,22 @@ createComponent("gastos", (componetInst, staticContent) => {
         }) 
     }
     
-    function clickCell() {
-        var row = document.getElementById('gastosTabela').rows; 
-        for (var i = 0; i < row.length; i++) { 
-            for (var j = 0; j < row[i].cells.length; j++) {  
-                var index = row[i].Index;
-                row[i].cells[j].addEventListener('click', function () {  
-                    if (this.parentElement.parentElement === TbodyGastos & this.classList != "gastosRemoved") 
-                    {      
-                        let index = this.parentElement.getAttribute("index");
-                        RemoverByCLick(this.parentElement,index);  
-                        
-                    }
-                })
-            }
-        }
-    }
+    // function clickCell() {
+    //     var row = document.getElementById('gastosTabela').rows; 
+    //     for (var i = 0; i < row.length; i++) { 
+    //         for (var j = 0; j < row[i].cells.length; j++) {  
+    //             var index = row[i].Index;
+    //             row[i].cells[j].addEventListener('click', function () {  
+    //                 if (this.parentElement.parentElement === TbodyGastos & this.classList != "gastosRemoved") 
+    //                 {      
+    //                     let index = this.parentElement.getAttribute("index");
+    //                     RemoverByCLick(this.parentElement,index);  
+    
+    //                 }
+    //             })
+    //         }
+    //     }
+    // }
     
     function RemoverByCLick(thisParentElemet,index) { 
         const name = thisParentElemet.childNodes[0];

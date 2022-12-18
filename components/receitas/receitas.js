@@ -30,7 +30,7 @@ createComponent("receitas", (componetInst, staticContent) => {
                 tr.append(celula); 
             })
         })
-        clickCell(); 
+        //  clickCell(); 
     }
     
     componetInst.addItem = (itemReceitas) => {
@@ -70,21 +70,21 @@ createComponent("receitas", (componetInst, staticContent) => {
         return [].slice.call(target.parentNode.children).indexOf(target)
     }
     
-    function clickCell() {
-        var row = document.getElementById('receitasTabela').rows; 
-        for (var i = 0; i < row.length; i++) { 
-            for (var j = 0; j < row[i].cells.length; j++) {  
-                var index = row[i].Index;
-                row[i].cells[j].addEventListener('click', function () {  
-                    if (this.parentElement.parentElement === tbodyReceitas & this.classList != "receitasRemoved") 
-                    {    
-                        let index = this.parentElement.getAttribute("index");
-                        RemoverByCLick(this.parentElement,index);   
-                    }
-                })
-            }
-        }
-    }
+    // function clickCell() {
+    //     var row = document.getElementById('receitasTabela').rows; 
+    //     for (var i = 0; i < row.length; i++) { 
+    //         for (var j = 0; j < row[i].cells.length; j++) {  
+    //             var index = row[i].Index;
+    //             row[i].cells[j].addEventListener('click', function () {  
+    //                 if (this.parentElement.parentElement === tbodyReceitas & this.classList != "receitasRemoved") 
+    //                 {    
+    //                     let index = this.parentElement.getAttribute("index");
+    //                     RemoverByCLick(this.parentElement,index);   
+    //                 }
+    //             })
+    //         }
+    //     }
+    // }
     
     function RemoverByCLick(thisParentElemet,index) {
         const name = thisParentElemet.childNodes[0];
