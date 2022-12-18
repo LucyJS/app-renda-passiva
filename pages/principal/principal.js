@@ -108,7 +108,7 @@ addEventListener("allComponentsReady", () => {
             }  
         })
         
-        
+        updateResumoGeral();
         modaPersonagem.close();
     }) 
     
@@ -300,12 +300,12 @@ addEventListener("allComponentsReady", () => {
     });
     
     // DEBUG / MOCK
-    if (historicoTransacao.getTransactions().length <= 0) {
-        const newTransaction = new FinancialMovement();
-        newTransaction.description = "Herança";
-        newTransaction.price = 50000;
-        historicoTransacao.addTransaction(newTransaction);
-    }
+    // if (historicoTransacao.getTransactions().length <= 0) {
+    //     const newTransaction = new FinancialMovement();
+    //     newTransaction.description = "Herança";
+    //     newTransaction.price = 50000;
+    //     historicoTransacao.addTransaction(newTransaction);
+    // }
 })
 
 function updateResumoGeral() { 
