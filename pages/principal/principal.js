@@ -331,13 +331,28 @@ addEventListener("allComponentsReady", () => {
     
     const addTransaction = document.getElementById("addNovaTransacao");
     addTransaction.addEventListener("click", () => {
+        novatransacao.setFormDataByTipoTransacao([
+            {
+                tipo: "pagamento",
+                valorUnitario: resumoGeral.getPagamento(),
+                valorRecorrente: 0
+            },
+            {
+                tipo: "compraImovel",
+                rendaPassiva: true
+            },
+            {
+                tipo: "vendaImovel",
+                rendaPassiva: false
+            }
+        ])
         modalNovaTransacao.open(); 
-       
-    } 
-    );
+    });
     
     historicoTransacao.addEventListener("change", () => { 
-       setTimeout(() =>{updateResumoGeral();}, 100);
+        setTimeout(() =>{
+            updateResumoGeral();
+        }, 100);
     //updateResumoGeral();
     })
     
