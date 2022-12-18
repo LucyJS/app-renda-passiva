@@ -33,9 +33,11 @@ createComponent("historico-transacao", (component) => {
     }
     
     component.addTransaction = (transaction) => {
-        if(transaction.id <= 0){
+        const hasId = !!transaction.id;
+        if(!hasId){
             transaction.id = component.counter++;
         }
+        
         component.transactions.unshift(transaction);
         component.render();
         customDispatchEvent(component, "addTransaction", { transaction });
