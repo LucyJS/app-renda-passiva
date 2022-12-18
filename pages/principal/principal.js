@@ -64,15 +64,78 @@ function loadStoragedData(){
 addEventListener("allComponentsReady", () => {
     
     storage = new Storage("player");
-    const MarciaDefaultValues = [[{description: "salario", price: 0, recorrency: 500 }], [{description: "diversos", price: 0, recorrency: -300 }]];
+
+    // dados de seleção de personagem
+    selecionarPersonagem.setPersons([
+        {
+            id: 1,
+            name: "Márcia",
+            description: "Advogada",
+            defaultReceiveds: [
+                {description: "salario", price: 0, recorrency: 500 }
+            ],
+            defaultSpendings: [
+                {description: "diversos", price: 0, recorrency: -300 }
+            ]
+        },
+        {
+            id: 2,
+            name: "Jorge",
+            description: "Motorista de Aplicativo",
+            defaultReceiveds: [
+                {description: "salario", price: 0, recorrency: 999 }
+            ],
+            defaultSpendings: [
+                {description: "diversos", price: 0, recorrency: -999 }
+            ]
+        },
+        {
+            id: 3,
+            name: "Eduardo",
+            description: "Empresário",
+            defaultReceiveds: [
+                {description: "salario", price: 0, recorrency: 999 }
+            ],
+            defaultSpendings: [
+                {description: "diversos", price: 0, recorrency: -999 }
+            ]
+        },
+        {
+            id: 4,
+            name: "Alex",
+            description: "Servidor Público",
+            defaultReceiveds: [
+                {description: "salario", price: 0, recorrency: 999 }
+            ],
+            defaultSpendings: [
+                {description: "diversos", price: 0, recorrency: -999 }
+            ]
+        },
+        {
+            id: 5,
+            name: "Leila",
+            description: "Professora",
+            defaultReceiveds: [
+                {description: "salario", price: 0, recorrency: 999 }
+            ],
+            defaultSpendings: [
+                {description: "diversos", price: 0, recorrency: -999 }
+            ]
+        },
+        {
+            id: 6,
+            name: "Bruno",
+            description: "Microempresário",
+            defaultReceiveds: [
+                {description: "salario", price: 0, recorrency: 999 }
+            ],
+            defaultSpendings: [
+                {description: "diversos", price: 0, recorrency: -999 }
+            ]
+        },
+    ]);
+
     // abrir modal de seleção personagem
-    selecionarPersonagem.addPerson(new Person(1, "Márcia", "Advogada",MarciaDefaultValues[0],MarciaDefaultValues[1]));
-    selecionarPersonagem.addPerson(new Person(2, "Jorge", "Motorista de Aplicativo"));
-    selecionarPersonagem.addPerson(new Person(3, "Eduardo", "Empresário"));
-    selecionarPersonagem.addPerson(new Person(4, "Alex", "Servidor Público"));
-    selecionarPersonagem.addPerson(new Person(5, "Leila", "Professora"));
-    selecionarPersonagem.addPerson(new Person(6, "Bruno", "Microempresário"));
-    
     modaPersonagem.open();
     
     loadStoragedData();
