@@ -8,7 +8,7 @@ createComponent("resumo", (componetInst, staticContent) => {
         pgo.textContent = formatCurrency(valor);
     }
     
-    componetInst.setrendaPassive = (valor) => { 
+    componetInst.setRendaPassiva = (valor) => { 
         rendaPassiva = valor;
         rp.textContent = formatCurrency(valor);
     }
@@ -34,6 +34,6 @@ createComponent("resumo", (componetInst, staticContent) => {
         return saldo; 
     };
     // componetInst.setPagamento(1); 
-    // componetInst.setrendaPassive(2);
+    // componetInst.setRendaPassiva(2);
     // componetInst.setSaldo(3); 
 })

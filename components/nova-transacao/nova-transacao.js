@@ -59,7 +59,8 @@ createComponent("nova-transacao", (component) => {
         formData.price = parseFloat(component.querySelector("#valorUnitario").value) || 0;
         formData.recorrency = parseFloat(component.querySelector("#valorRecorrente").value) || 0;
         formData.type = component.querySelector("#tipoTransacao").value;
-        
+        formData.passiveIncome = component.querySelector("#rendaPassiva").checked;
+
         return formData;
     }
     

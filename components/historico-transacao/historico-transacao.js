@@ -2,8 +2,17 @@
 createComponent("historico-transacao", (component) => {
     
     component.transactions = [];
-    component.counter = 1;
-    
+
+    component.getMaxId = () => {
+        let maxId = 0;
+        component.transactions.forEach((transaction) => {
+            if(parseInt(transaction.id) > maxId){
+                maxId = parseInt(transaction.id);
+            }
+        })
+        return maxId;
+    }
+
     component.filterTransactionByDescription = (description) => {
         return component.transactions.filter(transaction => transaction.description === description);
     }
@@ -35,7 +44,7 @@ createComponent("historico-transacao", (component) => {
     component.addTransaction = (transaction) => {
         const hasId = !!transaction.id;
         if(!hasId){
-            transaction.id = component.counter++;
+            transaction.id = component.getMaxId() + 1;
         }
         
         component.transactions.unshift(transaction);
@@ -69,9 +78,9 @@ createComponent("historico-transacao", (component) => {
             td3.classList.add("transaction-recorrency");
             td4.classList.add("transaction-delete");
             
-            td1.textContent = transaction.description + transaction.id ;
+            td1.textContent = transaction.description; // + " ("+transaction.id+")";
             td2.textContent = formatCurrency(transaction.price || 0);
-            td3.textContent = formatCurrency(transaction.recorrency || 0);
+            td3.textContent = formatCurrency(transaction.recorrency || 0) + (transaction.passiveIncome ? "*": "");
             td4.innerHTML = "X";
             
             tr.append(td1);
@@ -105,7 +114,14 @@ createComponent("historico-transacao", (component) => {
             return acc + transaction.price;
         },0)
     }
-    
+
+    component.getTotalPassiveIncome = () => {
+        return component.transactions.reduce((acc, transaction) => {
+            const value = transaction.passiveIncome ? transaction.recorrency : 0;
+            return acc + value;
+        },0)
+    }
+
     component.render();
 })
 

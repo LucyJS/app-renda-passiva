@@ -72,10 +72,10 @@ addEventListener("allComponentsReady", () => {
             name: "Márcia",
             description: "Advogada",
             defaultReceiveds: [
-                {description: "salario", price: 0, recorrency: 500 }
+                {description: "salario", price: 0, recorrency: 500, passiveIncome: false }
             ],
             defaultSpendings: [
-                {description: "diversos", price: 0, recorrency: -300 }
+                {description: "diversos", price: 0, recorrency: -300, passiveIncome: false }
             ]
         },
         {
@@ -83,10 +83,10 @@ addEventListener("allComponentsReady", () => {
             name: "Jorge",
             description: "Motorista de Aplicativo",
             defaultReceiveds: [
-                {description: "salario", price: 0, recorrency: 999 }
+                {description: "salario", price: 0, recorrency: 999, passiveIncome: false }
             ],
             defaultSpendings: [
-                {description: "diversos", price: 0, recorrency: -999 }
+                {description: "diversos", price: 0, recorrency: -999, passiveIncome: false }
             ]
         },
         {
@@ -94,10 +94,10 @@ addEventListener("allComponentsReady", () => {
             name: "Eduardo",
             description: "Empresário",
             defaultReceiveds: [
-                {description: "salario", price: 0, recorrency: 999 }
+                {description: "salario", price: 0, recorrency: 999, passiveIncome: false }
             ],
             defaultSpendings: [
-                {description: "diversos", price: 0, recorrency: -999 }
+                {description: "diversos", price: 0, recorrency: -999, passiveIncome: false }
             ]
         },
         {
@@ -105,10 +105,10 @@ addEventListener("allComponentsReady", () => {
             name: "Alex",
             description: "Servidor Público",
             defaultReceiveds: [
-                {description: "salario", price: 0, recorrency: 999 }
+                {description: "salario", price: 0, recorrency: 999, passiveIncome: false }
             ],
             defaultSpendings: [
-                {description: "diversos", price: 0, recorrency: -999 }
+                {description: "diversos", price: 0, recorrency: -999, passiveIncome: false }
             ]
         },
         {
@@ -116,10 +116,10 @@ addEventListener("allComponentsReady", () => {
             name: "Leila",
             description: "Professora",
             defaultReceiveds: [
-                {description: "salario", price: 0, recorrency: 999 }
+                {description: "salario", price: 0, recorrency: 999, passiveIncome: false }
             ],
             defaultSpendings: [
-                {description: "diversos", price: 0, recorrency: -999 }
+                {description: "diversos", price: 0, recorrency: -999, passiveIncome: false }
             ]
         },
         {
@@ -127,10 +127,10 @@ addEventListener("allComponentsReady", () => {
             name: "Bruno",
             description: "Microempresário",
             defaultReceiveds: [
-                {description: "salario", price: 0, recorrency: 999 }
+                {description: "salario", price: 0, recorrency: 999, passiveIncome: false }
             ],
             defaultSpendings: [
-                {description: "diversos", price: 0, recorrency: -999 }
+                {description: "diversos", price: 0, recorrency: -999, passiveIncome: false }
             ]
         },
     ]);
@@ -176,6 +176,7 @@ addEventListener("allComponentsReady", () => {
         const newTransaction = new FinancialMovement();
         newTransaction.description = "pagamento";
         newTransaction.price = resumoGeral.getPagamento();
+        newTransaction.passiveIcome = false;
         historicoTransacao.addTransaction(newTransaction);
 
         updateResumoGeral();
@@ -227,7 +228,8 @@ addEventListener("allComponentsReady", () => {
         
         historicoTransacao.addTransaction({
             price: detail.totalPrice,
-            description: detail.description
+            description: detail.description,
+            passiveIncome: false
         })
         
         // update saved stock positions
@@ -244,7 +246,8 @@ addEventListener("allComponentsReady", () => {
         
         historicoTransacao.addTransaction({
             price: detail.totalPrice,
-            description: detail.description
+            description: detail.description,
+            passiveIncome: false
         })
         
         // update saved stock positions
@@ -380,6 +383,7 @@ addEventListener("allComponentsReady", () => {
         newTransaction.description = formData.description;
         newTransaction.price = formData.price;
         newTransaction.recorrency = formData.recorrency;
+        newTransaction.passiveIncome = formData.passiveIncome;
         historicoTransacao.addTransaction(newTransaction);
         
         modalNovaTransacao.close(); 
@@ -389,10 +393,12 @@ addEventListener("allComponentsReady", () => {
 function updateResumoGeral() { 
     const saldo = historicoTransacao.getTotal();
     const pagamento = receitas.getTotalReceita() + gastos.getTotalGastos();
-    
+    const passiveIncome = historicoTransacao.getTotalPassiveIncome();
+
     resumoGeral.setSaldo(saldo);
-    resumoGeral.setPagamento(pagamento)
-    
+    resumoGeral.setPagamento(pagamento);
+    resumoGeral.setRendaPassiva(passiveIncome);
+
     transactions = historicoTransacao.getTransactions();
     
     storage.update({ saldo, pagamento, transactions });

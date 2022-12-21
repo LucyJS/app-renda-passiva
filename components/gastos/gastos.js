@@ -43,6 +43,11 @@ createComponent("gastos", (componetInst, staticContent) => {
     }
     
     componetInst.addItem = (itemGastos) => { 
+
+        if(itemGastos.debts < 0){
+            itemGastos.debts = 0;
+        }
+
         index = Object.keys(componetInst.dataArray).length; 
         itemGastos['index'] = index; 
         componetInst.dataArray.push(itemGastos);
