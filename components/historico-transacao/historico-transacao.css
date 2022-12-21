@@ -27,7 +27,7 @@ historico-transacao tbody tr {
   font-weight: normal;
 }
 
-historico-transacao tbody tr td.transaction-delete {
+historico-transacao tbody tr td.transaction-actions span.delete {
   text-align: center;
   color: red;
   background-color:#EEE; 
@@ -35,6 +35,18 @@ historico-transacao tbody tr td.transaction-delete {
   font-weight: bold;
   cursor: pointer;
   font-size: 15px;
+  padding: 10px;
+}
+
+historico-transacao tbody tr td.transaction-actions span.sell {
+  text-align: center;
+  color: green;
+  background-color:#EEE; 
+  width: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 10px;
 }
 
 historico-transacao tbody tr td.no-transactions {

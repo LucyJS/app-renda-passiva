@@ -345,15 +345,25 @@ addEventListener("allComponentsReady", () => {
             {
                 tipo: "pagamento",
                 valorUnitario: resumoGeral.getPagamento(),
-                valorRecorrente: 0
+                valorRecorrente: 0,
+                hidden: [ 'CanBeSold', "ValorUnitario", 'RelatedItens', "RendaPassiva", "ValorRecorrente", "OutroDescricao" ]
             },
             {
-                tipo: "compraImovel",
-                rendaPassiva: true
+                tipo: "venda",
+                relatedItens: historicoTransacao.getTransactions().filter(transaction => transaction.canBeSold).map(transaction => {
+                    const description = `${transaction.description} - ${ transaction.recorrency > 0 ? 'receita' : 'gasto' } ${ formatCurrency(transaction.recorrency) }`;
+
+                    return { 
+                        value: transaction.id,
+                        description: description
+                    }
+                }),
+                relatedItensLabel: "Itens pra Venda: ",
+                hidden: ['OutroDescricao', 'ValorRecorrente', 'RendaPassiva', 'CanBeSold']
             },
             {
-                tipo: "vendaImovel",
-                rendaPassiva: false
+                tipo: 'outros',
+                hidden: [ 'RelatedItens' ]
             }
         ])
         modalNovaTransacao.open(); 
@@ -385,14 +395,19 @@ addEventListener("allComponentsReady", () => {
             }
             gastos.addItem(gasto);
         }
-        
+
         const newTransaction = new FinancialMovement();
         newTransaction.description = formData.description;
         newTransaction.price = formData.price;
         newTransaction.recorrency = formData.recorrency;
         newTransaction.passiveIncome = formData.passiveIncome;
+        newTransaction.canBeSold = formData.canBeSold;
         historicoTransacao.addTransaction(newTransaction);
         
+        if(formData.type === "venda") {
+            historicoTransacao.removeItemById(formData.relatedItem);
+        }
+
         modalNovaTransacao.close(); 
     });
 })

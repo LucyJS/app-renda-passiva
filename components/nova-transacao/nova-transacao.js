@@ -2,15 +2,22 @@
 createComponent("nova-transacao", (component) => {
     
     component.formDataByTipoTransacao = [];
-    const outroContainer = component.querySelector("#outroContainer");
-    
+
     const inputTipoTransacao = component.querySelector("#tipoTransacao");
     inputTipoTransacao.addEventListener("change", () => { 
         component.update();
     })
 
+    component.hasRelatedItens = () => {
+        const configuration = component.getConfiguration();
+
+        if(!configuration) return false;
+
+        return Array.isArray(configuration.relatedItens) && configuration.relatedItens.length >= 1;
+    }
+
     component.update = () => {
-        component.updateVisibilityOutrosInput();
+        component.updateVisibilityInputs();
         component.updateFormDataByInputTipoTransacao();
     }
 
@@ -19,32 +26,57 @@ createComponent("nova-transacao", (component) => {
         component.update();
     }
     
-    component.updateVisibilityOutrosInput = () => { 
-        outroContainer.style.display = "none";
-        containerValorUnitario.style.display = "none";
-        containerValorRecorrente.style.display = "none";
-        containerRendaPassiva.style.display = "none";
+    component.updateVisibilityInputs = () => { 
+        containerOutroDescricao.style.display = "block";
+        containerValorUnitario.style.display = "block";
+        containerValorRecorrente.style.display = "block";
+        containerRendaPassiva.style.display = "block";
+        containerRelatedItens.style.display = "block";
+        containerCanBeSold.style.display = "block";
 
-        if (inputTipoTransacao.value !== "pagamento") {
-            outroContainer.style.display = "block";
-            containerValorUnitario.style.display = "block";
-            containerValorRecorrente.style.display = "block";
-            containerRendaPassiva.style.display = "block";
+        const configuration = component.getConfiguration();
+
+        if(!configuration) return;
+
+        if(Array.isArray(configuration.hidden) && configuration.hidden.length > 0){
+            configuration.hidden.forEach(item => {
+                const element = component.querySelector(`#container${item}`);
+                element.style.display = "none";
+            })
         }
+    }
+
+    component.getConfiguration = () => {
+        const configuration = component.formDataByTipoTransacao.find(item => {
+            return inputTipoTransacao.value === item.tipo;
+        });
+
+        return configuration;
     }
 
     component.updateFormDataByInputTipoTransacao = () => {
         component.querySelector("#valorUnitario").value = "";
         component.querySelector("#valorRecorrente").value = "";
 
-        const configuration = component.formDataByTipoTransacao.find(item => {
-            return inputTipoTransacao.value === item.tipo;
-        });
+        const configuration = component.getConfiguration();
 
         if(!configuration) return;
     
         component.querySelector("#valorUnitario").value = configuration.valorUnitario || "";
         component.querySelector("#valorRecorrente").value = configuration.valorRecorrente || "";
+        
+        if(component.hasRelatedItens()){
+            const relatedItens = component.querySelector("#relatedItens")
+            relatedItens.innerHTML = "";
+            configuration.relatedItens.forEach(item => {
+                const option = document.createElement("option");
+                option.setAttribute("value", item.value);
+                option.textContent = item.description;
+                relatedItens.append(option);
+            })
+
+            component.querySelector('[for="relatedItens"]').textContent = configuration.relatedItensLabel || "Item: ";
+        }
     }
 
     component.getFormData = () => { 
@@ -60,7 +92,9 @@ createComponent("nova-transacao", (component) => {
         formData.recorrency = parseFloat(component.querySelector("#valorRecorrente").value) || 0;
         formData.type = component.querySelector("#tipoTransacao").value;
         formData.passiveIncome = component.querySelector("#rendaPassiva").checked;
-
+        formData.relatedItem = component.querySelector("#relatedItens").value;
+        formData.canBeSold = component.querySelector("#canBeSold").checked;
+        
         return formData;
     }
     

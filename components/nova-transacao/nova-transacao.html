@@ -2,17 +2,24 @@
     <h2>Nova transação</h2>
     <span id="mensagemAlerta"></span>
     <form id="formularioNovatransacao">
-        <label for="tipoTransacao">Tipo de transação:  </label>
-        <select id="tipoTransacao" name="tipoTransacao">
-                <option value="pagamento">Pagamento</option>
-                <!-- <option value="compraImovel">Compra Imóvel</option>
-                <option value="vendaImovel">Venda Imóvel</option>
-                <option value="compraNegocio">Compra Negócio</option>
-                <option value="vendaNegocio">Venda Negócio</option> -->
-                <option value="outros">Outros</option>
-            </select><br><br>
-            
-            <div id="outroContainer">
+            <div id="containerTipoTransacao">
+                <label for="tipoTransacao">Tipo de transação:  </label>
+                <select id="tipoTransacao" name="tipoTransacao">
+                    <option value="pagamento">Receber pagamento</option>
+                    <option value="venda">Vender</option>
+                <!--  <option value="vendaImovel">Venda Imóvel</option>
+                    <option value="compraNegocio">Compra Negócio</option>
+                    <option value="vendaNegocio">Venda Negócio</option> -->
+                    <option value="outros">Outros</option>
+                </select><br><br>
+            </div>
+
+            <div id="containerRelatedItens">
+                <label for="relatedItens">Item:</label>
+                <select id="relatedItens" name="relatedItens"></select><br><br>
+            </div>
+
+            <div id="containerOutroDescricao">
                 <label for="outroDescricao">Descreve outro:</label>
                 <input type="text" id="outroDescricao" name="outroDescricao" placeholder="Descrição da transação"><br><br>
             </div>
@@ -28,8 +35,13 @@
             </div>
 
             <div id="containerRendaPassiva">
-                <input type="checkbox" id="rendaPassiva" name="rendaPassiva value="Renda Passiva">
-                <label for="rendaPassiva">Renda Passiva</label><br>
+                <input type="checkbox" id="rendaPassiva" name="rendaPassiva" value="Gera Renda Passiva?">
+                <label for="rendaPassiva">Gera Renda Passiva?</label><br>
+            </div>
+
+            <div id="containerCanBeSold">
+                <input type="checkbox" id="canBeSold" name="canBeSold" value="Pode ser vendido?">
+                <label for="canBeSold">Pode ser vendido?</label><br>
             </div>
         </form>    
     </div>

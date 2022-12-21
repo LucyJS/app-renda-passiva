@@ -13,6 +13,13 @@ createComponent("historico-transacao", (component) => {
         return maxId;
     }
 
+    component.removeItemById = (id) => {
+        const transaction = component.transactions.find(item =>  item.id === id);
+        if(!transaction) return;
+
+        component.removeTransaction(transaction);
+    }
+
     component.filterTransactionByDescription = (description) => {
         return component.transactions.filter(transaction => transaction.description === description);
     }
@@ -76,24 +83,42 @@ createComponent("historico-transacao", (component) => {
             td1.classList.add("transaction-description");
             td2.classList.add("transaction-price");
             td3.classList.add("transaction-recorrency");
-            td4.classList.add("transaction-delete");
+            td4.classList.add("transaction-actions");
             
             td1.textContent = transaction.description; // + " ("+transaction.id+")";
             td2.textContent = formatCurrency(transaction.price || 0);
             td3.textContent = formatCurrency(transaction.recorrency || 0) + (transaction.passiveIncome ? "*": "");
-            td4.innerHTML = "X";
             
+            if(transaction.canBeSold){
+                const acaoVender = document.createElement("span");
+                acaoVender.classList.add("sell");
+                acaoVender.textContent = "Vender";
+                acaoVender.addEventListener("click", () => {
+                    component.sellTransaction(transaction);
+                })
+                td4.append(acaoVender);
+            }
+
+            const acaoExcluir = document.createElement("span");
+            acaoExcluir.classList.add("delete");
+            acaoExcluir.textContent = "X";
+            acaoExcluir.addEventListener("click", () => {
+                component.removeTransaction(transaction);
+            })
+            td4.append(acaoExcluir);
+
+
             tr.append(td1);
             tr.append(td2);
             tr.append(td3);
             tr.append(td4);
             
-            td4.addEventListener("click", () => {
-                component.removeTransaction(transaction);
-            })
-            
             tBody.append(tr);
         })
+    }
+
+    component.sellTransaction = (transaction) => {
+        console.warn(transaction);
     }
     
     component.removeTransaction = (transaction) => {
