@@ -42,12 +42,20 @@ createComponent("gastos", (componetInst, staticContent) => {
         // clickCell(); 
     }
     
+    componetInst.getIndex = ((description, value) => { 
+        const index = componetInst.dataArray.findIndex(item => { 
+            return item.value === value && item.name === description;
+        })
+        
+        return index;
+    });
+    
     componetInst.addItem = (itemGastos) => { 
-
+        
         if(itemGastos.debts < 0){
             itemGastos.debts = 0;
         }
-
+        
         index = Object.keys(componetInst.dataArray).length; 
         itemGastos['index'] = index; 
         componetInst.dataArray.push(itemGastos);

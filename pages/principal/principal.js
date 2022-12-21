@@ -64,7 +64,7 @@ function loadStoragedData(){
 addEventListener("allComponentsReady", () => {
     
     storage = new Storage("player");
-
+    
     // dados de seleção de personagem
     selecionarPersonagem.setPersons([
         {
@@ -134,7 +134,7 @@ addEventListener("allComponentsReady", () => {
             ]
         },
     ]);
-
+    
     // abrir modal de seleção personagem
     modaPersonagem.open();
     
@@ -172,13 +172,13 @@ addEventListener("allComponentsReady", () => {
         })
         
         updateResumoGeral();
-
+        
         const newTransaction = new FinancialMovement();
         newTransaction.description = "pagamento";
         newTransaction.price = resumoGeral.getPagamento();
         newTransaction.passiveIcome = false;
         historicoTransacao.addTransaction(newTransaction);
-
+        
         updateResumoGeral();
         modaPersonagem.close();
     }) 
@@ -263,10 +263,17 @@ addEventListener("allComponentsReady", () => {
         const detail = event.detail;
         const transaction = detail.removedTransaction;
         
-        const index = receitas.getIndex(transaction.description, transaction.recorrency);
-        receitas.removeItem(index);
+        const index = receitas.getIndex(transaction.description, transaction.recorrency); 
+        if (index >= 0)
+        {
+            receitas.removeItem(index);
+        }
         
-        transaction
+        const index2 = gastos.getIndex(transaction.description, transaction.recorrency);
+        if (index2 >= 0)
+        {
+            gastos.removeItem(index2);
+        }  
     })
     
     confirmarVariacao.addEventListener("click", (event) => {
@@ -356,7 +363,7 @@ addEventListener("allComponentsReady", () => {
         setTimeout(() =>{
             updateResumoGeral();
         }, 100);
-    //updateResumoGeral();
+        //updateResumoGeral();
     })
     
     confirmarNovaTransacao.addEventListener("click", () => {
@@ -394,11 +401,11 @@ function updateResumoGeral() {
     const saldo = historicoTransacao.getTotal();
     const pagamento = receitas.getTotalReceita() + gastos.getTotalGastos();
     const passiveIncome = historicoTransacao.getTotalPassiveIncome();
-
+    
     resumoGeral.setSaldo(saldo);
     resumoGeral.setPagamento(pagamento);
     resumoGeral.setRendaPassiva(passiveIncome);
-
+    
     transactions = historicoTransacao.getTransactions();
     
     storage.update({ saldo, pagamento, transactions });
