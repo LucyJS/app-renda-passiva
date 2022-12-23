@@ -18,6 +18,7 @@ createComponent("nova-transacao", (component) => {
 
     component.update = () => {
         component.updateVisibilityInputs();
+        component.resetForm();
         component.updateFormDataByInputTipoTransacao();
     }
 
@@ -39,8 +40,8 @@ createComponent("nova-transacao", (component) => {
         if(!configuration) return;
 
         if(Array.isArray(configuration.hidden) && configuration.hidden.length > 0){
-            configuration.hidden.forEach(item => {
-                const element = component.querySelector(`#container${item}`);
+            configuration.hidden.forEach(containerName => {
+                const element = component.querySelector(`#container${containerName}`);
                 element.style.display = "none";
             })
         }
@@ -65,17 +66,16 @@ createComponent("nova-transacao", (component) => {
         component.querySelector("#valorUnitario").value = configuration.valorUnitario || "";
         component.querySelector("#valorRecorrente").value = configuration.valorRecorrente || "";
         
+        const relatedItens = component.querySelector("#relatedItens")
+        relatedItens.innerHTML = "";
+        component.querySelector('[for="relatedItens"]').textContent = configuration.relatedItensLabel || "Item: ";
         if(component.hasRelatedItens()){
-            const relatedItens = component.querySelector("#relatedItens")
-            relatedItens.innerHTML = "";
             configuration.relatedItens.forEach(item => {
                 const option = document.createElement("option");
                 option.setAttribute("value", item.value);
                 option.textContent = item.description;
                 relatedItens.append(option);
             })
-
-            component.querySelector('[for="relatedItens"]').textContent = configuration.relatedItensLabel || "Item: ";
         }
     }
 
@@ -96,6 +96,15 @@ createComponent("nova-transacao", (component) => {
         formData.canBeSold = component.querySelector("#canBeSold").checked;
         
         return formData;
+    }
+
+    component.resetForm = () => {
+        component.querySelector("#outroDescricao").value = "";
+        component.querySelector("#valorUnitario").value = "";
+        component.querySelector("#valorRecorrente").value = "";
+        component.querySelector("#rendaPassiva").checked = false;
+        component.querySelector("#relatedItens").value = "";
+        component.querySelector("#canBeSold").checked = false;
     }
     
     component.update();
