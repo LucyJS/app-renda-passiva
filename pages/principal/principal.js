@@ -350,7 +350,7 @@ addEventListener("allComponentsReady", () => {
             },
             {
                 tipo: "venda",
-                relatedItens: historicoTransacao.getTransactions().filter(transaction => transaction.canBeSold).map(transaction => {
+                relatedItens: historicoTransacao.getTransactionsCanBeSold().map(transaction => {
                     const description = `${transaction.description} - ${ transaction.recorrency > 0 ? 'receita' : 'gasto' } ${ formatCurrency(transaction.recorrency) }`;
 
                     return { 

@@ -31,7 +31,11 @@ createComponent("historico-transacao", (component) => {
     component.getTransactions = () => {
         return component.transactions;
     }
-    
+
+    component.getTransactionsCanBeSold = () => {
+        return component.transactions.filter(transaction => transaction.canBeSold);
+    }
+
     component.getTransaction = (index) => {
         return component.transactions[index];
     }
